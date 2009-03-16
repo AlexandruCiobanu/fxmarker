@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="{init();}">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import com.fxmarker.Context;
+			import com.fxmarker.FxParser;
+			private function init() : void { 
+				var tmpl : String = "Asta este un ${ce_e_asta}!Asta e mai smecher: ${object.field}";
+				var context : Context = new Context();
+				context.addParameter("ce_e_asta", "TEST");
+				context.addParameter("object", {field : new Date()});
+				var parser : FxParser = new FxParser(context, tmpl);
+				Alert.show(parser.parse());
+			}
+		]]>
+	</mx:Script>
+	
+</mx:Application>
