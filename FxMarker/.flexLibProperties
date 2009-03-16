@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flexLibProperties version="1">
+<includeClasses>
+<classEntry path="com.fxmarker.ArgumentCollector"/>
+<classEntry path="com.fxmarker.Context"/>
+<classEntry path="com.fxmarker.FxMarker"/>
+<classEntry path="com.fxmarker.FxParser"/>
+<classEntry path="com.fxmarker.IParser"/>
+<classEntry path="com.fxmarker.ParseError"/>
+<classEntry path="com.fxmarker.Utils"/>
+</includeClasses>
+<includeResources/>
+<namespaceManifests/>
+</flexLibProperties>
