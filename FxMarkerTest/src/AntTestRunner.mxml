@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+			import com.fxmarker.AllTests;
+			import flexunit.junit.JUnitTestRunner;
+			
+			private function init() : void{
+				var runner : JUnitTestRunner = new JUnitTestRunner();
+				runner.run(AllTests.allTests());
+			}
+		]]>
+	</mx:Script>
+	
+</mx:Application>

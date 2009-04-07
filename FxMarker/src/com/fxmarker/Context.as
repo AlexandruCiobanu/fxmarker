@@ -36,6 +36,14 @@ package com.fxmarker
 		public function getParameter(key : String) : Object{
 			return parameterList[key];
 		}
-
+		/**
+		 * 
+		 * 
+		 */		
+		public function clear() : void{
+			for(var key : * in parameterList){
+				delete parameterList[key];
+			}
+		}
 	}
 }

@@ -9,7 +9,9 @@
 </libraryPath>
 <sourceAttachmentPath/>
 </compiler>
-<applications/>
+<applications>
+<application path="FxMarkerTest.mxml"/>
+</applications>
 <modules/>
 <buildCSSFiles/>
 </actionScriptProperties>

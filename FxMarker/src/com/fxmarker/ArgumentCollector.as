@@ -1,6 +1,6 @@
 package com.fxmarker
 {
-	import flash.utils.Dictionary;
+	import com.fxmarker.reader.IDataProvider;
 	
 	import mx.utils.StringUtil;
 	/**
@@ -15,6 +15,8 @@ package com.fxmarker
 		 */		
 		public var overrideExisting : Boolean;
 		
+		private var _reader : IDataProvider;
+		
 		private var _context : Context;
 		/**
 		 * 
@@ -26,6 +28,26 @@ package com.fxmarker
 		}
 		/**
 		 * 
+		 * @return 
+		 * 
+		 */		
+		public function get reader() : IDataProvider{
+			return reader;
+		}
+		/**
+		 * 
+		 * @param value
+		 * 
+		 */		
+		public function set reader(value : IDataProvider) : void{
+			context.clear();
+			_reader = value;
+			if(_reader){
+				reader.iterate(addArgument);
+			}
+		}
+		/**
+		 * 
 		 * @param key
 		 * @param value
 		 * 
@@ -33,21 +55,6 @@ package com.fxmarker
 		public function addArgument(key : String, value : Object) : void{
 			validate(key, value);
 			_context.addParameter(key, value);
-		}
-		/**
-		 * 
-		 * @param xml
-		 * 
-		 */		
-		public function parseFromXml(xml : XML) : void{
-			
-		}
-		/**
-		 * 
-		 * 
-		 */		
-		public function parseFromProperties() : void{
-			
 		}
 		/**
 		 * 
