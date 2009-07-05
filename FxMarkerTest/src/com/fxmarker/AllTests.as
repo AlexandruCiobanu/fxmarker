@@ -12,7 +12,7 @@ package com.fxmarker
 		public static function allTests() : TestSuite{
 			var test : TestSuite = new TestSuite();
 			test.name= "All tests";
-			test.addTest(new ContextVariableTest());
+			test.addTestSuite(ContextTest);
 			return test;
 		}
 		

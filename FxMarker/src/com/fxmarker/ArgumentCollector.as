@@ -1,5 +1,6 @@
 package com.fxmarker
 {
+	import com.fxmarker.context.Context;
 	import com.fxmarker.reader.IDataProvider;
 	
 	import mx.utils.StringUtil;
@@ -54,7 +55,7 @@ package com.fxmarker
 		 */		
 		public function addArgument(key : String, value : Object) : void{
 			validate(key, value);
-			_context.addParameter(key, value);
+			_context.putValue(key, value);
 		}
 		/**
 		 * 
@@ -71,7 +72,7 @@ package com.fxmarker
 				throw new Error("Key cannot be null, empty or whitespace");
 			}
 			
-			if(!overrideExisting && context.getParameter(key)){
+			if(!overrideExisting && context.getValue(key)){
 				throw new Error("A value already exists for key " + key + ".\nIf you wish to override existing values, set the overrideExisting flag to true.");
 			}
 			

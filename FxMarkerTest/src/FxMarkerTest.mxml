@@ -3,9 +3,7 @@
 	<mx:Script>
 		<![CDATA[
 			import com.fxmarker.AllTests;
-			import mx.controls.Alert;
-			import com.fxmarker.Context;
-			import com.fxmarker.FxParser;
+			
 			private function init() : void { 
 				testRunner.testsToRun = [AllTests.allTests()];
 			}

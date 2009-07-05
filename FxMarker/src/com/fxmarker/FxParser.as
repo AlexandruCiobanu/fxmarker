@@ -1,5 +1,7 @@
 package com.fxmarker
 {
+	import com.fxmarker.context.Context;
+	
 	import flash.utils.Dictionary;
 	
 	/**
@@ -29,10 +31,7 @@ package com.fxmarker
 		{
 			this.context = context;
 			this.templateText = templateText;
-		}
-		
-		private var values : Dictionary = new Dictionary();
-		
+		}		
 		/**
 		 * 
 		 * @return 
@@ -50,33 +49,8 @@ package com.fxmarker
 		}		
 		
 		private function getValue(variable : String, context : Context) : Object{
-			if(values[variable]){
-				return values[variable];	
-			}
-			var stripped : String = variable.substr(2, variable.length - 3);
-			var pathElements : Array = stripped.split(PATH_SEPARATOR);
-			var contextVar : String = pathElements[0] as String;
-			var contextValue : Object = context.getParameter(contextVar);
-			if(!contextValue){
-				throw ParseError.getContextVarNotFoundError(contextVar, variable);
-			}
-			if(pathElements.length == 1){
-				values[variable] = contextValue;
-				return contextValue;
-			}
-			var field : String;
-			for(var i : int = 1; i< pathElements.length; i++){
-				field = pathElements[i];
-				if(contextValue.hasOwnProperty(field)){
-					contextValue = contextValue[field];
-					if(!contextValue && i < pathElements.length - 1){
-						throw ParseError.getNullPathError(contextVar, field, variable);
-					}
-				}else{
-					throw ParseError.getPropertyNotDefinedError(contextVar, field, variable);
-				}
-			}
-			values[variable] = contextValue;
+			var path : String = variable.substr(2, variable.length - 3);
+			var contextValue : Object = context.getValue(path);
 			return contextValue;
 		}
 	}

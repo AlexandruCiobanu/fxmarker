@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flexLibProperties version="1">
 <includeClasses>
-<classEntry path="com.fxmarker.ArgumentCollector"/>
-<classEntry path="com.fxmarker.Context"/>
-<classEntry path="com.fxmarker.FxMarker"/>
 <classEntry path="com.fxmarker.FxParser"/>
+<classEntry path="com.fxmarker.reader.XmlDataProvider"/>
+<classEntry path="com.fxmarker.ArgumentCollector"/>
+<classEntry path="com.fxmarker.FxMarker"/>
+<classEntry path="com.fxmarker.reader.DefaultDataProvider"/>
+<classEntry path="com.fxmarker.util.StringTokenizer"/>
+<classEntry path="com.fxmarker.Utils"/>
+<classEntry path="com.fxmarker.reader.DataProviderFactory"/>
+<classEntry path="com.fxmarker.reader.IDataProvider"/>
 <classEntry path="com.fxmarker.IParser"/>
 <classEntry path="com.fxmarker.ParseError"/>
-<classEntry path="com.fxmarker.Utils"/>
-<classEntry path="com.fxmarker.VERSION"/>
-<classEntry path="com.fxmarker.reader.DataProviderFactory"/>
-<classEntry path="com.fxmarker.reader.DefaultDataProvider"/>
-<classEntry path="com.fxmarker.reader.IDataProvider"/>
 <classEntry path="com.fxmarker.reader.PropertiesDataProvider"/>
-<classEntry path="com.fxmarker.reader.XmlDataProvider"/>
+<classEntry path="com.fxmarker.VERSION"/>
 </includeClasses>
 <includeResources/>
 <namespaceManifests/>
