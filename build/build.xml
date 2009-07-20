@@ -1,0 +1,253 @@
+<?xml version="1.0"?> 
+<project name="${project.name}" basedir="../">  
+	<!-- Define variables/paths used in this build script --> 
+	<tstamp>
+		<format property="timestamp" pattern="ddMMyyyy"/>
+		<format property="currentDate" pattern="dd-MM-yyyy"/>
+	</tstamp>
+	<property file="./build/build.properties" />   
+	<property file="../svn.properties"/>
+	
+	<taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" classpath="${basedir}/libs/ant/FlexAntTasks.jar"/>
+	<taskdef resource="flexTasks.tasks" classpath="${basedir}/libs/ant/flexTasks.jar"/>
+	<taskdef format="xml" resource="org/tigris/subversion/svnant/svnantlib.xml" >
+		<classpath>
+			<pathelement location="${basedir}/libs/ant/svnant.jar"/>
+			<pathelement location="${basedir}/libs/ant/svnClientAdapter.jar"/>
+			<pathelement location="${basedir}/libs/ant/svnjavahl.jar"/>
+		</classpath>
+	</taskdef>
+	<!-- -->
+	<target name="init" description="Initializes the build">  
+		<tstamp/>  
+		<echo message="============================================="/>  
+		<echo message="${project.name}-${project.version} [${TODAY}]"/>  
+		<echo message="Copyright (c) 2008 - 2009 ${project.owner}"/>  
+		<echo message="OS : ${os.name}" />  
+		<echo message="Author: ${author}" />  
+		<echo message="=============================================="/> 
+	</target>
+	<!-- -->
+	<target name="properties" depends="init">
+		<fail unless="asdoc.exe">The "asdoc.exe" property must be set in ${build.dir}/build.properties.</fail> 
+		<fail unless="compc.exe">The "compc.exe" property must be set in ${build.dir}/build.properties.</fail>
+		<fail unless="mxmlc.exe">The "mxmlc.exe" property must be set in ${build.dir}/build.properties.</fail>
+		<fail unless="amxmlc.bat">The "amxmlc.bat" property must be set in ${build.dir}/build.properties.</fail>
+	</target>
+	<!-- -->
+	<target name="build.flexxb" depends="properties, clean">
+		<exec executable="${compc.exe}" dir="${basedir}">
+			<arg line="-o '${project.swc.output}'"/>
+			<arg line="-sp '${project.src.dir}'"/>
+			<arg line="-is '${project.src.dir}'"/>
+			<arg line="-debug=false"/>
+			<arg line="-external-library-path='${flex3sdk.lib.dir}','${flex3sdk.playerlib.dir}'"/>
+			<arg line="${compile.metadata}"/>
+		</exec>
+	</target>
+	<!-- -->
+	<target name="build.project.test" depends="build.flexxb">
+		 <exec executable="${mxmlc.exe}" failonerror="true">
+    	 	<arg value="-source-path=${project.tests.src.dir}"/>
+    	 	<arg value="-file-specs=${project.tests.src.dir}/SerializerTestView.mxml"/>
+    	 	<arg value="-output=${bin.dir}/test/${project.name}Test.swf"/>		
+    	 	    	 	
+    	 	<arg value="-actionscript-file-encoding=UTF-8"/>
+    	 	<arg value="-debug=false"/>
+    	 	<arg value="-incremental=false"/>
+    	 	<arg value="-keep-generated-actionscript=false"/>
+    	 	    		
+    	 	<arg line="${compile.metadata}"/>
+			<arg line="-include-libraries ${flexunit.libs}"/>
+		 	<arg line="-include-libraries ${project.swc.output}"/>
+    	 </exec>
+		<make.wrapper application="${project.test.name}" output.dir="${bin.dir}/test" wrapper.dir="${project.test.dir}/html-template"
+			output.html="${bin.dir}/test/${project.test.name}.html" swf="${project.test.name}"
+			title="${project.name} Test"/>
+		<exec executable="${mxmlc.exe}" failonerror="true">
+    	 	<arg value="-source-path=${project.tests.src.dir}"/>
+    	 	<arg value="-file-specs=${project.tests.src.dir}/AntTestRunner.mxml"/>
+    	 	<arg value="-output=${project.test.ant.output}"/>		
+    	 	    	 	
+    	 	<arg value="-actionscript-file-encoding=UTF-8"/>
+    	 	<arg value="-debug=false"/>
+    	 	<arg value="-incremental=false"/>
+    	 	<arg value="-keep-generated-actionscript=false"/>
+    	 	    		
+    	 	<arg line="${compile.metadata}"/>
+			<arg line="-include-libraries ${flexunit.libs}"/>
+		 	<arg line="-include-libraries ${project.swc.output}"/>
+    	 </exec>
+	</target>
+	<!-- -->
+	<target name="development" depends="build.flexxb, build.project.test">
+		<antcall target="documentation" />
+	</target>
+	<!-- -->
+	<target name="release" depends="development, junit.ui">
+		<copy file="${project.src.dir}/com/googlecode/flexxb/api/schema/${project.name}.xsd"
+			tofile="${bin.dir}/api-schema/${project.name}-api.xsd"/>
+		<make.readme />
+		<zip destfile="${bin.dir}/${release.name.bin}">
+			<fileset dir="${basedir}">
+				<exclude name="**/build/**"/>
+				<exclude name="**/${project.name}/**"/>
+				<exclude name="**/${project.name}Test/**"/>
+				<exclude name="**/libs/**"/>
+				<exclude name="**/.*"/>
+				<exclude name="**/.*/**"/>
+			</fileset>
+		</zip>
+		<zip destfile="${bin.dir}/${release.name.src}">
+			<fileset dir="${basedir}">
+				<exclude name="**/*.zip"/>
+				<exclude name="**/bin/*.*"/>
+				<exclude name="**/bin/*/**"/>
+				<exclude name="**/${project.name}/bin/*.*"/>
+				<exclude name="**/${project.name}Test/bin-debug/*.*"/>
+				<exclude name="**/${project.name}Test/bin-debug/*/**"/>
+			</fileset>
+		</zip>
+		<svn username="${svn.username}" password="${svn.password}">
+			<commit dir="${basedir}/doc" recurse="true" message="commited doc updates"/>
+			<commit dir="${basedir}/releasenotes" message="commited the latest readme"/>
+			<copy message="release ${release.version} branch" revision="HEAD" srcUrl="${svn.HEAD.dir}" destUrl="${svn.branch.dir}/flexxb_${release.version}"/>
+		</svn>
+	</target>
+	
+	<target name="clean">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${bin.dir}">
+				<include name="**/**"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<!-- -->
+	<target name="documentation">
+		<exec executable="${asdoc.exe}">
+			<arg line="-source-path ${project.src.dir}"/>
+			<arg line="-doc-sources ${project.src.dir}"/>
+			<arg line="-output ${doc.dir}/asdoc"/>
+			<arg line="-main-title ${doc.title}"/>
+			<arg line="-window-title ${doc.title}"/>
+		</exec>
+	</target>
+	
+	<target name="junit.ui" depends="build.project.test">
+	        <flexunit
+	                swf="${project.test.ant.output}"
+	                toDir="${bin.dir}/flexunit/reports/${project.name}Test"
+	                haltonfailure="false"
+	                verbose="true"
+	                failureproperty="flexunit.failed"/>
+
+	        <junitreport todir="${bin.dir}/flexunit/reports/${project.name}Test">
+	            <fileset dir="${bin.dir}/flexunit/reports/${project.name}Test">
+	                <include name="TEST-*.xml"/>
+	            </fileset>
+	            <report format="frames" todir="${bin.dir}/flexunit/reports/flex"/>
+	        </junitreport>
+
+	        <fail
+	                message="One or more flexunit tests failed. See test reports for details."
+	                if="flexunit.failed"/>
+	    </target>
+	
+	<macrodef name="make.readme">
+		<sequential>
+			<copy file="${basedir}/README.txt" tofile="${basedir}/releasenotes/readme-v${release.version}.txt" overwrite="true"/>
+			<replaceregexp file="${basedir}/releasenotes/readme-v${release.version}.txt"
+				flags="gs"
+				match="\$\{release.version\}"
+				replace="${release.version}"/>
+			<replaceregexp file="${basedir}/releasenotes/readme-v${release.version}.txt"
+				flags="gs"
+				match="\$\{project.version\}"
+				replace="${project.version}"/>
+			<replaceregexp file="${basedir}/releasenotes/readme-v${release.version}.txt"
+				flags="gs"
+				match="\$\{today\}"
+				replace="${timestamp}"/>
+			<replaceregexp file="${basedir}/releasenotes/readme-v${release.version}.txt"
+				flags="gs"
+				match="\$\{currentDate\}"
+				replace="${currentDate}"/>
+			<replaceregexp file="${basedir}/releasenotes/readme-v${release.version}.txt"
+				flags="gs"
+				match="\$\{project.name\}"
+				replace="${project.name}"/>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="make.wrapper">
+	    <attribute name="width" default="100%" />
+	    <attribute name="height" default="100%" />
+	    <attribute name="title" default="" />
+	    <attribute name="version.major" default="9" />
+	    <attribute name="version.minor" default="0" />
+	    <attribute name="version.revision" default="0" />
+	    <attribute name="application" default="" />
+	    <attribute name="swf" default="" />
+	    <attribute name="bgcolor" default="#869ca7" />
+	    <attribute name="wrapper.dir" />
+	    <attribute name="output.dir" />
+	    <attribute name="output.html" />
+	    <sequential>
+	    	<copy todir="@{output.dir}">
+	    		<fileset dir="@{wrapper.dir}">
+		    		<exclude name="**/index.template.html" />
+	    		</fileset>
+	    	</copy>
+	    	<copy 
+	    		file="@{wrapper.dir}/index.template.html"
+	    		tofile="@{output.html}" />
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{width\}"
+	    		replace="@{width}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{height\}"
+	    		replace="@{height}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{title\}"
+	    		replace="@{title}"
+	    		encoding="utf-8"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{version_major\}"
+	    		replace="@{version.major}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{version_minor\}"
+	    		replace="@{version.minor}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{version_revision\}"
+	    		replace="@{version.revision}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{application\}"
+	    		replace="@{application}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{bgcolor\}"
+	    		replace="@{bgcolor}"/>
+	    	<replaceregexp 
+	    		file="@{output.html}"
+	    		flags="gs"
+	    		match="\$\{swf\}"
+	    		replace="@{swf}"/>
+	    </sequential>
+	</macrodef>
+</project>
