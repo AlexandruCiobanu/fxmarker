@@ -106,7 +106,7 @@
 				<exclude name="**/${project.name}Test/bin-debug/*/**"/>
 			</fileset>
 		</zip>
-		<svn username="${svn.username}" password="${svn.password}a">
+		<svn username="${svn.username}" password="${svn.password}">
 			<commit dir="${basedir}/doc" recurse="true" message="commited doc updates"/>
 			<commit dir="${basedir}/releasenotes" message="commited the latest readme"/>
 			<copy message="release ${release.version} branch" revision="HEAD" srcUrl="${svn.HEAD.dir}" destUrl="${svn.branch.dir}/flexxb_${release.version}"/>
