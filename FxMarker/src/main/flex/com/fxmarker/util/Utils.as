@@ -1,4 +1,4 @@
-package com.fxmarker
+package com.fxmarker.util
 {
 	import mx.utils.StringUtil;
 	/**

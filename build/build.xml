@@ -35,7 +35,7 @@
 		<fail unless="amxmlc.bat">The "amxmlc.bat" property must be set in ${build.dir}/build.properties.</fail>
 	</target>
 	<!-- -->
-	<target name="build.flexxb" depends="properties, clean">
+	<target name="build.project" depends="properties, clean">
 		<exec executable="${compc.exe}" dir="${basedir}">
 			<arg line="-o '${project.swc.output}'"/>
 			<arg line="-sp '${project.src.dir}'"/>
@@ -46,7 +46,7 @@
 		</exec>
 	</target>
 	<!-- -->
-	<target name="build.project.test" depends="build.flexxb">
+	<target name="build.project.test" depends="build.project">
 		 <exec executable="${mxmlc.exe}" failonerror="true">
     	 	<arg value="-source-path=${project.tests.src.dir}"/>
     	 	<arg value="-file-specs=${project.tests.src.dir}/SerializerTestView.mxml"/>
@@ -80,7 +80,7 @@
     	 </exec>
 	</target>
 	<!-- -->
-	<target name="development" depends="build.flexxb, build.project.test">
+	<target name="development" depends="build.project, build.project.test">
 		<antcall target="documentation" />
 	</target>
 	<!-- -->
