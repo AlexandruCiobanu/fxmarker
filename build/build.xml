@@ -49,7 +49,7 @@
 	<target name="build.project.test" depends="build.project">
 		 <exec executable="${mxmlc.exe}" failonerror="true">
     	 	<arg value="-source-path=${project.tests.src.dir}"/>
-    	 	<arg value="-file-specs=${project.tests.src.dir}/SerializerTestView.mxml"/>
+    	 	<arg value="-file-specs=${project.tests.src.dir}/${project.name}Test.mxml"/>
     	 	<arg value="-output=${bin.dir}/test/${project.name}Test.swf"/>		
     	 	    	 	
     	 	<arg value="-actionscript-file-encoding=UTF-8"/>
@@ -85,8 +85,6 @@
 	</target>
 	<!-- -->
 	<target name="release" depends="development, junit.ui">
-		<copy file="${project.src.dir}/com/googlecode/flexxb/api/schema/${project.name}.xsd"
-			tofile="${bin.dir}/api-schema/${project.name}-api.xsd"/>
 		<make.readme />
 		<zip destfile="${bin.dir}/${release.name.bin}">
 			<fileset dir="${basedir}">
@@ -108,7 +106,7 @@
 				<exclude name="**/${project.name}Test/bin-debug/*/**"/>
 			</fileset>
 		</zip>
-		<svn username="${svn.username}" password="${svn.password}">
+		<svn username="${svn.username}" password="${svn.password}a">
 			<commit dir="${basedir}/doc" recurse="true" message="commited doc updates"/>
 			<commit dir="${basedir}/releasenotes" message="commited the latest readme"/>
 			<copy message="release ${release.version} branch" revision="HEAD" srcUrl="${svn.HEAD.dir}" destUrl="${svn.branch.dir}/flexxb_${release.version}"/>
