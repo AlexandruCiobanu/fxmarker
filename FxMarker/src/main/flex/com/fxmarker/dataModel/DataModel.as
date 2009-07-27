@@ -1,4 +1,21 @@
-package com.fxmarker.context
+/**
+ *   FxMarker - a template based content generator for Flex and Air applications 
+ *   Copyright (C) 2008-2009 Alex Ciobanu
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ * 
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ package com.fxmarker.dataModel
 {
 	import com.fxmarker.util.StringTokenizer;
 	
@@ -9,25 +26,17 @@ package com.fxmarker.context
 	 * @author Alexutz
 	 * 
 	 */	
-	public class Context
+	public class DataModel extends Node
 	{
 		/**
 		 * 
 		 */		
 		public static const PATH_DELIMITER : String = ".";
-		
-		private var root : Node;
-		
-		private var parameterList : Dictionary;
 		/**
 		 * 
 		 * 
 		 */		
-		public function Context()
-		{
-			root = new Node("root");
-			parameterList = new Dictionary();
-		}
+		public function DataModel(){ }
 		/**
 		 * 
 		 * @param key
@@ -36,13 +45,13 @@ package com.fxmarker.context
 		 */		
 		public function putValue(path : String, value : Object) : void{
 			var tokenizer : StringTokenizer = getTokens(path);
-			var node : Node = root;
+			var node : Node = this;
 			while(tokenizer.hasMoreTokens()){
 				var subPath : String = tokenizer.getToken();
-				if(node.hasNode(subPath)){
-					node = node.getNode(subPath);
+				if(node.hasChild(subPath)){
+					node = node.getChild(subPath);
 				}else{
-					node = node.addNode(subPath);
+					node = node.addChild(subPath);
 				}
 			}
 			if(node){
@@ -60,12 +69,12 @@ package com.fxmarker.context
 		 */		
 		public function getValue(path : String) : Object{
 			var tokenizer : StringTokenizer = getTokens(path);
-			var result : Object = root;
+			var result : Object = this;
 			while(tokenizer.hasMoreTokens() && result){
 				var subPath : String = tokenizer.getToken();
 				if(result is Node){
-					if((result as Node).hasNode(subPath)){
-						result = (result as Node).getNode(subPath);
+					if((result as Node).hasChild(subPath)){
+						result = (result as Node).getChild(subPath);
 					}else{
 						result = (result as Node).data;
 					}
@@ -83,15 +92,6 @@ package com.fxmarker.context
 				return Node(result).data;
 			}
 			return result;
-		}
-		/**
-		 * 
-		 * 
-		 */		
-		public function clear() : void{
-			for(var path : * in parameterList){
-				delete parameterList[path];
-			}
 		}
 		
 		private function getTokens(path : String) : StringTokenizer{

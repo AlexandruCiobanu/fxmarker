@@ -1,23 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flexLibProperties version="1">
 <includeClasses>
+<classEntry path="com.fxmarker.template.If"/>
+<classEntry path="com.fxmarker.template.TextBlock"/>
+<classEntry path="com.fxmarker.dataModel.NumberItemModel"/>
+<classEntry path="com.fxmarker.dataModel.DataModel"/>
+<classEntry path="com.fxmarker.dataModel.DataItemModel"/>
+<classEntry path="com.fxmarker.template.TemplateParser"/>
 <classEntry path="com.fxmarker.ArgumentCollector"/>
-<classEntry path="com.fxmarker.FxMarker"/>
-<classEntry path="com.fxmarker.FxParser"/>
+<classEntry path="com.fxmarker.template.Comment"/>
+<classEntry path="com.fxmarker.template.Directive"/>
+<classEntry path="com.fxmarker.reader.IDataProvider"/>
+<classEntry path="com.fxmarker.template.TemplateObject"/>
+<classEntry path="com.fxmarker.template.Interpolation"/>
 <classEntry path="com.fxmarker.IParser"/>
 <classEntry path="com.fxmarker.ParseError"/>
-<classEntry path="com.fxmarker.VERSION"/>
-<classEntry path="com.fxmarker.context.Content"/>
-<classEntry path="com.fxmarker.context.Context"/>
-<classEntry path="com.fxmarker.context.ListContent"/>
-<classEntry path="com.fxmarker.context.Node"/>
-<classEntry path="com.fxmarker.reader.DataProviderFactory"/>
-<classEntry path="com.fxmarker.reader.DefaultDataProvider"/>
-<classEntry path="com.fxmarker.reader.IDataProvider"/>
-<classEntry path="com.fxmarker.reader.PropertiesDataProvider"/>
+<classEntry path="com.fxmarker.dataModel.ListContent"/>
+<classEntry path="com.fxmarker.template.Template"/>
+<classEntry path="com.fxmarker.template.Expression"/>
+<classEntry path="com.fxmarker.FxParser"/>
+<classEntry path="com.fxmarker.template.MixedContent"/>
+<classEntry path="com.fxmarker.fxm_internal"/>
 <classEntry path="com.fxmarker.reader.XmlDataProvider"/>
-<classEntry path="com.fxmarker.util.StringTokenizer"/>
+<classEntry path="com.fxmarker.template.List"/>
 <classEntry path="com.fxmarker.util.Utils"/>
+<classEntry path="com.fxmarker.FxMarker"/>
+<classEntry path="com.fxmarker.Configuration"/>
+<classEntry path="com.fxmarker.reader.DefaultDataProvider"/>
+<classEntry path="com.fxmarker.util.StringTokenizer"/>
+<classEntry path="com.fxmarker.reader.DataProviderFactory"/>
+<classEntry path="com.fxmarker.writer.Writer"/>
+<classEntry path="com.fxmarker.dataModel.Content"/>
+<classEntry path="com.fxmarker.dataModel.Node"/>
+<classEntry path="com.fxmarker.template.TemplateElement"/>
+<classEntry path="com.fxmarker.reader.PropertiesDataProvider"/>
+<classEntry path="com.fxmarker.dataModel.DateItemModel"/>
+<classEntry path="com.fxmarker.Environment"/>
+<classEntry path="com.fxmarker.VERSION"/>
 </includeClasses>
 <includeResources/>
 <namespaceManifests/>

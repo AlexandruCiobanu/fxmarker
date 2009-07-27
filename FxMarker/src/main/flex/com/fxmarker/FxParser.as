@@ -1,8 +1,23 @@
-package com.fxmarker
+/**
+ *   FxMarker - a template based content generator for Flex and Air applications 
+ *   Copyright (C) 2008-2009 Alex Ciobanu
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ * 
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ package com.fxmarker
 {
-	import com.fxmarker.context.Context;
-	
-	import flash.utils.Dictionary;
+	import com.fxmarker.dataModel.DataModel;
 	
 	/**
 	 * 
@@ -16,7 +31,7 @@ package com.fxmarker
 		/**
 		 * 
 		 */		
-		public var context : Context;
+		public var context : DataModel;
 		/**
 		 * 
 		 */		
@@ -27,7 +42,7 @@ package com.fxmarker
 		 * @param templateText
 		 * 
 		 */		
-		public function FxParser(context : Context = null, templateText : String = null)
+		public function FxParser(context : DataModel = null, templateText : String = null)
 		{
 			this.context = context;
 			this.templateText = templateText;
@@ -48,7 +63,7 @@ package com.fxmarker
 			return result;
 		}		
 		
-		private function getValue(variable : String, context : Context) : Object{
+		private function getValue(variable : String, context : DataModel) : Object{
 			var path : String = variable.substr(2, variable.length - 3);
 			var contextValue : Object = context.getValue(path);
 			return contextValue;
