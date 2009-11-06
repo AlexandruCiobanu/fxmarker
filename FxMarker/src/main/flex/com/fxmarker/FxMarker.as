@@ -17,7 +17,9 @@
  */
  package com.fxmarker
 {
-	import com.fxmarker.reader.IDataProvider;
+	import com.fxmarker.dataModel.DataModel;
+	import com.fxmarker.template.Template;
+	import com.fxmarker.template.TemplateParser;
 	
 	/**
 	 * The main access point for the Flex Template Engine.
@@ -39,32 +41,53 @@
 		/**
 		 * 
 		 */		
-		private var collector : ArgumentCollector;
+		private var dataModel : DataModel;
 		/**
 		 * 
-		 */	
-		private var parser : FxParser;
+		 */		
+		private var parser : TemplateParser;
+		/**
+		 * 
+		 */		
+		private var template : Template;
 		/**
 		 * Constructor 
 		 * 
 		 */		
 		public function FxMarker(){
-			collector = new ArgumentCollector();
-			parser = new FxParser();
+			dataModel = new DataModel();
+			parser = new TemplateParser();
 		}
 		/**
 		 * 
+		 * @param source
+		 * 
+		 */		
+		public function loadTemplate(source : String) : void{
+			template = parser.parse(source);
+			dataModel.clear();
+		}
+		/**
+		 * 
+		 * @param path
 		 * @param value
 		 * 
 		 */		
-		public function set dataProvider(value : IDataProvider) : void{
-			collector.reader = value;
+		public function putValue(path : String, value : Object) : void{
+			dataModel.putValue(path, value);
 		}
-		
-		public function parse(template : String = null, data : IDataProvider = null) : String{
-			parser.context = collector.context;
-			parser.templateText = template;
-			return parser.parse();
+		/**
+		 * 
+		 * 
+		 */		
+		public function clearDataModel() : void{
+			dataModel.clear();
+		}
+		/**
+		 * 
+		 * 
+		 */		
+		public function generate() : void{
 		}
 	}
 }
