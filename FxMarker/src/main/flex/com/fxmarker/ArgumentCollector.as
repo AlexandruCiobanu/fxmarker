@@ -1,6 +1,6 @@
 /**
  *   FxMarker - a template based content generator for Flex and Air applications 
- *   Copyright (C) 2008-2009 Alex Ciobanu
+ *   Copyright (C) 2008-2010 Alex Ciobanu
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,8 +19,10 @@
 {
 	import com.fxmarker.dataModel.DataModel;
 	import com.fxmarker.reader.IDataProvider;
+	import com.fxmarker.template.Directive;
 	
 	import mx.utils.StringUtil;
+
 	/**
 	 * 
 	 * @author aCiobanu

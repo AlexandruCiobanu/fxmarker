@@ -1,6 +1,6 @@
 /**
  *   FxMarker - a template based content generator for Flex and Air applications 
- *   Copyright (C) 2008-2009 Alex Ciobanu
+ *   Copyright (C) 2008-2010 Alex Ciobanu
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@
 	 * @author aCiobanu
 	 * 
 	 */	
-	public class FxParser implements IParser
+	public class FxParser
 	{
 		private static const VARIABLE_DEFINITION : String = "\\$\\{([a-zA-Z]\\w?\\.?)+\\}";
 		private static const PATH_SEPARATOR : String = ".";

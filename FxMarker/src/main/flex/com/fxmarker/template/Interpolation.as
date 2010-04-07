@@ -1,6 +1,6 @@
 /**
  *   FxMarker - a template based content generator for Flex and Air applications 
- *   Copyright (C) 2008-2009 Alex Ciobanu
+ *   Copyright (C) 2008-2010 Alex Ciobanu
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,6 +28,12 @@
 		
 		public override function getCanonicalForm():String{
 			return "${" + expression.getCanonicalForm() + "}";
-		}		
+		}
+		
+		public function setContent(content : String) : void{
+			
+		}
+		
+		
 	}
 }

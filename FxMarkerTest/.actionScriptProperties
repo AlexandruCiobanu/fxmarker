@@ -1,17 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<actionScriptProperties mainApplicationPath="FxMarkerTest.mxml" version="3">
-<compiler additionalCompilerArguments="-locale en_US" copyDependentFiles="true" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersion="9.0.124" htmlPlayerVersionCheck="true" outputFolderPath="bin-debug" sourceFolderPath="src/main/flex" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
-<compilerSourcePath/>
-<libraryPath defaultLinkType="1">
-<libraryPathEntry kind="4" path=""/>
-<libraryPathEntry kind="1" linkType="1" path="libs"/>
-<libraryPathEntry kind="3" linkType="1" path="/FxMarker/bin/FxMarker.swc" useDefaultLinkType="false"/>
-</libraryPath>
-<sourceAttachmentPath/>
-</compiler>
-<applications>
-<application path="FxMarkerTest.mxml"/>
-</applications>
-<modules/>
-<buildCSSFiles/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties mainApplicationPath="FxMarkerTest.mxml" projectUUID="4bb6a18e-e041-432d-a165-cc95b1a1b646" version="6">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="false" copyDependentFiles="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="true" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" sourceFolderPath="src/main/flex" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+      <libraryPathEntry kind="3" linkType="1" path="/FxMarker/bin/FxMarker.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="FxMarkerTest.mxml"/>
+  </applications>
+  <modules/>
+  <buildCSSFiles/>
 </actionScriptProperties>
