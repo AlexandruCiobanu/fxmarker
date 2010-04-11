@@ -17,7 +17,7 @@
  */
  package com.fxmarker.template
 {
-	public class If extends Directive
+	internal class If extends Directive
 	{
 		public function If()
 		{

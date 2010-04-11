@@ -32,5 +32,9 @@
 		public function getCanonicalForm() : String{
 			return "";
 		}
+		
+		public function setContent(content : String) : void{
+			
+		}
 	}
 }

@@ -19,7 +19,7 @@
 {
 	import com.fxmarker.Environment;
 	
-	public class TextBlock extends TemplateElement
+	internal class TextBlock extends TemplateElement
 	{
 		private var content : String;
 		
@@ -36,7 +36,7 @@
 			env.output.write(content);
 		}
 		
-		public function setContent(content : String) : void{
+		public override function setContent(content : String) : void{
 			this.content = content;
 		}
 	}

@@ -1,8 +1,15 @@
 package com.fxmarker.grammar
 {
 	import com.fxmarker.template.TemplateElement;
+	import com.fxmarker.template.TemplateFactory;
 	import com.fxmarker.template.TextBlock;
-
+	
+	[ExcludeClass]
+	/**
+	 * 
+	 * @author User
+	 * 
+	 */
 	internal final class StateText extends State
 	{
 		public function StateText(walker : StateWalker)
@@ -11,11 +18,11 @@ package com.fxmarker.grammar
 		}
 		
 		internal override function onStateEnter() : void{
-			_element = new TextBlock();
+			_element = TemplateFactory.instance.getInstance(TemplateFactory.TEXT);
 		}
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
-			TextBlock(_element).setContent(containedText);
+			element.setContent(containedText);
 			return super.onStateExit(containedText);
 		}
 	}

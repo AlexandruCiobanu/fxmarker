@@ -35,6 +35,10 @@
 			return string == null || StringUtil.trim(string) == ""; 
 		}
 		
+		public static function endsWith(string : String, s : String) : Boolean{
+			return string != null && s != null && s == string.substring(string.length - s.length);
+		}
+		
 		public function Utils()
 		{
 			throw new Error("Do not instanciate Utils class.");

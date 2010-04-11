@@ -4,7 +4,8 @@ package com.fxmarker.grammar
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-
+	
+	[ExcludeClass]
 	/**
 	 * 
 	 * @author Alexutz
@@ -14,7 +15,7 @@ package com.fxmarker.grammar
 	{
 		protected var _element : TemplateElement;
 		
-		private var walker : StateWalker;
+		protected var walker : StateWalker;
 		
 		public function State(walker : StateWalker){
 			this.walker = walker;

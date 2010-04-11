@@ -17,7 +17,7 @@
  */
  package com.fxmarker.template
 {
-	public class List extends Directive
+	internal class List extends Directive
 	{
 		public function List()
 		{

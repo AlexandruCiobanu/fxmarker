@@ -1,27 +1,26 @@
 package com.fxmarker.grammar
 {
-	import com.fxmarker.template.Comment;
 	import com.fxmarker.template.TemplateElement;
-	import com.fxmarker.template.TemplateFactory;
 	
 	[ExcludeClass]
 	/**
 	 * 
 	 * @author User
 	 * 
-	 */	
-	internal final class StateComment extends State
+	 */
+	internal final class StateDirectiveLine extends State
 	{
-		public function StateComment(walker : StateWalker){
+		public function StateDirectiveLine(walker:StateWalker)
+		{
 			super(walker);
 		}
 		
 		internal override function onStateEnter() : void{
-			_element = TemplateFactory.instance.getInstance(TemplateFactory.COMMENT);
+			//do nothing here
 		}
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
-			element.setContent(containedText);
+			walker.itemsStack.pop();
 			return super.onStateExit(containedText);
 		}
 	}

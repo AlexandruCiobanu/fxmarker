@@ -2,7 +2,14 @@ package com.fxmarker.grammar
 {
 	import com.fxmarker.template.Interpolation;
 	import com.fxmarker.template.TemplateElement;
-
+	import com.fxmarker.template.TemplateFactory;
+	
+	[ExcludeClass]
+	/**
+	 * 
+	 * @author User
+	 * 
+	 */
 	internal final class StateInterpolation extends State
 	{
 		public function StateInterpolation(walker : StateWalker)
@@ -11,11 +18,11 @@ package com.fxmarker.grammar
 		}
 		
 		internal override function onStateEnter() : void{
-			_element = new Interpolation();
+			_element = TemplateFactory.instance.getInstance(TemplateFactory.INTERPOLATION);
 		}
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
-			Interpolation(element).setContent(containedText);
+			element.setContent(containedText);
 			return super.onStateExit(containedText);
 		}
 	}

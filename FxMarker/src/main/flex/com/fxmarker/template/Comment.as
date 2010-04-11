@@ -23,7 +23,7 @@
 	 * @author Alexutz
 	 * 
 	 */	
-	public class Comment extends TemplateElement
+	internal class Comment extends TemplateElement
 	{
 		private var content : String;
 		public function Comment()
@@ -39,7 +39,7 @@
 			return "<#-- " + content + " -->";
 		}
 		
-		public function setContent(content : String) : void{
+		public override function setContent(content : String) : void{
 			this.content = content;
 		}
 	}

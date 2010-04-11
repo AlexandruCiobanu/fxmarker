@@ -17,7 +17,7 @@
  */
  package com.fxmarker.template
 {
-	public class Interpolation extends TemplateElement
+	internal class Interpolation extends TemplateElement
 	{
 		private var expression : Expression;
 		
@@ -30,7 +30,7 @@
 			return "${" + expression.getCanonicalForm() + "}";
 		}
 		
-		public function setContent(content : String) : void{
+		public override function setContent(content : String) : void{
 			
 		}
 		
