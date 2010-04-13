@@ -15,15 +15,25 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.fxmarker.template
+ package com.fxmarker
 {
-	public class Directive extends MixedContent
+	
+	import flexunit.framework.TestCase;
+
+	public class GrammarTest extends TestCase
 	{
-		public function Directive()
+		
+		[Embed(source="assets/Interface.template", mimeType="application/octet-stream")]
+		private var xmlLocalizationSource : Class;
+		
+		public function GrammarTest(methodName:String=null)
 		{
-			//TODO: implement function
-			super();
+			super(methodName);
 		}
 		
+		public function testContextVariables() : void{
+			var testData : String = new String(new xmlLocalizationSource());
+			FxMarker.instance.loadTemplate(testData);
+		}
 	}
 }

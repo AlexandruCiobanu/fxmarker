@@ -32,8 +32,6 @@
 		
 		public override function setContent(content : String) : void{
 			
-		}
-		
-		
+		}		
 	}
 }

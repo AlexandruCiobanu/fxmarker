@@ -27,7 +27,7 @@
 	{
 		protected var _parent : TemplateElement;
 		
-		protected var _nestedElement : TemplateElement;
+		//protected var _nestedElement : TemplateElement;
 		/**
 		 * 
 		 * 
@@ -52,11 +52,11 @@
 			_parent = value;
 		}
 		
-		public function set nestedElement(value : TemplateElement) : void{
+		/*public function set nestedElement(value : TemplateElement) : void{
 			_nestedElement = value;
 			if(value){
 				value.parent = this;
 			}
-		}
+		}*/
 	}
 }

@@ -30,6 +30,7 @@
 			var test : TestSuite = new TestSuite();
 			test.name= "All tests";
 			test.addTestSuite(ContextTest);
+			test.addTestSuite(GrammarTest);
 			return test;
 		}
 		

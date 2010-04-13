@@ -22,7 +22,11 @@ package com.fxmarker.grammar
 		}
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
-			element.setContent(containedText);
+			if(containedText){
+				_element.setContent(containedText);
+			}else{
+				_element = null;
+			}
 			return super.onStateExit(containedText);
 		}
 	}

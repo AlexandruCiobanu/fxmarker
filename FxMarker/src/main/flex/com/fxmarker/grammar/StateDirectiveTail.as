@@ -27,7 +27,7 @@ package com.fxmarker.grammar
 			if(containedText != directiveName){
 				throw new Error("Wrong end tag for directive " + directiveName + ". End tag " + containedText + " does not match expected content.");
 			}
-			walker.itemsStack.pop();
+			_element = walker.itemsStack.pop();
 			
 			return super.onStateExit(containedText);
 		}

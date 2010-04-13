@@ -2,6 +2,7 @@ package com.fxmarker.template
 {
 	import com.fxmarker.error.GrammarError;
 	
+	import flash.net.registerClassAlias;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
@@ -15,6 +16,7 @@ package com.fxmarker.template
 		public static const IF : String = "if";
 		public static const FOREACH : String = "foreach";
 		public static const LIST : String = "list";
+		public static const COMMA_SEPARATED_LIST : String = "csList";
 		public static const COMMENT : String = "comment";
 		public static const INTERPOLATION : String = "interpolation";
 		public static const TEXT : String = "text";
@@ -26,7 +28,7 @@ package com.fxmarker.template
 		 * 
 		 */		
 		public static function get instance() : TemplateFactory{
-			return instance;
+			return _instance;
 		}
 		
 		private var map : Object;
@@ -38,15 +40,23 @@ package com.fxmarker.template
 			if(_instance){
 				throw new Error("Use the static accessor instance instead")
 			}
+			registerTemplates();
 		}
 		
 		private function registerTemplates() : void{
 			map = new Object();
-			map[COMMENT] = Comment;
-			map[INTERPOLATION] = Interpolation;
-			map[TEXT] = TextBlock;
-			map[LIST] = List;
-			map[FOREACH] = List;
+			register(COMMENT, 				Comment);
+			register(INTERPOLATION, 		Interpolation);
+			register(TEXT,  				TextBlock);
+			register(LIST,  				List);
+			register(FOREACH,  				List);
+			register(COMMA_SEPARATED_LIST,  CommaSeparatedList);
+		}
+		
+		private function register(name : String, clasz : Class) : void{
+			map[name] = clasz;
+			registerClassAlias(getQualifiedClassName(clasz), clasz);
+			trace(getQualifiedClassName(clasz));
 		}
 		/**
 		 * 
@@ -72,9 +82,9 @@ package com.fxmarker.template
 		 */		
 		public function getName(instance : TemplateElement) : String{
 			if(instance){
-				var clasz : Class = getDefinitionByName(getQualifiedClassName(instance)) as Class;
+				var className : String = getQualifiedClassName(instance);
 				for(var key : * in map){
-					if(map[key] == clasz){
+					if(getQualifiedClassName(map[key]) == className){
 						return key;
 					}
 				}

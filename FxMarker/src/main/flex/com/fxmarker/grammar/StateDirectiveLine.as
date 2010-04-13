@@ -20,7 +20,7 @@ package com.fxmarker.grammar
 		}
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
-			walker.itemsStack.pop();
+			_element = walker.itemsStack.pop();
 			return super.onStateExit(containedText);
 		}
 	}

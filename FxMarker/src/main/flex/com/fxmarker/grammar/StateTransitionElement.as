@@ -25,6 +25,10 @@ package com.fxmarker.grammar
 		 */		
 		public var conditions : Array;
 		/**
+		 * The content built up so far, excluding the end section that triggered the transition
+		 */		
+		internal var evaluatedContent : String;
+		/**
 		 * 
 		 * @param source
 		 * 
@@ -91,7 +95,11 @@ package com.fxmarker.grammar
 				return true;
 			}
 			if(condition is String){
-				return Utils.endsWith(content, condition as String);
+				var result : Boolean = Utils.endsWith(content, condition as String);
+				if(result){
+					evaluatedContent = condition is String ? content.substring(0, content.length - String(condition).length) : content;
+				}
+				return result;
 			}
 			return false;
 		}

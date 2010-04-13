@@ -27,9 +27,8 @@ package com.fxmarker.grammar
 			
 			_element = TemplateFactory.instance.getInstance(elementName);
 			_element.setContent(content);
-			walker.itemsStack.push(_element);
-			
-			
+			walker.itemsStack.push(_element);			
+			_element = null;
 			return super.onStateExit(containedText);
 		}
 	}

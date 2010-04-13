@@ -17,9 +17,12 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.grammar.StateWalker;
+	
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	
+	import mx.states.State;
 	import mx.utils.SHA256;
 
 	/**
@@ -70,7 +73,8 @@
 		}
 		
 		private function parseFromStateMachine(data : String) : Template{
-			return null;
+			var walker : StateWalker = new StateWalker();
+			return walker.walk(data);
 		}
 		
 	}

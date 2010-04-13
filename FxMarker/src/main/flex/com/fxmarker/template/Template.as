@@ -25,7 +25,7 @@
 		{
 		}
 		
-		protected function addElement(element : TemplateElement) : void{
+		public function addElement(element : TemplateElement) : void{
 			if(element){
 				if(!_elements){
 					_elements = [];

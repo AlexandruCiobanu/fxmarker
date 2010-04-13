@@ -1,19 +1,29 @@
 package com.fxmarker.grammar
-{
-	import flash.utils.Dictionary;
-	import flash.utils.setTimeout;
-    
+{    
+	import flash.events.EventDispatcher;
+	import flash.external.ExternalInterface;
+
+	[Event(name="stateExit", "com.fxmarker.grammar.StateTransitionEvent")]
+	[Event(name="stateEnter", "com.fxmarker.grammar.StateTransitionEvent")]
 	[ExcludeClass]
 	/**
 	 *  
 	 * @author User
 	 * 
 	 */	
-	internal final class StateTransitionMap
+	internal final class StateTransitionMap extends EventDispatcher
 	{
 		private var current : State;
 		
-		private var transitionMap : Dictionary;
+		private var transitionMap : Object;
+		
+		private var text : StateText;
+		private var interpolation : StateInterpolation;
+		private var comment : StateComment;
+		private var directiveHead : StateDirectiveHead;
+		private var directiveTail : StateDirectiveTail;
+		private var directiveLine : StateDirectiveLine;
+		
 		/**
 		 * 
 		 * @param walker
@@ -21,12 +31,12 @@ package com.fxmarker.grammar
 		 */		
 		public function StateTransitionMap(walker : StateWalker){
 			
-			var text : StateText = new StateText(walker);
-			var interpolation : StateInterpolation = new StateInterpolation(walker);
-			var comment : StateComment = new StateComment(walker);
-			var directiveHead : StateDirectiveHead = new StateDirectiveHead(walker);
-			var directiveTail : StateDirectiveTail = new StateDirectiveTail(walker);
-			var directiveLine : StateDirectiveLine = new StateDirectiveLine(walker);
+			text = new StateText(walker);
+			interpolation = new StateInterpolation(walker);
+			comment = new StateComment(walker);
+			directiveHead = new StateDirectiveHead(walker);
+			directiveTail = new StateDirectiveTail(walker);
+			directiveLine = new StateDirectiveLine(walker);
 			
 			setTransition(text, 			interpolation, 	"${"	);
 			setTransition(text, 			directiveHead, 	"<#"	);
@@ -36,8 +46,6 @@ package com.fxmarker.grammar
 			setTransition(directiveHead,	directiveLine, 	"/>"	);
 			setTransition(directiveLine, 	text, 			null	);
 			setTransition(directiveTail, 	text, 			">"		);
-			
-			current = text;
 		}
 		/**
 		 * 
@@ -50,7 +58,7 @@ package com.fxmarker.grammar
 		
 		private function setTransition(start : State, end : State, condition : Object) : void{
 			if(transitionMap == null){
-				transitionMap = new Dictionary();
+				transitionMap = new Object();
 			}
 			if(!transitionMap[start]){
 				transitionMap[start] = new StateTransitionElement(start);
@@ -59,16 +67,24 @@ package com.fxmarker.grammar
 		}
 		
 		public function evaluate(content : String) : Boolean{
-			var toState : State = StateTransitionElement(transitionMap[current]).evaluate(content);
-			
-			if(toState == current){
-				return false;
+			if(current == null){				
+				setState(text);
 			}
-			
-			current = toState;
-			return true;
+			var toState : State = StateTransitionElement(transitionMap[current]).evaluate(content);
+			return setState(toState, StateTransitionElement(transitionMap[current]).evaluatedContent);
 		}
 		
+		private function setState(state : State, content : String = "") : Boolean{
+			if(state && current != state){
+				if(current){
+					dispatchEvent(StateTransitionEvent.getStateExitEvent(current, content));
+				}
+				current = state;
+				dispatchEvent(StateTransitionEvent.getStateEnterEvent(current));
+				return true;
+			}
+			return false;
+		}		
 		
 	}
 }
