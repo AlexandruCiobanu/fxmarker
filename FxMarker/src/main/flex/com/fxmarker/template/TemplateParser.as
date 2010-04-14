@@ -56,10 +56,12 @@
 			bytes.writeUTFBytes(data);
 			var hash : String = SHA256.computeDigest(bytes)
 			var template : Template = getTemplateFromCache(hash);
-			if(useGrammarFile){
-				template = parseFromGrammar(data);
-			}else{
-				template = parseFromStateMachine(data);
+			if(!template){
+				if(useGrammarFile){
+					template = parseFromGrammar(data);
+				}else{
+					template = parseFromStateMachine(data);
+				}
 			}
 			return template;
 		}

@@ -74,6 +74,10 @@ package com.fxmarker.grammar
 			return setState(toState, StateTransitionElement(transitionMap[current]).evaluatedContent);
 		}
 		
+		public function eof(content : String) : void{
+			dispatchEvent(StateTransitionEvent.getStateExitEvent(current, content));
+		}
+		
 		private function setState(state : State, content : String = "") : Boolean{
 			if(state && current != state){
 				if(current){
@@ -85,6 +89,5 @@ package com.fxmarker.grammar
 			}
 			return false;
 		}		
-		
 	}
 }

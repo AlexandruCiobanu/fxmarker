@@ -31,6 +31,10 @@ package com.fxmarker.grammar
 						buffer = "";
 					}
 				}
+				transitionMap.eof(buffer);
+				if(itemsStack.length > 1){
+					throw new Error("End tags missing. Reached end of file.");
+				}
 			}
 			cleanup();
 			return template;
