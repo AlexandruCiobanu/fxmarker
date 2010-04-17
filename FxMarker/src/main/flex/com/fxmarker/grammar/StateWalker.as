@@ -60,8 +60,8 @@ package com.fxmarker.grammar
 		private function addToParent(item : TemplateElement) : void{
 			if(parent is Template){
 				Template(parent).addElement(item);
-			}else if(parent is MixedContent){
-				MixedContent(parent).addElement(item);
+			}else if(parent is TemplateElement){
+				TemplateElement(parent).addElement(item);
 			}
 		}
 		

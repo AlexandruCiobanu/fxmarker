@@ -49,7 +49,7 @@ package com.fxmarker.template
 			register(INTERPOLATION, 		Interpolation);
 			register(TEXT,  				TextBlock);
 			register(LIST,  				List);
-			register(FOREACH,  				List);
+			register(FOREACH,  				ForEach);
 			register(COMMA_SEPARATED_LIST,  CommaSeparatedList);
 		}
 		

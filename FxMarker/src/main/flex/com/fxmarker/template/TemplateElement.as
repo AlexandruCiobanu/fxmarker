@@ -25,17 +25,18 @@
 	 */	
 	public class TemplateElement extends TemplateObject
 	{
+		public static const WHITESPACE : String = " ";
+		
 		protected var _parent : TemplateElement;
 		
-		//protected var _nestedElement : TemplateElement;
+		protected var _nestedBlock : TemplateElement;
+		
+		protected var _nestedElements : Array;
 		/**
 		 * 
 		 * 
 		 */		
-		public function TemplateElement()
-		{
-			//TODO: implement function
-		}
+		public function TemplateElement(){}
 		/**
 		 * 
 		 * @param env
@@ -44,19 +45,32 @@
 		 */		
 		public function accept(env : Environment) : void{}
 		
-		public function get parent() : TemplateElement{
+		internal function get parent() : TemplateElement{
 			return _parent;
 		}
 		
-		public function set parent(value : TemplateElement) : void{
+		internal function set parent(value : TemplateElement) : void{
 			_parent = value;
 		}
 		
-		/*public function set nestedElement(value : TemplateElement) : void{
-			_nestedElement = value;
-			if(value){
-				value.parent = this;
-			}
-		}*/
+		public function addElement(element : TemplateElement) : void{
+			if(element){
+				if(!_nestedBlock){
+					setNestedBlock(element);
+				}else if(_nestedBlock is MixedContent){
+					MixedContent(_nestedBlock).addElement(element);
+				}else{
+					var cnt : MixedContent = new MixedContent();
+					cnt.addElement(_nestedBlock);
+					cnt.addElement(element);
+					setNestedBlock(cnt);
+				}
+			}			
+		}
+		
+		protected function setNestedBlock(block : TemplateElement) : void{
+			_nestedBlock = block;
+			block.parent = this;
+		}
 	}
 }

@@ -32,7 +32,6 @@
 		
 		public function getStringValue(env : Environment) : String{
 			return "";
-		} 
-		
+		}		
 	}
 }

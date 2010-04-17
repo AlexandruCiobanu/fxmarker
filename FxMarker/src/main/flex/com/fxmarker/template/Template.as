@@ -19,20 +19,23 @@
 {
 	public class Template
 	{
-		private var _elements : Array;
+		private var root : TemplateElement;
 		
-		public function Template()
-		{
-		}
+		public function Template(){}
 		
 		public function addElement(element : TemplateElement) : void{
 			if(element){
-				if(!_elements){
-					_elements = [];
+				if(!root){
+					root = element;
+				}else if(root is MixedContent){
+					MixedContent(root).addElement(element);
+				}else{
+					var cnt : MixedContent = new MixedContent();
+					cnt.addElement(root);
+					cnt.addElement(element);
+					root = cnt;
 				}
-				_elements.push(element);
-			}
-			
+			}			
 		}
 	}
 }

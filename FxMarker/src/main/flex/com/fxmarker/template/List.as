@@ -17,13 +17,49 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
+	import com.fxmarker.util.StringTokenizer;
+	
+	import mx.utils.StringUtil;
+
+	/**
+	 * Usage: <#list collectionName as indexName></#list>
+	 * @author Alexutz
+	 * 
+	 */	
 	internal class List extends Directive
 	{
-		public function List()
-		{
-			//TODO: implement function
+		protected var iteratorName : String;
+		
+		protected var listName : String;
+		
+		public function List(){
 			super();
 		}
 		
+		public override function accept(env:Environment):void{
+			
+		}
+		
+		public override function setContent(content:String) : void{
+			var tokenizer : StringTokenizer = new StringTokenizer(WHITESPACE, StringUtil.trim(content));
+			if(tokenizer.tokenCount != 3){
+				throw new Error("Error parsing List. Expected 3 parameters but got " + tokenizer.tokenCount);
+			}
+			listName = tokenizer.getToken();
+			if(tokenizer.getToken() != "as"){
+				throw new Error("Error parsing List. Expected 'as' on second position");
+			}
+			iteratorName = tokenizer.getToken();
+		}	
+		
+		public override function getCanonicalForm():String{
+			var string : String = "<#list " + listName + " as " + iteratorName + ">";
+			if(_nestedBlock){
+				string += _nestedBlock.getCanonicalForm();
+			}
+			string += "</#list>";
+			return string;
+		}
 	}
 }

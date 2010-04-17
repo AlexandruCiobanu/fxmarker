@@ -42,6 +42,10 @@
 		public function hasMoreTokens() : Boolean{
 			return tokens && currentToken < tokens.length - 1;
 		}
+		
+		public function get tokenCount() : int{
+			return tokens ? tokens.length : 0;
+		} 
 		/**
 		 * 
 		 * @return 

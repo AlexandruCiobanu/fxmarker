@@ -17,7 +17,7 @@
  */
  package com.fxmarker.template
 {
-	public class Directive extends MixedContent
+	public class Directive extends TemplateElement
 	{
 		public function Directive()
 		{

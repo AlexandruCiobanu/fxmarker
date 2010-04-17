@@ -46,6 +46,8 @@
     <classEntry path="com.fxmarker.util.StringTokenizer"/>
     <classEntry path="com.fxmarker.util.Utils"/>
     <classEntry path="com.fxmarker.writer.Writer"/>
+    <classEntry path="com.fxmarker.template.ForEach"/>
+    <classEntry path="com.fxmarker.error.CompileError"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml" sourcePath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml"/>

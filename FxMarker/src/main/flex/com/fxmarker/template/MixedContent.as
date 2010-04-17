@@ -24,15 +24,13 @@
 	 * 
 	 */	
 	public class MixedContent extends TemplateElement
-	{
-		private var _nestedElements : Array;
-		
+	{		
 		public function MixedContent(){
 			super();
 			_nestedElements = [];
 		}
 		
-		public function addElement(element : TemplateElement) : void{
+		public override function addElement(element : TemplateElement) : void{
 			if(element){
 				_nestedElements.push(element);
 				element.parent = this;
