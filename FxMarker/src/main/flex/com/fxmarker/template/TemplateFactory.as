@@ -1,3 +1,20 @@
+/**
+ *   FxMarker - a template based content generator for Flex and Air applications 
+ *   Copyright (C) 2008-2010 Alex Ciobanu
+ *
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ * 
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.fxmarker.template
 {
 	import com.fxmarker.error.GrammarError;
@@ -14,12 +31,18 @@ package com.fxmarker.template
 	public final class TemplateFactory
 	{
 		public static const IF : String = "if";
+		public static const ELSEIF : String = "elseif";
+		public static const ELSE : String = "else";
 		public static const FOREACH : String = "foreach";
 		public static const LIST : String = "list";
 		public static const COMMA_SEPARATED_LIST : String = "csList";
 		public static const COMMENT : String = "comment";
 		public static const INTERPOLATION : String = "interpolation";
 		public static const TEXT : String = "text";
+		public static const SWITCH : String = "switch";
+		public static const CASE : String = "case";
+		public static const DEFAULT : String = "default";
+		public static const BREAK : String = "break";
 		
 		private static var _instance : TemplateFactory = new TemplateFactory();
 		/**
@@ -51,6 +74,13 @@ package com.fxmarker.template
 			register(LIST,  				List);
 			register(FOREACH,  				ForEach);
 			register(COMMA_SEPARATED_LIST,  CommaSeparatedList);
+			register(SWITCH, 				Switch);
+			register(CASE, 					CaseBlock);
+			register(DEFAULT, 				CaseBlock);
+			register(BREAK,					Break);
+			register(IF, 					If);
+			register(ELSEIF, 				ConditionalBlock);
+			register(ELSE, 					ConditionalBlock);
 		}
 		
 		private function register(name : String, clasz : Class) : void{

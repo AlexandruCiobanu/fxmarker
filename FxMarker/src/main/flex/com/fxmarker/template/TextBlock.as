@@ -39,5 +39,9 @@
 		public override function setContent(content : String) : void{
 			this.content = content;
 		}
+		
+		public override function getCanonicalForm() : String{
+			return content;
+		}
 	}
 }

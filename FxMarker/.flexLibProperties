@@ -48,6 +48,11 @@
     <classEntry path="com.fxmarker.writer.Writer"/>
     <classEntry path="com.fxmarker.template.ForEach"/>
     <classEntry path="com.fxmarker.error.CompileError"/>
+    <classEntry path="com.fxmarker.template.MethodCall"/>
+    <classEntry path="com.fxmarker.template.Switch"/>
+    <classEntry path="com.fxmarker.template.CaseBlock"/>
+    <classEntry path="com.fxmarker.template.ConditionalBlock"/>
+    <classEntry path="com.fxmarker.template.Break"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml" sourcePath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml"/>

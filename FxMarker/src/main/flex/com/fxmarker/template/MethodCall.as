@@ -15,31 +15,13 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.grammar
+package com.fxmarker.template
 {
-	import com.fxmarker.template.Comment;
-	import com.fxmarker.template.TemplateElement;
-	import com.fxmarker.template.TemplateFactory;
-	
-	[ExcludeClass]
-	/**
-	 * 
-	 * @author User
-	 * 
-	 */	
-	internal final class StateComment extends State
+	public class MethodCall extends Expression
 	{
-		public function StateComment(walker : StateWalker){
-			super(walker);
-		}
-		
-		internal override function onStateEnter() : void{
-			_element = TemplateFactory.instance.getInstance(TemplateFactory.COMMENT);
-		}
-		
-		internal override function onStateExit(containedText : String) : TemplateElement{
-			element.setContent(containedText);
-			return super.onStateExit(containedText);
+		public function MethodCall()
+		{
+			super();
 		}
 	}
 }
