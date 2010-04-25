@@ -26,9 +26,9 @@
 	internal class Comment extends TemplateElement
 	{
 		private var content : String;
-		public function Comment()
+		public function Comment(begin : Metrics, end : Metrics)
 		{
-			super();
+			super(begin, end);
 		}
 		
 		public override function accept(env:Environment):void{

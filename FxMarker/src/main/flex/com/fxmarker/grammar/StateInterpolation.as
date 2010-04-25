@@ -35,10 +35,11 @@ package com.fxmarker.grammar
 		}
 		
 		internal override function onStateEnter() : void{
-			_element = TemplateFactory.instance.getInstance(TemplateFactory.INTERPOLATION);
+			//do nothing here			
 		}
 		
-		internal override function onStateExit(containedText : String) : TemplateElement{
+		internal override function onStateExit(containedText : String) : TemplateElement {
+			_element = TemplateFactory.instance.getInstance(TemplateFactory.INTERPOLATION, begin, end);
 			element.setContent(containedText);
 			return super.onStateExit(containedText);
 		}

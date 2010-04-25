@@ -17,12 +17,15 @@
  */
 package com.fxmarker.template
 {
-	internal final class ConditionalBlock extends TemplateElement
+	internal final class ConditionalBlock extends TemplateInlineElement
 	{
-		public function ConditionalBlock()
+		private var isEndingElse : Boolean;
+		
+		public function ConditionalBlock(isEndingElse : Boolean, begin : Metrics, end : Metrics)
 		{
-			//TODO: implement function
-			super();
+			super(begin, end);
+			this.isEndingElse = isEndingElse;
+			setOwnerTemplateElementType(If);
 		}
 	}
 }

@@ -92,16 +92,17 @@ package com.fxmarker.grammar
 		}
 		
 		public function eof(content : String) : void{
-			dispatchEvent(StateTransitionEvent.getStateExitEvent(current, content));
+			dispatchEvent(StateTransitionEvent.getStateExitEvent(current, null, content));
 		}
 		
 		private function setState(state : State, content : String = "") : Boolean{
 			if(state && current != state){
-				if(current){
-					dispatchEvent(StateTransitionEvent.getStateExitEvent(current, content));
+				if (current) {
+					dispatchEvent(StateTransitionEvent.getStateExitEvent(current, state, content));
 				}
+				var tmp : State = current;
 				current = state;
-				dispatchEvent(StateTransitionEvent.getStateEnterEvent(current));
+				dispatchEvent(StateTransitionEvent.getStateEnterEvent(tmp, current));
 				return true;
 			}
 			return false;

@@ -24,9 +24,8 @@
 	 */	
 	public class TemplateObject
 	{
-		public function TemplateObject()
-		{
-			//TODO: implement function
+		
+		public function TemplateObject() { 
 		}
 		
 		public function getCanonicalForm() : String{

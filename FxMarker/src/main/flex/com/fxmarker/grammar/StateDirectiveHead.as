@@ -42,7 +42,7 @@ package com.fxmarker.grammar
 			var elementName : String = containedText.substring(0, index); 
 			var content : String = containedText.substring(index);	
 			
-			_element = TemplateFactory.instance.getInstance(elementName);
+			_element = TemplateFactory.instance.getInstance(elementName, begin, end);
 			_element.setContent(content);
 			walker.itemsStack.push(_element);			
 			_element = null;

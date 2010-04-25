@@ -19,10 +19,9 @@
 {
 	public class Directive extends TemplateElement
 	{
-		public function Directive()
+		public function Directive(begin : Metrics, end : Metrics)
 		{
-			//TODO: implement function
-			super();
+			super(begin, end);
 		}
 		
 	}

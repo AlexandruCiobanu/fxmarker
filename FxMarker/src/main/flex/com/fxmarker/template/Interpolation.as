@@ -21,9 +21,9 @@
 	{
 		private var expression : Expression;
 		
-		public function Interpolation()
+		public function Interpolation(begin : Metrics, end : Metrics)
 		{
-			super();
+			super(begin, end);
 		}
 		
 		public override function getCanonicalForm():String{

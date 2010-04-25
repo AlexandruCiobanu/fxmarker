@@ -18,6 +18,7 @@
 package com.fxmarker.template
 {
 	import com.fxmarker.error.GrammarError;
+	import com.fxmarker.error.TemplateElementConfigurationError;
 	
 	import flash.net.registerClassAlias;
 	import flash.utils.getDefinitionByName;
@@ -75,18 +76,17 @@ package com.fxmarker.template
 			register(FOREACH,  				ForEach);
 			register(COMMA_SEPARATED_LIST,  CommaSeparatedList);
 			register(SWITCH, 				Switch);
-			register(CASE, 					CaseBlock);
-			register(DEFAULT, 				CaseBlock);
+			register(CASE, 					CaseBlock, false);
+			register(DEFAULT, 				CaseBlock, true);
 			register(BREAK,					Break);
 			register(IF, 					If);
-			register(ELSEIF, 				ConditionalBlock);
-			register(ELSE, 					ConditionalBlock);
+			register(ELSEIF, 				ConditionalBlock, false);
+			register(ELSE, 					ConditionalBlock, true);
 		}
 		
-		private function register(name : String, clasz : Class) : void{
-			map[name] = clasz;
+		private function register(name : String, clasz : Class, ...args) : void{
+			map[name] = new Holder(clasz, args);
 			registerClassAlias(getQualifiedClassName(clasz), clasz);
-			trace(getQualifiedClassName(clasz));
 		}
 		/**
 		 * 
@@ -94,15 +94,15 @@ package com.fxmarker.template
 		 * @return 
 		 * 
 		 */		
-		public function getInstance(name : String) : TemplateElement{
+		public function getInstance(name : String, begin : Metrics, end : Metrics) : TemplateElement{
 			if(name == null || name.length == 0){
 				throw new Error("Empty name not allowed when creating template element instance");
 			}
-			var TemplateClass : Class = map[name];
-			if(!TemplateClass){
+			var holder : Holder = map[name];
+			if(!holder){
 				throw new Error("No template element is registered with the name <<" + name + ">>");
 			}
-			return TemplateElement(new TemplateClass());
+			return instantiate(holder, begin, end);
 		}
 		/**
 		 * 
@@ -114,12 +114,62 @@ package com.fxmarker.template
 			if(instance){
 				var className : String = getQualifiedClassName(instance);
 				for(var key : * in map){
-					if(getQualifiedClassName(map[key]) == className){
+					if(map[key].toString() == className){
 						return key;
 					}
 				}
 			}
 			return "";
 		}
+		
+		private function instantiate(holder : Holder, begin : Metrics, end : Metrics) : TemplateElement {
+			var instance : TemplateElement;
+			if (holder.args && holder.args.length > 0) {
+				switch (holder.args.length) 
+				{
+					case 1:
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0], begin, end));
+						break;
+					case 2:
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1], begin, end));
+						break;
+					case 3:					
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1], holder.args[2], begin, end));
+						break;
+				}
+			}else {
+				instance = TemplateElement(new holder.TemplateClass(begin, end));
+			}
+			return instance;
+		}
 	}
+}
+
+import flash.utils.getQualifiedClassName;
+
+class Holder {
+		
+	public var args : Array;
+	
+	private var _templateClass : Class;
+	
+	private var _classQualifiedName : String;
+	
+	public function Holder(clasz : Class, args : Array) {
+		this.TemplateClass = clasz;
+		this.args = args;
+	}
+	
+	public function get TemplateClass() : Class {
+		return _templateClass;
+	}
+	
+	public function set TemplateClass(cls : Class) : void {
+		_templateClass = cls;
+		_classQualifiedName = getQualifiedClassName(cls);
+	}
+	
+	public function toString() : String {
+		return _classQualifiedName;
+	}	
 }

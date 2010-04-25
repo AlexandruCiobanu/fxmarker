@@ -27,18 +27,23 @@
 	 * @author Alexutz
 	 * 
 	 */	
-	internal class List extends Directive
+	internal class List extends TemplateElement
 	{
 		protected var iteratorName : String;
 		
 		protected var listName : String;
 		
-		public function List(){
-			super();
+		public function List(begin : Metrics, end : Metrics)
+		{
+			super(begin, end);
 		}
 		
 		public override function accept(env:Environment):void{
-			
+			try {
+				
+			}catch (e : Error) {
+				
+			}
 		}
 		
 		public override function setContent(content:String) : void{

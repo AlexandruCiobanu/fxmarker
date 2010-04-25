@@ -17,6 +17,7 @@
  */
 package com.fxmarker.grammar
 {
+	import com.fxmarker.template.Metrics;
 	import com.fxmarker.template.MixedContent;
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
@@ -27,6 +28,8 @@ package com.fxmarker.grammar
 	{
 		internal var currentItem : TemplateElement;
 		internal var itemsStack : Array = [];
+		
+		private var metrics : TemplateMetrics = new TemplateMetrics();
 		
 		private var transitionMap : StateTransitionMap; 
 				
@@ -40,10 +43,16 @@ package com.fxmarker.grammar
 			var template : Template = new Template();
 			var buffer : String = "";
 			itemsStack.push(template);
-			if(source && source.length > 0){
+			if (source && source.length > 0) {
+				//normalize line feeds
+				source.replace(/\r\n|\r/gm, "\n");
 				var index : int = 0;
-				while(index < source.length){
-					buffer += source.charAt(index++);
+				var char : String;
+				while (index < source.length) {
+					char = source.charAt(index++);
+					//update metrics
+					metrics.handleChar(char);
+					buffer += char;
 					if(transitionMap.evaluate(buffer)){
 						buffer = "";
 					}
@@ -64,14 +73,15 @@ package com.fxmarker.grammar
 			return null;
 		}
 		
-		private function onStateEnter(event : StateTransitionEvent) : void{
-			event.currentState.onStateEnter();
+		private function onStateEnter(event : StateTransitionEvent) : void {
+			event.enterState.begin = metrics.getMetrics();
+			event.enterState.onStateEnter();
 		}
 		
-		private function onStateExit(event : StateTransitionEvent) : void{
-			var ref : TemplateElement = event.currentState.onStateExit(event.content);
+		private function onStateExit(event : StateTransitionEvent) : void {
+			event.exitState.end = metrics.getMetrics();
+			var ref : TemplateElement = event.exitState.onStateExit(event.content);
 			addToParent(ref);
-			
 		}
 		
 		private function addToParent(item : TemplateElement) : void{
@@ -85,6 +95,7 @@ package com.fxmarker.grammar
 		private function cleanup() : void{
 			itemsStack = [];
 			currentItem = null;
+			metrics.clear();
 		}
 	}
 }

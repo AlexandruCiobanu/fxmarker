@@ -17,12 +17,21 @@
  */
 package com.fxmarker.template
 {
-	internal final class Break extends TemplateElement
+	import com.fxmarker.Environment;
+	
+	internal final class Break extends TemplateInlineElement
 	{
-		public function Break()
+		public function Break(begin : Metrics, end : Metrics)
 		{
-			//TODO: implement function
-			super();
+			super(begin, end);
+			setOwnerTemplateElementType(Switch);
+			setOwnerTemplateElementType(List);
+			setOwnerTemplateElementType(ForEach);
+		}
+		
+		override public function accept(env : Environment) : void 
+		{
+			throw new Error("Break");		
 		}
 	}
 }

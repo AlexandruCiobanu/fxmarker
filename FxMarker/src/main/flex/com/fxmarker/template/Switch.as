@@ -19,10 +19,9 @@ package com.fxmarker.template
 {
 	internal final class Switch extends TemplateElement
 	{
-		public function Switch()
+		public function Switch(begin : Metrics, end : Metrics)
 		{
-			//TODO: implement function
-			super();
+			super(begin, end);
 		}
 	}
 }

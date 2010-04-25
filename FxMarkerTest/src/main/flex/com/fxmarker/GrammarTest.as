@@ -23,7 +23,7 @@
 	public class GrammarTest extends TestCase
 	{
 		
-		[Embed(source="assets/Interface.template", mimeType="application/octet-stream")]
+		[Embed(source="/assets/Interface.template", mimeType="application/octet-stream")]
 		private var xmlLocalizationSource : Class;
 		
 		public function GrammarTest(methodName:String=null)

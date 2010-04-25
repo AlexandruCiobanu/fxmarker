@@ -40,8 +40,8 @@ package com.fxmarker.grammar
 		 * @return 
 		 * 
 		 */		
-		public static function getStateExitEvent(state : State, content : String) : StateTransitionEvent{
-			return new StateTransitionEvent(STATE_EXIT, state, content);
+		public static function getStateExitEvent(exit : State, enter : State, content : String) : StateTransitionEvent{
+			return new StateTransitionEvent(STATE_EXIT, exit, enter, content);
 		}
 		/**
 		 * 
@@ -49,11 +49,13 @@ package com.fxmarker.grammar
 		 * @return 
 		 * 
 		 */		
-		public static function getStateEnterEvent(state : State) : StateTransitionEvent{
-			return new StateTransitionEvent(STATE_ENTER, state);
+		public static function getStateEnterEvent(exit : State, enter : State) : StateTransitionEvent{
+			return new StateTransitionEvent(STATE_ENTER, exit, enter);
 		}
 		
-		private var _currentState : State;
+		private var _exitState : State;
+		
+		private var _enterState : State;
 		
 		private var _content : String;
 		/**
@@ -64,20 +66,31 @@ package com.fxmarker.grammar
 		 * @param cancelable
 		 * 
 		 */		
-		public function StateTransitionEvent(type:String, state : State, content : String = "")
+		public function StateTransitionEvent(type:String, _exitState : State, _enterState : State, content : String = "")
 		{
 			super(type, false, false);
-			_currentState = state;
+			this._exitState = exitState;
+			this._enterState = _enterState;
 			_content = content;
 		}
 		/**
-		 * Get the current state the automata is in 
+		 * Get the exit state of the automata 
 		 * @return 
 		 * 
 		 */		
-		public function get currentState() : State{
-			return _currentState;
+		public function get exitState() : State{
+			return _enterState;
 		}
+		
+		/**
+		 * Get the enter state of the automata 
+		 * @return 
+		 * 
+		 */		
+		public function get enterState() : State{
+			return _enterState;
+		}
+		
 		/**
 		 * Get the content text. It is only available on state exit
 		 * @return 

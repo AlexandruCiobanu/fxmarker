@@ -17,12 +17,14 @@
  */
 package com.fxmarker.template
 {
-	internal final class CaseBlock extends TemplateElement
+	internal final class CaseBlock extends TemplateInlineElement
 	{
-		public function CaseBlock()
-		{
-			//TODO: implement function
-			super();
+		private var isDefault : Boolean;
+		
+		public function CaseBlock(isDefault : Boolean, begin : Metrics, end : Metrics){
+			super(begin, end);
+			this.isDefault = isDefault;
+			setOwnerTemplateElementType(Switch);
 		}
 	}
 }

@@ -17,6 +17,7 @@
  */
 package com.fxmarker.grammar
 {
+	import com.fxmarker.template.Metrics;
 	import com.fxmarker.template.TemplateElement;
 	
 	import flash.events.Event;
@@ -30,6 +31,10 @@ package com.fxmarker.grammar
 	 */	
 	internal class State
 	{
+		public var begin : Metrics;
+		
+		public var end : Metrics;
+		
 		protected var _element : TemplateElement;
 		
 		protected var walker : StateWalker;

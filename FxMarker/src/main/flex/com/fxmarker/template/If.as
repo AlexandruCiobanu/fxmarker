@@ -17,11 +17,11 @@
  */
  package com.fxmarker.template
 {
-	internal class If extends Directive
+	internal class If extends TemplateElement
 	{
-		public function If()
+		public function If(begin : Metrics, end : Metrics)
 		{
-			super();
+			super(begin, end);
 		}
 		
 	}
