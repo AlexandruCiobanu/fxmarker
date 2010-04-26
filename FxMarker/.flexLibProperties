@@ -53,6 +53,7 @@
     <classEntry path="com.fxmarker.template.CaseBlock"/>
     <classEntry path="com.fxmarker.template.ConditionalBlock"/>
     <classEntry path="com.fxmarker.template.Break"/>
+    <classEntry path="com.fxmarker.template.Holder"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml" sourcePath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml"/>

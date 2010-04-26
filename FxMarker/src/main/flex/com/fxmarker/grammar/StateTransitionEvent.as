@@ -69,7 +69,7 @@ package com.fxmarker.grammar
 		public function StateTransitionEvent(type:String, _exitState : State, _enterState : State, content : String = "")
 		{
 			super(type, false, false);
-			this._exitState = exitState;
+			this._exitState = _exitState;
 			this._enterState = _enterState;
 			_content = content;
 		}
@@ -79,7 +79,7 @@ package com.fxmarker.grammar
 		 * 
 		 */		
 		public function get exitState() : State{
-			return _enterState;
+			return _exitState;
 		}
 		
 		/**

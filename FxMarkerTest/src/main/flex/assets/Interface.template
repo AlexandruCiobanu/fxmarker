@@ -22,5 +22,11 @@ package ${member.packageReference.name}
 		function ${method.name}(<#csList param in method.params>${param.name} : ${param.type}</#csList>) : ${method.returnType};
 		
 		</#foreach>
+		
+		<#if method.name=="test">
+			method test
+		<else>
+			no method test found
+		</#if>
 	}
 }

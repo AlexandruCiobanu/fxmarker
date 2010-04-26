@@ -18,6 +18,7 @@
  package com.fxmarker
 {
 	
+	import com.fxmarker.template.Template;
 	import flexunit.framework.TestCase;
 
 	public class GrammarTest extends TestCase
@@ -33,7 +34,7 @@
 		
 		public function testContextVariables() : void{
 			var testData : String = new String(new xmlLocalizationSource());
-			FxMarker.instance.loadTemplate(testData);
+			var tmpl : Template = FxMarker.instance.getTemplate();
 		}
 	}
 }

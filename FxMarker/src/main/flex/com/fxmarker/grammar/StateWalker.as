@@ -21,6 +21,7 @@ package com.fxmarker.grammar
 	import com.fxmarker.template.MixedContent;
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
+	import com.fxmarker.template.TemplateInlineElement;
 	
 	import flash.utils.Dictionary;
 
@@ -85,6 +86,9 @@ package com.fxmarker.grammar
 		}
 		
 		private function addToParent(item : TemplateElement) : void{
+			if (item is TemplateInlineElement && parent is TemplateInlineElement) {
+				itemsStack.pop();
+			}
 			if(parent is Template){
 				Template(parent).addElement(item);
 			}else if(parent is TemplateElement){

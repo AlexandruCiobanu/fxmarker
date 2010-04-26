@@ -17,11 +17,7 @@
  */
 package com.fxmarker.template
 {
-	import com.fxmarker.error.GrammarError;
-	import com.fxmarker.error.TemplateElementConfigurationError;
-	
 	import flash.net.registerClassAlias;
-	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 
 	/**
@@ -143,33 +139,4 @@ package com.fxmarker.template
 			return instance;
 		}
 	}
-}
-
-import flash.utils.getQualifiedClassName;
-
-class Holder {
-		
-	public var args : Array;
-	
-	private var _templateClass : Class;
-	
-	private var _classQualifiedName : String;
-	
-	public function Holder(clasz : Class, args : Array) {
-		this.TemplateClass = clasz;
-		this.args = args;
-	}
-	
-	public function get TemplateClass() : Class {
-		return _templateClass;
-	}
-	
-	public function set TemplateClass(cls : Class) : void {
-		_templateClass = cls;
-		_classQualifiedName = getQualifiedClassName(cls);
-	}
-	
-	public function toString() : String {
-		return _classQualifiedName;
-	}	
 }

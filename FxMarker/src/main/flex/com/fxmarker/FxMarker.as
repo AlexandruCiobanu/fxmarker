@@ -67,6 +67,10 @@
 			template = parser.parse(source);
 			dataModel.clear();
 		}
+		
+		public function getTemplate() : Template {
+			return template;
+		}
 		/**
 		 * 
 		 * @param path
