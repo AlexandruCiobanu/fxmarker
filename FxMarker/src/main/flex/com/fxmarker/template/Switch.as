@@ -17,11 +17,37 @@
  */
 package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
 	internal final class Switch extends TemplateElement
 	{
-		public function Switch(begin : Metrics, end : Metrics)
-		{
+		private var testExpression : String;
+		
+		public function Switch(begin : Metrics, end : Metrics){
 			super(begin, end);
+		}
+		
+		override public function setContent(content : String):void {
+			testExpression = content;
+		}		
+		
+		override public function addElement(element : TemplateElement) : void {
+			if (!_nestedElements) {
+				_nestedElements = [];
+			}
+			if (element is CaseBlock) {
+				_nestedElements.push(element);
+			}else{
+				CaseBlock(_nestedElements[_nestedElements.length - 1]).addElement(element);
+			}
+		}
+		
+		override public function accept(env : Environment) : void {
+			super.accept(env);
+			try {
+				
+			}catch (error : BreakError) {
+				//do nothing
+			}
 		}
 	}
 }

@@ -39,7 +39,7 @@ package com.fxmarker.grammar
 		
 		internal override function onStateExit(containedText : String) : TemplateElement{
 			var index : int = containedText.indexOf(" ");
-			var elementName : String = containedText.substring(0, index); 
+			var elementName : String = index > -1 ? containedText.substring(0, index) : containedText; 
 			var content : String = containedText.substring(index);	
 			
 			_element = TemplateFactory.instance.getInstance(elementName, begin, end);

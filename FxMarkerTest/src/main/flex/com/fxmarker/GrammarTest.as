@@ -34,6 +34,7 @@
 		
 		public function testContextVariables() : void{
 			var testData : String = new String(new xmlLocalizationSource());
+			FxMarker.instance.loadTemplate(testData);
 			var tmpl : Template = FxMarker.instance.getTemplate();
 		}
 	}

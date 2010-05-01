@@ -82,13 +82,13 @@ package com.fxmarker.grammar
 		private function onStateExit(event : StateTransitionEvent) : void {
 			event.exitState.end = metrics.getMetrics();
 			var ref : TemplateElement = event.exitState.onStateExit(event.content);
+			if (parent is TemplateInlineElement) {
+				ref = itemsStack.pop();				
+			}			
 			addToParent(ref);
 		}
 		
 		private function addToParent(item : TemplateElement) : void{
-			if (item is TemplateInlineElement && parent is TemplateInlineElement) {
-				itemsStack.pop();
-			}
 			if(parent is Template){
 				Template(parent).addElement(item);
 			}else if(parent is TemplateElement){

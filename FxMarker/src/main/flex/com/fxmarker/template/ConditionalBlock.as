@@ -21,11 +21,20 @@ package com.fxmarker.template
 	{
 		private var isEndingElse : Boolean;
 		
+		private var expression : String;
+		
 		public function ConditionalBlock(isEndingElse : Boolean, begin : Metrics, end : Metrics)
 		{
 			super(begin, end);
 			this.isEndingElse = isEndingElse;
 			setOwnerTemplateElementType(If);
+		}
+		
+		override public function setContent(content:String):void {
+			if (isEndingElse) {
+				return;
+			}
+			expression = content;
 		}
 	}
 }
