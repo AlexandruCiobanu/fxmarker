@@ -20,13 +20,30 @@ package ${member.packageReference.name}
 		*
 		*/
 		function ${method.name}(<#csList param in method.params>${param.name} : ${param.type}</#csList>) : ${method.returnType};
-		
+		<#if method.name=="test">
+			no method ${param.name} ${param.description}
+		</#if>
 		</#foreach>
 		
 		<#if method.name=="test">
-			method test
+			method test<#csList param in method.params>${param.name} : ${param.type}</#csList>
+			
 		<#else>
-			no method test found
+			no method test found ${param.name} ${param.description}
 		</#if>
+		
+		<#switch member.name>
+			<#case member[0].name>
+			sdkjv wev werg wergwtgertgrtg
+			<#break>
+			<#case member[1].name>
+			<#case member[2].name>
+				aerfv wgt ertgertg er tg er tgertg
+				<#break>
+			<#default>
+				this is default
+		</#switch>
+		
+		
 	}
 }

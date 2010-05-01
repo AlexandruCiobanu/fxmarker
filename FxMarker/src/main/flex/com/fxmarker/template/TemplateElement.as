@@ -77,9 +77,9 @@
 					MixedContent(_nestedBlock).addElement(element);
 				}else{
 					var cnt : MixedContent = new MixedContent(null, null);
+					setNestedBlock(cnt);
 					cnt.addElement(_nestedBlock);
 					cnt.addElement(element);
-					setNestedBlock(cnt);
 				}
 			}			
 		}

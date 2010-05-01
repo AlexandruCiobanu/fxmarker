@@ -34,7 +34,7 @@
 		public override function addElement(element : TemplateElement) : void{
 			if(element){
 				_nestedElements.push(element);
-				element.parent = this;
+				element.parent = this.parent;
 			}
 		}
 		

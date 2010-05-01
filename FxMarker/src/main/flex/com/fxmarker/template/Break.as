@@ -25,6 +25,7 @@ package com.fxmarker.template
 		{
 			super(begin, end);
 			setOwnerTemplateElementType(Switch);
+			setOwnerTemplateElementType(CaseBlock);
 			setOwnerTemplateElementType(List);
 			setOwnerTemplateElementType(ForEach);
 		}

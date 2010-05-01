@@ -36,7 +36,7 @@ package com.fxmarker.template
 			}
 			if (element is CaseBlock) {
 				_nestedElements.push(element);
-			}else{
+			}else if(_nestedElements.length > 0){
 				CaseBlock(_nestedElements[_nestedElements.length - 1]).addElement(element);
 			}
 		}

@@ -85,7 +85,9 @@ package com.fxmarker.grammar
 			if (parent is TemplateInlineElement) {
 				ref = itemsStack.pop();				
 			}			
-			addToParent(ref);
+			if (ref) {
+				addToParent(ref);
+			}
 		}
 		
 		private function addToParent(item : TemplateElement) : void{

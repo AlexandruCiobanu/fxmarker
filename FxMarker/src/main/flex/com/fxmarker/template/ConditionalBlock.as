@@ -17,6 +17,7 @@
  */
 package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
 	internal final class ConditionalBlock extends TemplateInlineElement
 	{
 		private var isEndingElse : Boolean;
@@ -35,6 +36,10 @@ package com.fxmarker.template
 				return;
 			}
 			expression = content;
+		}
+		
+		override public function accept(env:Environment):void {
+			
 		}
 	}
 }
