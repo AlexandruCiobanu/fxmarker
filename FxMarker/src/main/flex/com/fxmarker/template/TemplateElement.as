@@ -27,10 +27,6 @@
 	{
 		public static const WHITESPACE : String = " ";
 		
-		private var _begin : Metrics;
-		
-		private var _end : Metrics;
-		
 		protected var _parent : TemplateElement;
 		
 		protected var _nestedBlock : TemplateElement;
@@ -40,18 +36,8 @@
 		 * 
 		 * 
 		 */		
-		public function TemplateElement(_begin : Metrics, _end : Metrics) {
+		public function TemplateElement() {
 			super();
-			this._begin = _begin;
-			this._end = _end;
-		}
-		
-		public function get beginMetrics() : Metrics {
-			return _begin;
-		}
-		
-		public function get endMetrics() : Metrics {
-			return _end;
 		}
 		/**
 		 * 
@@ -76,7 +62,7 @@
 				}else if(_nestedBlock is MixedContent){
 					MixedContent(_nestedBlock).addElement(element);
 				}else{
-					var cnt : MixedContent = new MixedContent(null, null);
+					var cnt : MixedContent = new MixedContent();
 					setNestedBlock(cnt);
 					cnt.addElement(_nestedBlock);
 					cnt.addElement(element);

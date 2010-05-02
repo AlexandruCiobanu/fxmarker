@@ -25,13 +25,16 @@
 	 */	
 	public class Expression extends TemplateObject
 	{
-		public function Expression()
-		{
+		public function Expression(){
 			super();
 		}
 		
 		public function getStringValue(env : Environment) : String{
 			return "";
 		}		
+		
+		public function isTrue(env : Environment) : Boolean {
+			return false;
+		}
 	}
 }

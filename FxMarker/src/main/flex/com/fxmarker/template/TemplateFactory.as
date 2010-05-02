@@ -77,7 +77,7 @@ package com.fxmarker.template
 			register(BREAK,					Break);
 			register(IF, 					If);
 			register(ELSEIF, 				ConditionalBlock, false);
-			register(ELSE, 					ConditionalBlock, true);
+			register(ELSE, 					ConditionalBlock, false);
 		}
 		
 		private function register(name : String, clasz : Class, ...args) : void{
@@ -124,17 +124,20 @@ package com.fxmarker.template
 				switch (holder.args.length) 
 				{
 					case 1:
-						instance = TemplateElement(new holder.TemplateClass(holder.args[0], begin, end));
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0]));
 						break;
 					case 2:
-						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1], begin, end));
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1]));
 						break;
 					case 3:					
-						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1], holder.args[2], begin, end));
+						instance = TemplateElement(new holder.TemplateClass(holder.args[0], holder.args[1], holder.args[2]));
 						break;
 				}
 			}else {
-				instance = TemplateElement(new holder.TemplateClass(begin, end));
+				instance = TemplateElement(new holder.TemplateClass());
+			}
+			if (instance) {
+				instance.setLocation(begin, end);
 			}
 			return instance;
 		}

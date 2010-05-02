@@ -25,9 +25,9 @@
 	 */	
 	public class MixedContent extends TemplateElement
 	{		
-		public function MixedContent(begin : Metrics, end : Metrics)
+		public function MixedContent()
 		{
-			super(begin, end);
+			super();
 			_nestedElements = [];
 		}
 		

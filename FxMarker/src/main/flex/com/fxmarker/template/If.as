@@ -20,16 +20,18 @@
 	import com.fxmarker.Environment;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.template.TemplateObject;
+	
 	internal class If extends TemplateElement
 	{
-		public function If(begin : Metrics, end : Metrics)
+		public function If()
 		{
-			super(begin, end);
+			super();
 		}
 		
 		override public function setContent(content:String):void 
 		{
-			var conditionalBlock : ConditionalBlock = new ConditionalBlock(false, beginMetrics, endMetrics);
+			var conditionalBlock : ConditionalBlock = new ConditionalBlock(true);
+			conditionalBlock.setLocation(beginMetrics, endMetrics);
 			conditionalBlock.setContent(content);
 			addElement(conditionalBlock);
 		}		
@@ -45,8 +47,23 @@
 			}
 		}
 		
-		override public function accept(env:Environment) : void {
-			super.accept(env);
+		override public function accept(env : Environment) : void {
+			for each(var block : ConditionalBlock in _nestedElements) {
+				if (block.condition == null || block.condition.isTrue(env)) {
+					env.visit(block);
+					return;
+				}
+			}
+		}
+		
+		override public function getCanonicalForm():String 
+		{
+			var buf : String = "";
+			for each(var block : ConditionalBlock in _nestedElements) {
+				buf.concat(block.getCanonicalForm());
+			}
+			buf.concat("</#if>");
+			return buf;
 		}
 	}
 }

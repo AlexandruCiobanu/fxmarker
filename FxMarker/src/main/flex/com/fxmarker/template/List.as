@@ -33,9 +33,9 @@
 		
 		protected var listName : String;
 		
-		public function List(begin : Metrics, end : Metrics)
+		public function List()
 		{
-			super(begin, end);
+			super();
 		}
 		
 		public override function accept(env:Environment):void{

@@ -21,9 +21,9 @@ package com.fxmarker.template
 	
 	internal final class Break extends TemplateInlineElement
 	{
-		public function Break(begin : Metrics, end : Metrics)
+		public function Break()
 		{
-			super(begin, end);
+			super();
 			setOwnerTemplateElementType(Switch);
 			setOwnerTemplateElementType(CaseBlock);
 			setOwnerTemplateElementType(List);
@@ -32,7 +32,7 @@ package com.fxmarker.template
 		
 		override public function accept(env : Environment) : void 
 		{
-			throw new Error("Break");		
+			throw BreakError.instance;		
 		}
 	}
 }

@@ -21,9 +21,9 @@ package com.fxmarker.template
 
 	internal class CommaSeparatedList extends ForEach
 	{
-		public function CommaSeparatedList(begin : Metrics, end : Metrics)
+		public function CommaSeparatedList()
 		{
-			super(begin, end);
+			super();
 		}
 		
 		public override function accept(env:Environment):void{

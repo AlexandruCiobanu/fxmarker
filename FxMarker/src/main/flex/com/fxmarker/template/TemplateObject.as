@@ -24,8 +24,24 @@
 	 */	
 	public class TemplateObject
 	{
+		private var _begin : Metrics;
+		
+		private var _end : Metrics;
 		
 		public function TemplateObject() { 
+		}
+		
+		internal function setLocation(_begin : Metrics, _end : Metrics) : void {
+			this._begin = _begin;
+			this._end = _end;
+		}
+		
+		public function get beginMetrics() : Metrics {
+			return _begin;
+		}
+		
+		public function get endMetrics() : Metrics {
+			return _end;
 		}
 		
 		public function getCanonicalForm() : String{

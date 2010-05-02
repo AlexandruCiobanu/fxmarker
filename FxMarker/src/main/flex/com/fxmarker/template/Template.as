@@ -30,7 +30,7 @@
 				}else if(root is MixedContent){
 					MixedContent(root).addElement(element);
 				}else{
-					var cnt : MixedContent = new MixedContent(null, null);
+					var cnt : MixedContent = new MixedContent();
 					cnt.addElement(root);
 					cnt.addElement(element);
 					root = cnt;

@@ -22,8 +22,8 @@ package com.fxmarker.template
 	{
 		private var testExpression : String;
 		
-		public function Switch(begin : Metrics, end : Metrics){
-			super(begin, end);
+		public function Switch(){
+			super();
 		}
 		
 		override public function setContent(content : String):void {

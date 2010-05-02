@@ -20,26 +20,51 @@ package com.fxmarker.template
 	import com.fxmarker.Environment;
 	internal final class ConditionalBlock extends TemplateInlineElement
 	{
-		private var isEndingElse : Boolean;
+		private var isFirst : Boolean;
 		
-		private var expression : String;
+		private var expressionBody : String;
 		
-		public function ConditionalBlock(isEndingElse : Boolean, begin : Metrics, end : Metrics)
+		private var expression : Expression;
+		
+		public function ConditionalBlock(isFirst : Boolean)
 		{
-			super(begin, end);
-			this.isEndingElse = isEndingElse;
+			super();
+			this.isFirst = isFirst;
 			setOwnerTemplateElementType(If);
 		}
 		
-		override public function setContent(content:String):void {
-			if (isEndingElse) {
-				return;
-			}
-			expression = content;
+		public function get condition() : Expression {
+			return expression;
 		}
 		
-		override public function accept(env:Environment):void {
-			
+		override public function setContent(content:String):void {
+			//TODO: build the expression
+			expressionBody = content;
+		}
+		
+		override public function accept(env : Environment) : void {
+			if ((!expression || expression.isTrue(env)) && _nestedBlock) {
+				_nestedBlock.accept(env);
+			}
+		}
+		
+		override public function getCanonicalForm() : String {
+			var buf : String = "";
+			if (expression == null) {
+				buf.concat("<#else");
+			}else if (isFirst) {
+				buf.concat("<#if ");
+			}else {
+				buf.concat("<#elseif ");
+			}
+			if (expression != null) {
+				buf.concat(expression.getCanonicalForm());
+			}
+			buf.concat(">");
+			if (_nestedBlock != null) {
+				buf.concat(_nestedBlock.getCanonicalForm());
+			}
+			return buf.toString();
 		}
 	}
 }

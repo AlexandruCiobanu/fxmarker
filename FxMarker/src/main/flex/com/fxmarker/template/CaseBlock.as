@@ -17,14 +17,51 @@
  */
 package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
 	internal final class CaseBlock extends TemplateInlineElement
 	{
 		private var isDefault : Boolean;
 		
-		public function CaseBlock(isDefault : Boolean, begin : Metrics, end : Metrics){
-			super(begin, end);
+		private var expressionBody : String;
+		
+		private var expression : Expression;
+		
+		public function CaseBlock(isDefault : Boolean){
+			super();
 			this.isDefault = isDefault;
 			setOwnerTemplateElementType(Switch);
+		}
+		
+		override public function accept(env : Environment) : void {
+			if (_nestedBlock) {
+				_nestedBlock.accept(env);
+			}
+		}
+		
+		override public function setContent(content:String):void 
+		{
+			if (isDefault) {
+				return;
+			}
+			//TODO: build the expression
+			expressionBody = content;
+		}
+		
+		override public function getCanonicalForm():String {
+			var buf : String = "";
+			if (isDefault) {
+				buf.concat("<#default>");
+			}
+			else {
+				buf.concat("<#case ");
+				buf.concat(expression.getCanonicalForm());
+				buf.concat(">");
+			}
+			if (_nestedBlock != null) {
+				buf.concat(_nestedBlock.getCanonicalForm());
+			}
+			return buf;
+
 		}
 	}
 }

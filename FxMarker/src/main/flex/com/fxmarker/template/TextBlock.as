@@ -23,9 +23,9 @@
 	{
 		private var content : String;
 		
-		public function TextBlock(begin : Metrics, end : Metrics)
+		public function TextBlock()
 		{
-			super(begin, end);
+			super();
 		}
 		/**
 		 * 

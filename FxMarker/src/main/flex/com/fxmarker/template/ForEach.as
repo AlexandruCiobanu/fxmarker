@@ -28,9 +28,9 @@ package com.fxmarker.template
 	 */	
 	internal class ForEach extends List
 	{
-		public function ForEach(begin : Metrics, end : Metrics)
+		public function ForEach()
 		{
-			super(begin, end);
+			super();
 		}
 		
 		public override function setContent(content:String) : void{
