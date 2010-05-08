@@ -1,0 +1,88 @@
+<overviews> 
+    <packages> 
+        <package name="com.fxmarker"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    Base package. Holds main entry point.  
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                     Base package. Holds main entry point.  
+                ]]> 
+            </description> 
+        </package> 
+        <package name="com.fxmarker.dataModel"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </description> 
+        </package> 
+        <package name="com.fxmarker.error"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    Holds the errors that FxMarker dispatches when abnormal execution is encountered. 
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                   Holds the errors that FxMarker dispatches when abnormal execution is encountered. These errors cover all areas of FxMarker.
+                ]]> 
+            </description> 
+        </package> 
+        <package name="com.fxmarker.grammar"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                     
+                ]]> 
+            </description> 
+        </package> 
+        <package name="com.fxmarker.template"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </description> 
+        </package> 
+        <package name="com.fxmarker.util"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    Holds various utilities used by the project.
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                     Holds various utilities used by the project: iterator classes (string tokenizer and list iterator) and astring utilities class.
+                ]]> 
+            </description> 
+        </package> 
+         <package name="com.fxmarker.writer"> 
+            <shortDescription> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </shortDescription> 
+            <description> 
+                <![CDATA[ 
+                    
+                ]]> 
+            </description> 
+        </package> 
+    </packages> 
+</overviews>
