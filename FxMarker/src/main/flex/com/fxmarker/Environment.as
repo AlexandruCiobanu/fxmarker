@@ -17,6 +17,7 @@
  */
  package com.fxmarker
 {
+	import com.fxmarker.template.ILocalContext;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.writer.Writer;
 	/**
@@ -27,6 +28,9 @@
 	public class Environment
 	{
 		private var _output : Writer;
+		
+		private var contextStack : Array = [];
+		
 		/**
 		 * 
 		 * 
@@ -44,6 +48,25 @@
 				node.accept(this);
 			}
 		}
+		
+		public function visitContext(context : ILocalContext) : void {
+			if(context){
+				pushLocalContext(context);
+				context.run(this);
+				popLocalContext();
+			}
+		}
+		
+		public function getLocalVariable(name : String) : * {
+			for (var i : int = contextStack.length - 1; i > -1; i--) {
+				var lc : ILocalContext = ILocalContext(contextStack[i]);
+				var tm : * = lc.getLocalVariable(name);
+                if (tm != null) {
+                    return tm;
+                }
+            }
+			return null;
+		}
 		/**
 		 * 
 		 * @return 
@@ -57,6 +80,14 @@
 			if(value){
 				_output = value;
 			}
+		}
+		
+		private function pushLocalContext(context : ILocalContext) : void {
+			contextStack.push();
+		}
+		
+		private function popLocalContext() : void {
+			contextStack.pop();
 		}
 	}
 }

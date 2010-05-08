@@ -15,34 +15,38 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.template
+package com.fxmarker.util 
 {
-	import flash.utils.getQualifiedClassName;
-	
-	internal final class Holder {
+	import mx.collections.ListCollectionView;
+	/**
+	 * ...
+	 * @author Alexutz
+	 */
+	public class ListIterator implements Iterator{
 		
-		public var args : Array;
+		private var list : Object;
+		private var index : int = 0;
 		
-		private var _templateClass : Class;
-		
-		private var _classQualifiedName : String;
-		
-		public function Holder(clasz : Class, args : Array) {
-			this.TemplateClass = clasz;
-			this.args = args;
+		public function ListIterator(list : Object) {
+			if(!list || list is Array || list is ListCollectionView){
+				this.list = list;
+			}else {
+				throw new Error("Not a list!");
+			}
 		}
 		
-		public function get TemplateClass() : Class {
-			return _templateClass;
+		/* INTERFACE com.fxmarker.util.IIterator */
+		
+		public function hasNext() : Boolean {
+			return list && index < list.length;
 		}
 		
-		public function set TemplateClass(cls : Class) : void {
-			_templateClass = cls;
-			_classQualifiedName = getQualifiedClassName(cls);
+		public function next() : * {
+			return list[index++];
 		}
 		
-		public function toString() : String {
-			return _classQualifiedName;
-		}	
+		public function get count() : int {
+			return list.length;
+		}		
 	}
 }

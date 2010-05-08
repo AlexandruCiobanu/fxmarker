@@ -15,47 +15,47 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.fxmarker
+package com.fxmarker.dataModel 
 {
+	import com.fxmarker.Configuration;
+	import com.fxmarker.util.Iterator;
+	import com.fxmarker.util.ListIterator;
+	import mx.collections.ListCollectionView;
 	/**
-	 * 
+	 * ...
 	 * @author Alexutz
-	 * 
-	 */	
-	public final class VERSION
+	 */
+	public class ListItemModel implements IDataItemModel
 	{
-		/**
-		 * 
-		 * @return 
-		 * 
-		 */		
-		public static function get Version() : String{
-			return "1.0 alpha";
+		private var list : Object;
+		
+		public function ListItemModel() {
+			
 		}
-		/**
-		 * 
-		 * @return 
-		 * 
-		 */		
-		public static function get Name() : String{
-			return "FxMarker";
+		
+		/* INTERFACE com.fxmarker.dataModel.IDataItemModel */
+		
+		public function get data():* {
+			return list;
 		}
-		/**
-		 * 
-		 * @return 
-		 * 
-		 */		
-		public static function get Link() : String{
-			return "http://code.google.com/p/fxmarker";
+		
+		public function set data(value:*):void{
+			if (!list || list is Array || list is ListCollectionView) {
+				list = value;
+			}else {
+				throw new Error("Not a list!");
+			}
 		}
-		/**
-		 * 
-		 * 
-		 */		
-		public function VERSION()
-		{
-			throw new Error("Do not instanciate this class");
+		
+		public function getAsString(config:Configuration) : String {
+			if (list) {
+				return list.toString();
+			}
+			return "";
+		}	
+		
+		public function getIterator() : Iterator {
+			return new ListIterator(list);
 		}
-
 	}
 }

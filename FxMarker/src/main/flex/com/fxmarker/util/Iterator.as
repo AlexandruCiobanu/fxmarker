@@ -15,34 +15,20 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.template
+package com.fxmarker.util 
 {
-	import flash.utils.getQualifiedClassName;
 	
-	internal final class Holder {
+	/**
+	 * ...
+	 * @author Alexutz
+	 */
+	public interface Iterator 
+	{
+		function hasNext() : Boolean;
 		
-		public var args : Array;
+		function next() : * ; 
 		
-		private var _templateClass : Class;
-		
-		private var _classQualifiedName : String;
-		
-		public function Holder(clasz : Class, args : Array) {
-			this.TemplateClass = clasz;
-			this.args = args;
-		}
-		
-		public function get TemplateClass() : Class {
-			return _templateClass;
-		}
-		
-		public function set TemplateClass(cls : Class) : void {
-			_templateClass = cls;
-			_classQualifiedName = getQualifiedClassName(cls);
-		}
-		
-		public function toString() : String {
-			return _classQualifiedName;
-		}	
+		function get count() : int;
 	}
+	
 }

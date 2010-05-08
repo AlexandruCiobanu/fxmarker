@@ -7,6 +7,11 @@
 	</tstamp>
 	<property file="./build/build.properties" />   
 	<property file="../svn.properties"/>
+	<!-- SDK description markers -->
+	<xmlproperty file="${flexsdk.dir}/flex-sdk-description.xml"/>
+	<property name="flexSDKVersion" value="${flex-sdk-description.version}"/>
+	<property name="flexSDKName" value="${flex-sdk-description.name}"/>
+	<property name="flexSDKBuild" value="${flex-sdk-description.build}"/>
 	
 	<taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" classpath="${basedir}/libs/ant/FlexAntTasks.jar"/>
 	<taskdef resource="flexTasks.tasks" classpath="${basedir}/libs/ant/flexTasks.jar"/>

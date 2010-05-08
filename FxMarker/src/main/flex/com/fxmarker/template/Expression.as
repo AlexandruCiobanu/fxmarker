@@ -17,6 +17,7 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.Environment;
 	/**
 	 * 
@@ -32,6 +33,10 @@
 		public function getStringValue(env : Environment) : String{
 			return "";
 		}		
+		
+		public function getAsDataItem(env : Environment) : IDataItemModel {
+			return null;
+		}
 		
 		public function isTrue(env : Environment) : Boolean {
 			return false;

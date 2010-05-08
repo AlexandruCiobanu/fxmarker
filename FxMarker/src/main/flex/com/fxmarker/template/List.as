@@ -17,6 +17,9 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.ListContent;
+	import com.fxmarker.dataModel.ListItemModel;
 	import com.fxmarker.Environment;
 	import com.fxmarker.util.StringTokenizer;
 	
@@ -39,23 +42,21 @@
 		}
 		
 		public override function accept(env:Environment):void{
-			try {
-				
-			}catch (e : Error) {
-				
-			}
+			var list : IDataItemModel = env.getLocalVariable(listName);
+			var context : ListContext = new ListContext(list, iteratorName, _nestedBlock);
+			env.visitContext(context);
 		}
 		
 		public override function setContent(content:String) : void{
 			var tokenizer : StringTokenizer = new StringTokenizer(WHITESPACE, StringUtil.trim(content));
-			if(tokenizer.tokenCount != 3){
-				throw new Error("Error parsing List. Expected 3 parameters but got " + tokenizer.tokenCount);
+			if(tokenizer.count != 3){
+				throw new Error("Error parsing List. Expected 3 parameters but got " + tokenizer.count);
 			}
-			listName = tokenizer.getToken();
-			if(tokenizer.getToken() != "as"){
+			listName = tokenizer.next();
+			if(tokenizer.next() != "as"){
 				throw new Error("Error parsing List. Expected 'as' on second position");
 			}
-			iteratorName = tokenizer.getToken();
+			iteratorName = tokenizer.next();
 		}	
 		
 		public override function getCanonicalForm():String{

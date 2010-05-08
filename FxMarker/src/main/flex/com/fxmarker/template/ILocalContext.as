@@ -15,34 +15,17 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.template
+package com.fxmarker.template 
 {
-	import flash.utils.getQualifiedClassName;
+	import com.fxmarker.Environment;
 	
-	internal final class Holder {
-		
-		public var args : Array;
-		
-		private var _templateClass : Class;
-		
-		private var _classQualifiedName : String;
-		
-		public function Holder(clasz : Class, args : Array) {
-			this.TemplateClass = clasz;
-			this.args = args;
-		}
-		
-		public function get TemplateClass() : Class {
-			return _templateClass;
-		}
-		
-		public function set TemplateClass(cls : Class) : void {
-			_templateClass = cls;
-			_classQualifiedName = getQualifiedClassName(cls);
-		}
-		
-		public function toString() : String {
-			return _classQualifiedName;
-		}	
-	}
+	/**
+	 * ...
+	 * @author Alexutz
+	 */
+	public interface ILocalContext 
+	{
+		function run(env : Environment) : void;
+		function getLocalVariable(name : String) : * ;
+	}	
 }

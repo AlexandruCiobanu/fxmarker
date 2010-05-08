@@ -35,14 +35,14 @@ package com.fxmarker.template
 		
 		public override function setContent(content:String) : void{
 			var tokenizer : StringTokenizer = new StringTokenizer(WHITESPACE, StringUtil.trim(content));
-			if(tokenizer.tokenCount != 3){
-				throw new Error("Error parsing ForEach. Expected 3 parameters but got " + tokenizer.tokenCount);
+			if(tokenizer.count != 3){
+				throw new Error("Error parsing ForEach. Expected 3 parameters but got " + tokenizer.count);
 			}
-			iteratorName = tokenizer.getToken();
-			if(tokenizer.getToken() != "in"){
+			iteratorName = tokenizer.next();
+			if(tokenizer.next() != "in"){
 				throw new Error("Error parsing ForEach. Expected 'in' on second position");
 			}
-			listName = tokenizer.getToken();
+			listName = tokenizer.next();
 		}
 		
 		public override function getCanonicalForm():String{

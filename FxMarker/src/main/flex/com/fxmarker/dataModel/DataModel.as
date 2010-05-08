@@ -46,8 +46,8 @@
 		public function putValue(path : String, value : Object) : void{
 			var tokenizer : StringTokenizer = getTokens(path);
 			var node : Node = this;
-			while(tokenizer.hasMoreTokens()){
-				var subPath : String = tokenizer.getToken();
+			while(tokenizer.hasNext()){
+				var subPath : String = tokenizer.next();
 				if(node.hasChild(subPath)){
 					node = node.getChild(subPath);
 				}else{
@@ -70,8 +70,8 @@
 		public function getValue(path : String) : Object{
 			var tokenizer : StringTokenizer = getTokens(path);
 			var result : Object = this;
-			while(tokenizer.hasMoreTokens() && result){
-				var subPath : String = tokenizer.getToken();
+			while(tokenizer.hasNext() && result){
+				var subPath : String = tokenizer.next();
 				if(result is Node){
 					if((result as Node).hasChild(subPath)){
 						result = (result as Node).getChild(subPath);

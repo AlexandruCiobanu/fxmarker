@@ -22,7 +22,7 @@
 	 * @author Alexutz
 	 * 
 	 */	
-	public class StringTokenizer
+	public class StringTokenizer implements Iterator
 	{
 		private var tokens : Array;
 		
@@ -39,11 +39,11 @@
 		 * @return 
 		 * 
 		 */		
-		public function hasMoreTokens() : Boolean{
+		public function hasNext() : Boolean{
 			return tokens && currentToken < tokens.length - 1;
 		}
 		
-		public function get tokenCount() : int{
+		public function get count() : int{
 			return tokens ? tokens.length : 0;
 		} 
 		/**
@@ -51,7 +51,7 @@
 		 * @return 
 		 * 
 		 */		
-		public function getToken() : String{
+		public function next() : *{
 			if(currentToken >= tokens.length - 1){
 				throw new Error("");
 			}
