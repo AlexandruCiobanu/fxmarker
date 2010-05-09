@@ -13,7 +13,7 @@
 	<property name="flexSDKName" value="${flex-sdk-description.name}"/>
 	<property name="flexSDKBuild" value="${flex-sdk-description.build}"/>
 	
-	<taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" classpath="${basedir}/libs/ant/FlexAntTasks.jar"/>
+	<taskdef resource="flexUnitTasks.tasks" classpath="${basedir}/libs/ant/flexUnitTasks-4.0.0.jar"/>
 	<taskdef resource="flexTasks.tasks" classpath="${basedir}/libs/ant/flexTasks.jar"/>
 	<taskdef format="xml" resource="org/tigris/subversion/svnant/svnantlib.xml" >
 		<classpath>
@@ -46,7 +46,7 @@
 			<arg line="-sp '${project.src.dir}'"/>
 			<arg line="-is '${project.src.dir}'"/>
 			<arg line="-debug=false"/>
-			<arg line="-external-library-path='${flex3sdk.lib.dir}','${flex3sdk.playerlib.dir}'"/>
+			<arg line="-external-library-path='${flexsdk.lib.dir}','${flexsdk.playerlib.dir}'"/>
 			<arg line="${compile.metadata}"/>
 		</exec>
 	</target>
@@ -114,7 +114,7 @@
 		<svn username="${svn.username}" password="${svn.password}">
 			<commit dir="${basedir}/doc" recurse="true" message="commited doc updates"/>
 			<commit dir="${basedir}/releasenotes" message="commited the latest readme"/>
-			<copy message="release ${release.version} branch" revision="HEAD" srcUrl="${svn.HEAD.dir}" destUrl="${svn.branch.dir}/flexxb_${release.version}"/>
+			<copy message="release ${release.version} branch" revision="HEAD" srcUrl="${svn.HEAD.dir}" destUrl="${svn.branch.dir}/${release.name}_${release.version}"/>
 		</svn>
 	</target>
 	
@@ -139,11 +139,17 @@
 	
 	<target name="junit.ui" depends="build.project.test">
 	        <flexunit
+					player="flash"
 	                swf="${project.test.ant.output}"
 	                toDir="${bin.dir}/flexunit/reports/${project.name}Test"
 	                haltonfailure="false"
 	                verbose="true"
-	                failureproperty="flexunit.failed"/>
+	                failureproperty="flexunit.failed"
+					localTrusted="false"
+					port="1024"
+					buffer="262144"
+					timeout="60000"
+					headless="false"/>
 
 	        <junitreport todir="${bin.dir}/flexunit/reports/${project.name}Test">
 	            <fileset dir="${bin.dir}/flexunit/reports/${project.name}Test">

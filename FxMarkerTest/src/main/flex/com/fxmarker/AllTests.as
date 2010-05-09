@@ -16,9 +16,9 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  package com.fxmarker
-{
-	import flexunit.framework.TestSuite;
-	
+{	
+	[Suite]
+    [RunWith("org.flexunit.runners.Suite")]
 	/**
 	 * 
 	 * @author Alexutz
@@ -26,16 +26,8 @@
 	 */	
 	public class AllTests
 	{
-		public static function allTests() : TestSuite{
-			var test : TestSuite = new TestSuite();
-			test.name= "All tests";
-			test.addTestSuite(ContextTest);
-			test.addTestSuite(GrammarTest);
-			return test;
-		}
+		public var contextTest : ContextTest;
 		
-		public function AllTests()
-		{
-		}
+		public var grammarTest : GrammarTest;
 	}
 }

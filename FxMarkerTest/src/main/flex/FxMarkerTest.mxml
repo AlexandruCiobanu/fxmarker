@@ -16,15 +16,23 @@
 -   You should have received a copy of the GNU General Public License
 -   along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 -->
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="{init();}" xmlns:flexunit="org.defusion.flexunit.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+				xmlns:flexunit="org.flexunit.flexui.*"
+				layout="absolute" creationComplete="{init();}" >
 	<mx:Script>
 		<![CDATA[
+			import org.flexunit.listeners.UIListener;
+			import org.flexunit.runner.FlexUnitCore;
 			import com.fxmarker.AllTests;
+		
+			private var core : FlexUnitCore;
 			
 			private function init() : void { 
-				testRunner.testsToRun = [AllTests.allTests()];
+				core = new FlexUnitCore();
+				core.addListener(new UIListener(testRunner));
+				core.run(AllTests);
 			}
 		]]>
 	</mx:Script>
-	<flexunit:FlexUnitRunner id="testRunner" width="100%" height="100%" />
+	<flexunit:TestRunnerBase id="testRunner" width="100%" height="100%"/>
 </mx:Application>

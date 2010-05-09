@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../print.css" type="text/css" media="print">
-<meta content="FxMarker,com.fxmarker.FxMarker,instance,dataProvider,parse" name="keywords">
+<meta content="FxMarker,com.fxmarker.FxMarker,instance,clearDataModel,generate,getTemplate,loadTemplate,putValue" name="keywords">
 <title>com.fxmarker.FxMarker</title>
 </head>
 <body>
@@ -53,13 +53,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#dataProvider">dataProvider</a> : <a href="reader/IDataProvider.html">IDataProvider</a>
-<div class="summaryTableDescription">[write-only]
-   
-   </div>
-</td><td class="summaryTableOwnerCol">FxMarker</td>
-</tr>
-<tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#instance">instance</a> : <a href="../fxmarker/FxMarker.html">FxMarker</a>
 <div class="summaryTableDescription">[static][read-only]
    
@@ -88,8 +81,47 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#parse()">parse</a>(template:String = null, data:<a href="reader/IDataProvider.html">IDataProvider</a> = null):String</div>
+<a class="signatureLink" href="#clearDataModel()">clearDataModel</a>():void</div>
+<div class="summaryTableDescription">
+   
+   
+   </div>
+</td><td class="summaryTableOwnerCol">FxMarker</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#generate()">generate</a>():void</div>
+<div class="summaryTableDescription">
+   
+   
+   </div>
+</td><td class="summaryTableOwnerCol">FxMarker</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#getTemplate()">getTemplate</a>():<a href="template/Template.html">Template</a>
+</div>
 <div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol">FxMarker</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#loadTemplate()">loadTemplate</a>(source:String):void</div>
+<div class="summaryTableDescription">
+   
+   </div>
+</td><td class="summaryTableOwnerCol">FxMarker</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#putValue()">putValue</a>(path:String, value:Object):void</div>
+<div class="summaryTableDescription">
+   
+   </div>
 </td><td class="summaryTableOwnerCol">FxMarker</td>
 </tr>
 </table>
@@ -101,24 +133,10 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="dataProvider"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">dataProvider</td><td class="detailHeaderType">property</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>dataProvider:<a href="reader/IDataProvider.html">IDataProvider</a></code>&nbsp;&nbsp;[write-only]<p>
-   
-   </p><span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set dataProvider(value:<a href="reader/IDataProvider.html">IDataProvider</a>):void</code>
-<br>
-</div>
 <a name="instance"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">instance</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">instance</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -144,30 +162,79 @@ showHideInherited();
    </p></div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
-<a name="parse()"></a>
+<a name="clearDataModel()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">parse</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+<td class="detailHeaderName">clearDataModel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function parse(template:String = null, data:<a href="reader/IDataProvider.html">IDataProvider</a> = null):String</code><span class="label">Parameters</span>
+<code>public function clearDataModel():void</code><p>
+   
+   
+   </p></div>
+<a name="generate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">generate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function generate():void</code><p>
+   
+   
+   </p></div>
+<a name="getTemplate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">getTemplate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function getTemplate():<a href="template/Template.html">Template</a></code>
+<p></p>
+<span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">template</span>:String</code> (default = <code>null</code>)<code></code></td>
+<td width="20"></td><td><code><a href="template/Template.html">Template</a></code></td>
+</tr>
+</table>
+</div>
+<a name="loadTemplate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">loadTemplate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function loadTemplate(source:String):void</code><p>
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">source</span>:String</code></td>
+</tr>
+</table>
+</div>
+<a name="putValue()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">putValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function putValue(path:String, value:Object):void</code><p>
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">path</span>:String</code></td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">data</span>:<a href="reader/IDataProvider.html">IDataProvider</a></code> (default = <code>null</code>)<code></code></td>
-</tr>
-</table>
-<p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>String</code></td>
+<td width="20px"></td><td><code><span class="label">value</span>:Object</code></td>
 </tr>
 </table>
 </div>

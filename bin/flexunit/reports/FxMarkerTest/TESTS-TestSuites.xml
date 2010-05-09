@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" id="0" name="ContextTest" package="com.fxmarker" tests="2" time="0"> 
-      <testcase classname="com.fxmarker.ContextTest" name="testContextVarObjectPath" time="0" />
-  
-      <testcase classname="com.fxmarker.ContextTest" name="testContextVariables" time="0" />
- 
+  <testsuite errors="0" failures="0" id="0" name="ContextTest" package="com.fxmarker" skipped="0" tests="2" time="0.0">
+      <testcase classname="com.fxmarker::ContextTest" name="testContextVariables" status="success" time="0.000" />
+
+      <testcase classname="com.fxmarker::ContextTest" name="testContextVarObjectPath" status="success" time="0.000" />
+
+  </testsuite>
+  <testsuite errors="0" failures="0" id="1" name="GrammarTest" package="com.fxmarker" skipped="0" tests="1" time="0.0">
+      <testcase classname="com.fxmarker::GrammarTest" name="testContextVariables" status="success" time="0.000" />
+
   </testsuite>
 </testsuites>

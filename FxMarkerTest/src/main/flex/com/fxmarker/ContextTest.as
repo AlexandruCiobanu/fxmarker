@@ -18,32 +18,31 @@
  package com.fxmarker
 {
 	import com.fxmarker.dataModel.DataModel;
-	
-	import flexunit.framework.TestCase;
+	import flexunit.framework.Assert;
 
-	public class ContextTest extends TestCase
+	public class ContextTest
 	{
 		private var context : DataModel;
 		
-		public function ContextTest(methodName:String=null)
-		{
-			super(methodName);
+		public function ContextTest(){
 			context = new DataModel();
 		}
 		
+		[Test]
 		public function testContextVariables() : void{
 			context.putValue("com.aciobanu.testNumber", 7);
 			var value : Object = context.getValue("com.aciobanu.testNumber");
-			assertEquals("Values don't match", 7, value);
+			Assert.assertEquals("Values don't match", 7, value);
 		}
 		
+		[Test]
 		public function testContextVarObjectPath() : void{
 			var data : Object = new Object();
 			data["test"] = new Object();
 			data["test"]["valoare"] = "Strike1";
 			context.putValue("me.test.try", data);
 			var value : Object = context.getValue("me.test.try.test.valoare");
-			assertEquals("Values do not match", "Strike1", value);
+			Assert.assertEquals("Values do not match", "Strike1", value);
 		}
 	}
 }

@@ -21,11 +21,17 @@
 	<mx:Script>
 		<![CDATA[
 			import com.fxmarker.AllTests;
-			import flexunit.junit.JUnitTestRunner;
+			import org.flexunit.listeners.CIListener;
+			import org.flexunit.runner.FlexUnitCore;
 			
 			private function init() : void{
-				var runner : JUnitTestRunner = new JUnitTestRunner();
-				runner.run(AllTests.allTests());
+				var core : FlexUnitCore = new FlexUnitCore(); 
+				core.addListener(new CIListener());
+			 
+				/**If you would like to see text output in verbose mode, umcomment either of the follow listeners **/
+				//core.addListener( new TraceListener() ); - For AS3 Projects
+				//core.addListener( TextListener.getDefaultTextListener( LogEventLevel.DEBUG ) ); - For Flex Projects
+				core.run(AllTests);
 			}
 		]]>
 	</mx:Script>

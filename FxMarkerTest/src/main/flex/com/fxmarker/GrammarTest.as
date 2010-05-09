@@ -19,19 +19,17 @@
 {
 	
 	import com.fxmarker.template.Template;
-	import flexunit.framework.TestCase;
 
-	public class GrammarTest extends TestCase
+	public class GrammarTest
 	{
 		
 		[Embed(source="/assets/Interface.template", mimeType="application/octet-stream")]
 		private var xmlLocalizationSource : Class;
 		
-		public function GrammarTest(methodName:String=null)
-		{
-			super(methodName);
+		public function GrammarTest(){
 		}
 		
+		[Test]
 		public function testContextVariables() : void{
 			var testData : String = new String(new xmlLocalizationSource());
 			FxMarker.instance.loadTemplate(testData);
