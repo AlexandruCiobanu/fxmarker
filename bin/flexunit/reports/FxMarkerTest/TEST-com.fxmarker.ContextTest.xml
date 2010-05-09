@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<testsuite name="com.fxmarker.ContextTest" tests="2" failures="0" errors="0" skipped="0" time="0.0">
-  <testcase classname="com.fxmarker::ContextTest" name="testContextVariables" time="0.000" status="success"/>
-  <testcase classname="com.fxmarker::ContextTest" name="testContextVarObjectPath" time="0.000" status="success"/>
-</testsuite>
