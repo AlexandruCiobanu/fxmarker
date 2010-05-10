@@ -24,7 +24,7 @@ package com.fxmarker.grammar
 	[Event(name="stateEnter", "com.fxmarker.grammar.StateTransitionEvent")]
 	[ExcludeClass]
 	/**
-	 *  
+	 * State transition map used by the StateWalker state machine
 	 * @author User
 	 * 
 	 */	
@@ -42,8 +42,8 @@ package com.fxmarker.grammar
 		private var directiveLine : StateDirectiveLine;
 		
 		/**
-		 * 
-		 * @param walker
+		 * Constructor
+		 * @param walker reference to the State walker performing the compilation
 		 * 
 		 */		
 		public function StateTransitionMap(walker : StateWalker){
@@ -65,12 +65,32 @@ package com.fxmarker.grammar
 			setTransition(directiveTail, 	text, 			">"		);
 		}
 		/**
-		 * 
-		 * @return 
+		 * Get the current execution state
+		 * @return State instance
 		 * 
 		 */		
 		public function get currentState() : State{
 			return current;
+		}
+		/**
+		 * Evaluate the input in order to continue state execution
+		 * @param	content string input
+		 * @return flag signaling state change
+		 */
+		public function evaluate(content : String) : Boolean{
+			if(current == null){				
+				setState(text);
+			}
+			var toState : State = StateTransitionElement(transitionMap[current]).evaluate(content);
+			return setState(toState, StateTransitionElement(transitionMap[current]).evaluatedContent);
+		}
+		/**
+		 * Method called when the template text input ends. Needs to be called when 
+		 * reaching the end of the source input in order to perform finishing checks. 
+		 * @param	content string input
+		 */
+		public function eof(content : String) : void{
+			dispatchEvent(StateTransitionEvent.getStateExitEvent(current, null, content));
 		}
 		
 		private function setTransition(start : State, end : State, condition : Object) : void{
@@ -81,18 +101,6 @@ package com.fxmarker.grammar
 				transitionMap[start] = new StateTransitionElement(start);
 			}
 			StateTransitionElement(transitionMap[start]).addTransition(end, condition);
-		}
-		
-		public function evaluate(content : String) : Boolean{
-			if(current == null){				
-				setState(text);
-			}
-			var toState : State = StateTransitionElement(transitionMap[current]).evaluate(content);
-			return setState(toState, StateTransitionElement(transitionMap[current]).evaluatedContent);
-		}
-		
-		public function eof(content : String) : void{
-			dispatchEvent(StateTransitionEvent.getStateExitEvent(current, null, content));
 		}
 		
 		private function setState(state : State, content : String = "") : Boolean{

@@ -23,8 +23,8 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * State representing a comment element
+	 * @author Alexutz
 	 * 
 	 */	
 	internal final class StateComment extends State

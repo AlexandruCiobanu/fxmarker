@@ -25,32 +25,55 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
+	 * Base class representing the State of the machine. It holds references to a begin and end metric aswell 
+	 * as to the template element. The state provides two methods which need to be implemented by subclasses
+	 * <code>onStateEnter()</code> and <code>onStateExit(input : String) : TemplateElement</code>.
 	 * @author Alexutz
 	 * 
 	 */	
 	internal class State
 	{
+		/**
+		 * Get the start metrics
+		 */
 		public var begin : Metrics;
-		
+		/**
+		 * Get the end metrics
+		 */
 		public var end : Metrics;
 		
 		protected var _element : TemplateElement;
 		
 		protected var walker : StateWalker;
-		
+		/**
+		 * Constructor
+		 * @param	walker reference to the state machine executor
+		 */
 		public function State(walker : StateWalker){
 			this.walker = walker;
 		}
-		
+		/**
+		 * Get the template element represented by this state. The scope of the element is between 
+		 * the state enter and state exit events. After the state machine exits the current state
+		 * the element referenced is nulled.
+		 * @return TemplateElement instance
+		 * @see TemplateElement
+		 */
 		public function get element() : TemplateElement{
 			return _element;
 		}
-		
-		internal function onStateEnter() : void{
-			
+		/**
+		 * Method called when the state machine enters the current state.
+		 * You can instanciate the template element if there are no variations due to internal fields.
+		 */
+		internal function onStateEnter() : void{			
 		}
-		
+		/**
+		 * Method called when the state machine exits the current state. Here you generally configure the
+		 * template element according to the input text provided.
+		 * @param	containedText input recorded from the state enter to the state exit. Usually this input is passed to the element the state holds 
+		 * @return TemplateElement instance
+		 */
 		internal function onStateExit(containedText : String) : TemplateElement{
 			//perform item cleanup
 			var item : TemplateElement = element;

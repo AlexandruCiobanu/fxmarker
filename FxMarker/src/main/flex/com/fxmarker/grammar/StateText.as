@@ -23,8 +23,8 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * State representing a text body. This is the default state. 
+	 * @author Alexutz
 	 * 
 	 */
 	internal final class StateText extends State

@@ -23,8 +23,9 @@ package com.fxmarker.grammar
 		
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * Element defining a state transition. It defines the source state, and a list of 
+	 * target states with the associated transition conditions
+	 * @author Alexutz
 	 * 
 	 */
 	internal final class StateTransitionElement
@@ -46,7 +47,7 @@ package com.fxmarker.grammar
 		 */		
 		internal var evaluatedContent : String;
 		/**
-		 * 
+		 * Constructor
 		 * @param source
 		 * 
 		 */		

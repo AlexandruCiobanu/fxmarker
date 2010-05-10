@@ -21,7 +21,7 @@ package com.fxmarker.grammar
 
 	/**
 	 * 
-	 * @author User
+	 * @author Alexutz
 	 * 
 	 */		
 	internal class StateTransitionEvent extends Event

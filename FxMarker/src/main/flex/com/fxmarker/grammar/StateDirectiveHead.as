@@ -22,8 +22,8 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * State representing a directive begin element tag (<#directive params>).
+	 * @author Alexutz
 	 * 
 	 */	
 	internal final class StateDirectiveHead extends State

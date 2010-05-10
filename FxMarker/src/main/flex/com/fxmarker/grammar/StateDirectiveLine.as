@@ -21,8 +21,8 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * State representing a directive inline element tag (<#directive params/>).
+	 * @author Alexutz
 	 * 
 	 */
 	internal final class StateDirectiveLine extends State

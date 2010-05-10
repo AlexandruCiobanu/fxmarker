@@ -24,22 +24,35 @@ package com.fxmarker.grammar
 	import com.fxmarker.template.TemplateInlineElement;
 	
 	import flash.utils.Dictionary;
-
+	/**
+	 * This class represents the state machine used to parse and compile the template file.
+	 * The result of the state machine execution is a Template object configured with respect 
+	 * to the provided input.
+	 */
 	public final class StateWalker
 	{
-		internal var currentItem : TemplateElement;
+		/**
+		 * Reference to the parent stack during the state machine execution
+		 */
 		internal var itemsStack : Array = [];
 		
 		private var metrics : TemplateMetrics = new TemplateMetrics();
 		
 		private var transitionMap : StateTransitionMap; 
-				
+		/*
+		 * Constructor
+		 *
+		 */		
 		public function StateWalker(){
 			transitionMap = new StateTransitionMap(this);
 			transitionMap.addEventListener(StateTransitionEvent.STATE_ENTER, onStateEnter);
 			transitionMap.addEventListener(StateTransitionEvent.STATE_EXIT, onStateExit);
 		}
-		
+		/*
+		 * Parse and compile the input into a Template instance
+		 * @param source input text
+		 * @return Template instance representing the compiled input
+		 */
 		public function walk(source : String) : Template{
 			var template : Template = new Template();
 			var buffer : String = "";
@@ -66,7 +79,10 @@ package com.fxmarker.grammar
 			cleanup();
 			return template;
 		}
-		
+		/**
+		 * Get the reference to the template element acting as current parent  
+		 * @return the current parent template element
+		 */
 		internal function get parent() : Object{
 			if(itemsStack && itemsStack.length > 0){
 				return itemsStack[itemsStack.length - 1];
@@ -100,7 +116,7 @@ package com.fxmarker.grammar
 		
 		private function cleanup() : void{
 			itemsStack = [];
-			currentItem = null;
+			//currentItem = null;
 			metrics.clear();
 		}
 	}

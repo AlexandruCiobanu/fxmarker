@@ -23,8 +23,8 @@ package com.fxmarker.grammar
 	
 	[ExcludeClass]
 	/**
-	 * 
-	 * @author User
+	 * State representing an interpolation (${expression}).
+	 * @author Alexutz
 	 * 
 	 */
 	internal final class StateInterpolation extends State

@@ -23,6 +23,9 @@
 			import com.fxmarker.AllTests;
 			import org.flexunit.listeners.CIListener;
 			import org.flexunit.runner.FlexUnitCore;
+			import com.fxmarker.template.TemplateTestSuite;
+			import com.fxmarker.dataModel.DataModelTestSuite;
+			import com.fxmarker.grammar.GrammarTestSuite;
 			
 			private function init() : void{
 				var core : FlexUnitCore = new FlexUnitCore(); 
@@ -31,7 +34,7 @@
 				/**If you would like to see text output in verbose mode, umcomment either of the follow listeners **/
 				//core.addListener( new TraceListener() ); - For AS3 Projects
 				//core.addListener( TextListener.getDefaultTextListener( LogEventLevel.DEBUG ) ); - For Flex Projects
-				core.run(AllTests);
+				core.run(DataModelTestSuite, TemplateTestSuite, GrammarTestSuite);
 			}
 		]]>
 	</mx:Script>
