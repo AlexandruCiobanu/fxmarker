@@ -8,6 +8,6 @@ package com.fxmarker.grammar
 	 */
 	public class GrammarTestSuite
 	{
-		
+		public var stateMachine : StateWalkerTest;
 	}
 }

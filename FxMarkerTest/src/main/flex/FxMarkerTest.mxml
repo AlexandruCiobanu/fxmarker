@@ -32,7 +32,7 @@
 			private function init() : void { 
 				core = new FlexUnitCore();
 				core.addListener(new UIListener(testRunner));
-				core.run(DataModelTestSuite, TemplateTestSuite, GrammarTestSuite);
+				core.run(GrammarTestSuite);
 			}
 		]]>
 	</mx:Script>
