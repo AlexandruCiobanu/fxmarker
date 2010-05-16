@@ -82,9 +82,7 @@
 		 * @param id
 		 * 
 		 */		
-		public function ParseError(message:String="", id:int=0)
-		{
-			//TODO: implement function
+		public function ParseError(message:String="", id:int=0){
 			super(message, id);
 		}
 	}

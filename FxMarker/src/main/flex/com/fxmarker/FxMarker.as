@@ -37,25 +37,16 @@
 		 */		
 		public static function get instance() : FxMarker{
 			return ref;
-		} 
-		/**
-		 * 
-		 */		
-		private var dataModel : DataModel;
+		}
 		/**
 		 * 
 		 */		
 		private var parser : TemplateParser;
 		/**
-		 * 
-		 */		
-		private var template : Template;
-		/**
 		 * Constructor 
 		 * 
 		 */		
-		public function FxMarker(){
-			dataModel = new DataModel();
+		public function FxMarker() {
 			parser = new TemplateParser();
 		}
 		/**
@@ -63,35 +54,9 @@
 		 * @param source
 		 * 
 		 */		
-		public function loadTemplate(source : String) : void{
-			template = parser.parse(source);
-			dataModel.clear();
-		}
-		
-		public function getTemplate() : Template {
+		public function getTemplate(source : String) : Template{
+			var template : Template = parser.parse(source);
 			return template;
-		}
-		/**
-		 * 
-		 * @param path
-		 * @param value
-		 * 
-		 */		
-		public function putValue(path : String, value : Object) : void{
-			dataModel.putValue(path, value);
-		}
-		/**
-		 * 
-		 * 
-		 */		
-		public function clearDataModel() : void{
-			dataModel.clear();
-		}
-		/**
-		 * 
-		 * 
-		 */		
-		public function generate() : void{
 		}
 	}
 }

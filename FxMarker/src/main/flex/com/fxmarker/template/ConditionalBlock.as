@@ -18,6 +18,9 @@
 package com.fxmarker.template
 {
 	import com.fxmarker.Environment;
+	import com.fxmarker.template.expression.Expression;
+	import com.fxmarker.template.expression.ExpressionParser;
+	
 	internal final class ConditionalBlock extends TemplateInlineElement
 	{
 		private var isFirst : Boolean;
@@ -37,9 +40,9 @@ package com.fxmarker.template
 			return expression;
 		}
 		
-		override public function setContent(content:String):void {
-			//TODO: build the expression
+		override public function setContent(content : String) : void {
 			expressionBody = content;
+			expression = ExpressionParser.instance.parse(content);
 		}
 		
 		override public function accept(env : Environment) : void {

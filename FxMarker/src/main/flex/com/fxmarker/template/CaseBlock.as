@@ -18,6 +18,9 @@
 package com.fxmarker.template
 {
 	import com.fxmarker.Environment;
+	import com.fxmarker.template.expression.Expression;
+	import com.fxmarker.template.expression.ExpressionParser;
+	
 	internal final class CaseBlock extends TemplateInlineElement
 	{
 		private var isDefault : Boolean;
@@ -43,8 +46,8 @@ package com.fxmarker.template
 			if (isDefault) {
 				return;
 			}
-			//TODO: build the expression
 			expressionBody = content;
+			expression = ExpressionParser.instance.parse(content);
 		}
 		
 		override public function getCanonicalForm():String {

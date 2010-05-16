@@ -32,9 +32,7 @@
 		 * 
 		 * 
 		 */		
-		public function ListContent()
-		{
-			//TODO: implement function
+		public function ListContent(){
 			super();
 		}
 		

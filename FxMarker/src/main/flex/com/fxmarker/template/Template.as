@@ -17,12 +17,21 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.dataModel.DataModel;
+	import com.fxmarker.Environment;
+	import com.fxmarker.writer.Writer;
+	/**
+	 * 
+	 */
 	public class Template
 	{
 		private var root : TemplateElement;
 		
 		public function Template(){}
-		
+		/**
+		 * 
+		 * @param	element
+		 */
 		public function addElement(element : TemplateElement) : void{
 			if(element){
 				if(!root){
@@ -36,6 +45,21 @@
 					root = cnt;
 				}
 			}			
+		}
+		/**
+		 * 
+		 * @return
+		 */
+		public function getRootElement() : TemplateElement {
+			return root;
+		}
+		/**
+		 * Main access point for starting the template processing.
+		 * @param	dataModel data model to be used when rendering the text
+		 * @param	out output writer
+		 */
+		public function process(dataModel : DataModel, out : Writer) : void {
+			new Environment(this, dataModel, out).process();
 		}
 	}
 }

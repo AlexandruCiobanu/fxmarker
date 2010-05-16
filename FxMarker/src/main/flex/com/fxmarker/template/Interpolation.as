@@ -17,6 +17,9 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.template.expression.Expression;
+	import com.fxmarker.template.expression.ExpressionParser;
+	
 	internal class Interpolation extends TemplateElement
 	{
 		private var expression : Expression;
@@ -31,7 +34,7 @@
 		}
 		
 		public override function setContent(content : String) : void{
-			
+			expression = ExpressionParser.instance.parse(content);
 		}		
 	}
 }

@@ -15,10 +15,11 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.fxmarker.template
+ package com.fxmarker.template.expression
 {
 	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.Environment;
+	import com.fxmarker.template.TemplateObject;
 	/**
 	 * 
 	 * @author Alexutz

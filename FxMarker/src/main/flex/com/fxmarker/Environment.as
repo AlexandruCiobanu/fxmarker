@@ -17,7 +17,10 @@
  */
  package com.fxmarker
 {
+	import com.fxmarker.dataModel.DataModel;
+	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.template.ILocalContext;
+	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.writer.Writer;
 	/**
@@ -31,12 +34,30 @@
 		
 		private var contextStack : Array = [];
 		
+		private var rootDataModel : DataModel;
+		
+		private var template : Template;		
+		/**
+		 * Constructor
+		 * @param	template reference to calling template
+		 * @param	rootModel reference to the data model
+		 * @param	output reference to the content writer
+		 */		
+		public function Environment(template : Template, rootModel : DataModel, output : Writer){
+			this.rootDataModel = rootModel;
+			this.output = output;
+			this.template = template;
+		}
 		/**
 		 * 
-		 * 
-		 */		
-		public function Environment(){
-			output = new Writer();
+		 */
+		public function process() : void {
+			try {
+				clear();
+				visit(template.getRootElement());
+			}finally {
+				clear();
+			}
 		}
 		/**
 		 * 
@@ -48,7 +69,10 @@
 				node.accept(this);
 			}
 		}
-		
+		/**
+		 * 
+		 * @param	context
+		 */
 		public function visitContext(context : ILocalContext) : void {
 			if(context){
 				pushLocalContext(context);
@@ -56,11 +80,15 @@
 				popLocalContext();
 			}
 		}
-		
-		public function getLocalVariable(name : String) : * {
+		/**
+		 * Get the value based on variable name in the local contexts stack
+		 * @param	name variable name
+		 * @return variable value
+		 */
+		public function getLocalVariable(name : String) : IDataItemModel {
 			for (var i : int = contextStack.length - 1; i > -1; i--) {
 				var lc : ILocalContext = ILocalContext(contextStack[i]);
-				var tm : * = lc.getLocalVariable(name);
+				var tm : IDataItemModel = lc.getLocalVariable(name);
                 if (tm != null) {
                     return tm;
                 }
@@ -68,14 +96,26 @@
 			return null;
 		}
 		/**
-		 * 
-		 * @return 
+		 * Get the value based on variable name. It will search it through global aswell as local contexts
+		 * @param	name variable name
+		 * @return variable value
+		 */
+		public function getVariable(name : String) : IDataItemModel {
+			var result : IDataItemModel = getLocalVariable(name);
+			return result;
+		}
+		/**
+		 * Get the output writer used by this environment to render content
+		 * @return reference to the Writer instance
 		 * 
 		 */		
 		public function get output() : Writer{
 			return _output;
 		}
-		
+		/**
+		 * Set the output writer used to generate the content.
+		 * @param value reference to the Writer instance
+		 */
 		public function set output(value : Writer) : void{
 			if(value){
 				_output = value;
@@ -88,6 +128,10 @@
 		
 		private function popLocalContext() : void {
 			contextStack.pop();
+		}
+		
+		private function clear() : void {
+			
 		}
 	}
 }
