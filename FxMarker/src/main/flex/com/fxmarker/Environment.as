@@ -38,8 +38,6 @@
 		private var rootDataModel : DataModel;
 		
 		private var template : Template;
-		
-		private var arithmeticEngine : ArithmeticEngine;
 		/**
 		 * Constructor
 		 * @param	template reference to calling template
@@ -50,7 +48,6 @@
 			this.rootDataModel = rootModel;
 			this.output = output;
 			this.template = template;
-			arithmeticEngine = new ArithmeticEngine();
 		}
 		/**
 		 * 
@@ -107,13 +104,6 @@
 		public function getVariable(name : String) : IDataItemModel {
 			var result : IDataItemModel = getLocalVariable(name);
 			return result;
-		}
-		/**
-		 * 
-		 * @return
-		 */
-		public function getArithmeticEngine() : ArithmeticEngine {
-			return arithmeticEngine;
 		}
 		/**
 		 * Get the output writer used by this environment to render content
