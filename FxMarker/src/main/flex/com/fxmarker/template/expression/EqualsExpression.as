@@ -1,5 +1,7 @@
 package com.fxmarker.template.expression 
 {
+	import com.fxmarker.dataModel.BooleanItemModel;
+	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.Environment;
 	/**
 	 * ...
@@ -11,8 +13,8 @@ package com.fxmarker.template.expression
 			super();
 		}
 		
-		override public function isTrue(env : Environment) : Boolean {
-			return left.isTrue(env) == right.isTrue(env);
+		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {
+			return leftItem.data == leftItem.data;
 		}
 		
 		override public function getCanonicalForm() : String {

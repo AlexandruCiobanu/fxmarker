@@ -47,7 +47,6 @@
 				return number.toString();
 			}
 			return "";
-		}
-		
+		}		
 	}
 }
