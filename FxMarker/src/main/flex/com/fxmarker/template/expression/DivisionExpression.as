@@ -7,9 +7,13 @@ package com.fxmarker.template.expression
 	internal class DivisionExpression extends ArithmeticExpression
 	{
 		
-		public function DivisionExpression() {
-			super();
-			operation = "/";
+		public function DivisionExpression(left : Expression, right : Expression) {
+			super(left, right);
+			operation = ExpressionSign.DIVISION;
+		}
+		
+		override protected function compute(a : Number, b : Number) : Number {
+			return a / b;
 		}		
 	}
 }

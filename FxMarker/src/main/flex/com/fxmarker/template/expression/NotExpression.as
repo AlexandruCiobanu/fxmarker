@@ -9,8 +9,9 @@ package com.fxmarker.template.expression
 	{
 		private var expression : Expression;
 		
-		public function NotExpression() {
+		public function NotExpression(expression : Expression) {
 			super();
+			this.expression = expression;
 		}
 		
 		override public function isTrue(env : Environment) : Boolean {

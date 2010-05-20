@@ -12,8 +12,8 @@ package com.fxmarker.template.expression
 	 */
 	internal class GreaterThanExpression extends ComparisonExpression
 	{		
-		public function GreaterThanExpression() {
-			super();			
+		public function GreaterThanExpression(left : Expression, right : Expression) {
+			super(left, right);			
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {
@@ -28,7 +28,7 @@ package com.fxmarker.template.expression
 		}
 		
 		override public function getCanonicalForm() : String {
-			return left.getCanonicalForm() + ">" + right.getCanonicalForm();
+			return left.getCanonicalForm() + ExpressionSign.GREATER_THAN + right.getCanonicalForm();
 		}		
 	}
 }

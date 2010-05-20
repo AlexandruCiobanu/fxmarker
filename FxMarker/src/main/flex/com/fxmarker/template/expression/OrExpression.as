@@ -10,8 +10,10 @@ package com.fxmarker.template.expression
 		protected var left : Expression;
 		protected var right : Expression;
 		
-		public function OrExpression() {
-			super();			
+		public function OrExpression(left : Expression, right : Expression) {
+			super();
+			this.left = left;
+			this.right = right;
 		}
 		
 		override public function isTrue(env:Environment):Boolean {
@@ -20,7 +22,7 @@ package com.fxmarker.template.expression
 		
 		override public function getCanonicalForm():String 
 		{
-			return left.getCanonicalForm() + "||" + right.getCanonicalForm();;
+			return left.getCanonicalForm() + ExpressionSign.OR + right.getCanonicalForm();;
 		}
 	}
 }

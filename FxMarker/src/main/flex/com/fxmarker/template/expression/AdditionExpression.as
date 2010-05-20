@@ -7,12 +7,13 @@ package com.fxmarker.template.expression
 	internal final class AdditionExpression extends ArithmeticExpression
 	{
 		
-		public function AdditionExpression() 
-		{
-			super();
-			
+		public function AdditionExpression(left : Expression, right : Expression) {
+			super(left, right);
+			operation = ExpressionSign.ADDITION;
 		}
 		
+		override protected function compute(a : Number, b : Number) : Number {
+			return a + b;
+		}		
 	}
-
 }

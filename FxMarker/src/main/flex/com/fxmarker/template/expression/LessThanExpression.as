@@ -8,8 +8,8 @@ package com.fxmarker.template.expression
 	 */
 	public class LessThanExpression extends GreaterThanExpression
 	{
-		public function LessThanExpression() {
-			super();			
+		public function LessThanExpression(left : Expression, right : Expression) {
+			super(left, right);
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {
@@ -17,7 +17,7 @@ package com.fxmarker.template.expression
 		}
 		
 		override public function getCanonicalForm() : String {
-			return left.getCanonicalForm() + "<" + right.getCanonicalForm();;
+			return left.getCanonicalForm() + ExpressionSign.LESS_THAN + right.getCanonicalForm();;
 		}		
 	}
 }

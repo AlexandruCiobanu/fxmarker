@@ -34,6 +34,8 @@
 		 * 
 		 */		
 		fxm_internal var numberFormatter : NumberFormatter;
+		
+		private var numberFormat : NumberFormatter;
 		/**
 		 * 
 		 * 

@@ -8,8 +8,8 @@ package com.fxmarker.template.expression
 	 */
 	internal class GreaterThanEqualsExpression extends GreaterThanExpression
 	{
-		public function GreaterThanEqualsExpression() {
-			super();
+		public function GreaterThanEqualsExpression(left : Expression, right : Expression) {
+			super(left, right);
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {
@@ -17,7 +17,7 @@ package com.fxmarker.template.expression
 		}
 		
 		override public function getCanonicalForm() : String {
-			return left.getCanonicalForm() + ">=" + right.getCanonicalForm();;
+			return left.getCanonicalForm() + ExpressionSign.GREATER_THAN_EQUALS + right.getCanonicalForm();;
 		}		
 	}
 }

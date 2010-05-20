@@ -9,8 +9,8 @@ package com.fxmarker.template.expression
 	 */
 	internal class EqualsExpression extends ComparisonExpression
 	{
-		public function EqualsExpression() {
-			super();
+		public function EqualsExpression(left : Expression, right : Expression) {
+			super(left, right);
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {

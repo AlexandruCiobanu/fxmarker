@@ -38,6 +38,10 @@
 			number = Number(value);
 		}
 		
+		public function getAsNumber() : Number {
+			return Number(number);
+		}
+		
 		public function getAsString(config:Configuration):String
 		{
 			if(number){

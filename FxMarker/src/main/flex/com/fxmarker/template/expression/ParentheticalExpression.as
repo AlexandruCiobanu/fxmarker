@@ -8,8 +8,9 @@ package com.fxmarker.template.expression
 	{
 		private var nestedExpression : Expression;
 		
-		public function ParentheticalExpression() {
+		public function ParentheticalExpression(nestedExpression : Expression) {
 			super();
+			this.nestedExpression = nestedExpression;
 		}
 		
 		override public function getCanonicalForm() : String {

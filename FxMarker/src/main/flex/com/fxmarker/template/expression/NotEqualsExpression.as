@@ -7,8 +7,8 @@ package com.fxmarker.template.expression
 	 */
 	internal final class NotEqualsExpression extends EqualsExpression
 	{
-		public function NotEqualsExpression() {
-			super();
+		public function NotEqualsExpression(left : Expression, right : Expression) {
+			super(left, right);
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {

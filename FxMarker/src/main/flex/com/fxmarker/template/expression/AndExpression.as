@@ -7,8 +7,8 @@ package com.fxmarker.template.expression
 	 */
 	internal class AndExpression extends OrExpression
 	{		
-		public function AndExpression() {
-			super();
+		public function AndExpression(left : Expression, right : Expression) {
+			super(left, right);
 		}
 		
 		override public function isTrue(env : Environment) : Boolean {

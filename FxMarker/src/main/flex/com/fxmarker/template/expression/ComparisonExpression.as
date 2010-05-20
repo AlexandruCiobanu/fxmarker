@@ -2,14 +2,15 @@ package com.fxmarker.template.expression
 {
 	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.Environment;
+	import flash.utils.getQualifiedClassName;
 	/**
 	 * ...
 	 * @author Alexutz
 	 */
 	internal class ComparisonExpression extends OrExpression
 	{
-		public function ComparisonExpression() {
-			super();			
+		public function ComparisonExpression(left : Expression, right : Expression) {
+			super(left, right);			
 		}	
 		
 		override public final function isTrue(env : Environment) : Boolean {

@@ -19,7 +19,6 @@
 {
 	import com.fxmarker.dataModel.DataModel;
 	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.template.ArithmeticEngine;
 	import com.fxmarker.template.ILocalContext;
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
