@@ -7,12 +7,12 @@ package com.fxmarker.dataModel
 	public class HashItemModel extends DataItemModel
 	{
 		
-		public function HashItemModel() {
-			
+		public function HashItemModel(data : *) {
+			super(data);
 		}
 		
 		public function getValue(key : String) : IDataItemModel{
-			
+			return null
 		}		
 	}
 }

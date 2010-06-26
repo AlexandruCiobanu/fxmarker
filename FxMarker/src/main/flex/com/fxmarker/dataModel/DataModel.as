@@ -26,17 +26,21 @@
 	 * @author Alexutz
 	 * 
 	 */	
-	public class DataModel extends Node
+	public class DataModel
 	{
 		/**
 		 * 
 		 */		
 		public static const PATH_DELIMITER : String = ".";
+		
+		private var root : Node;
 		/**
 		 * 
 		 * 
 		 */		
-		public function DataModel(){ }
+		public function DataModel(){
+			root = new Node();
+		}
 		/**
 		 * 
 		 * @param key
@@ -45,7 +49,7 @@
 		 */		
 		public function putValue(path : String, value : Object) : void{
 			var tokenizer : StringTokenizer = getTokens(path);
-			var node : Node = this;
+			var node : Node = root;
 			while(tokenizer.hasNext()){
 				var subPath : String = tokenizer.next();
 				if(node.hasChild(subPath)){
@@ -69,7 +73,7 @@
 		 */		
 		public function getValue(path : String) : Object{
 			var tokenizer : StringTokenizer = getTokens(path);
-			var result : Object = this;
+			var result : Object = root;
 			while(tokenizer.hasNext() && result){
 				var subPath : String = tokenizer.next();
 				if(result is Node){

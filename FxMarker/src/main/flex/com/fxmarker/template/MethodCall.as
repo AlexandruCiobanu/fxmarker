@@ -17,6 +17,8 @@
  */
 package com.fxmarker.template
 {
+	import com.fxmarker.template.expression.Expression;
+
 	public class MethodCall extends Expression
 	{
 		public function MethodCall()

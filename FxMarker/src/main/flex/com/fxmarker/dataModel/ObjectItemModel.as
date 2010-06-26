@@ -7,9 +7,9 @@ package com.fxmarker.dataModel
 	public final class ObjectItemModel extends HashItemModel
 	{
 		
-		public function ObjectItemModel() 
+		public function ObjectItemModel(object : Object) 
 		{
-			super();
+			super(object);
 			
 		}
 		
