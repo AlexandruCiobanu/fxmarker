@@ -1,0 +1,25 @@
+package ${member.packageReference.name}
+{
+<#foreach import in member.imports>
+	import ${import.name};		
+</#foreach>
+
+	/**
+	 * ${member.description}
+	 * @author
+	 * 
+	 */	
+	public interface ${member.name}
+	{
+		<#foreach method in member.methods>
+		/**
+		* ${method.description}
+<#foreach param in method.params>
+		* @param ${param.name} ${param.description}
+</#foreach>
+		*
+		*/
+		function ${method.name}(<#csList param in method.params>${param.name} : ${param.type}</#csList>) : ${method.returnType};
+		</#foreach>		
+	}
+}
