@@ -21,9 +21,11 @@ package com.fxmarker.template
 	import com.fxmarker.template.expression.Expression;
 	import com.fxmarker.template.expression.ExpressionParser;
 	
+	import mx.utils.StringUtil;
+	
 	internal final class CaseBlock extends TemplateInlineElement
 	{
-		private var isDefault : Boolean;
+		private var _isDefault : Boolean;
 		
 		private var expressionBody : String;
 		
@@ -31,7 +33,7 @@ package com.fxmarker.template
 		
 		public function CaseBlock(isDefault : Boolean){
 			super();
-			this.isDefault = isDefault;
+			this._isDefault = isDefault;
 			setOwnerTemplateElementType(Switch);
 		}
 		
@@ -46,25 +48,33 @@ package com.fxmarker.template
 			if (isDefault) {
 				return;
 			}
-			expressionBody = content;
-			expression = ExpressionParser.instance.parse(content);
+			expressionBody = StringUtil.trim(content);
+			expression = ExpressionParser.instance.parse(expressionBody);
 		}
 		
 		override public function getCanonicalForm():String {
 			var buf : String = "";
 			if (isDefault) {
-				buf.concat("<#default>");
+				buf = buf.concat("<#default>");
 			}
 			else {
-				buf.concat("<#case ");
-				buf.concat(expression.getCanonicalForm());
-				buf.concat(">");
+				buf = buf.concat("<#case ");
+				buf = buf.concat(expression.getCanonicalForm());
+				buf = buf.concat(">");
 			}
 			if (_nestedBlock != null) {
-				buf.concat(_nestedBlock.getCanonicalForm());
+				buf = buf.concat(_nestedBlock.getCanonicalForm());
 			}
 			return buf;
 
+		}
+		
+		internal function getExpression() : Expression{
+			return expression;
+		}
+		
+		internal function get isDefault() : Boolean{
+			return _isDefault;
 		}
 	}
 }

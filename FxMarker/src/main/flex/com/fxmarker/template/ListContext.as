@@ -29,11 +29,11 @@ package com.fxmarker.template
 	 */
 	internal class ListContext implements ILocalContext
 	{
-		private var loopVar : IDataItemModel;
-		private var loopVarName : String;
-		private var index : int;
-		private var list : ListItemModel;
-		private var nestedBlock : TemplateElement;
+		protected var loopVar : IDataItemModel;
+		protected var loopVarName : String;
+		protected var index : int;
+		protected var list : ListItemModel;
+		protected var nestedBlock : TemplateElement;
 		
 		public function ListContext(list : IDataItemModel, iteratorName : String, nestedBlock : TemplateElement) {
 			if(list is ListItemModel){

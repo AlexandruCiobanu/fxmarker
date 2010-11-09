@@ -17,17 +17,38 @@
  */
  package com.fxmarker.template
 {
-	import com.fxmarker.dataModel.DataModel;
+	import com.fxmarker.Configuration;
 	import com.fxmarker.Environment;
+	import com.fxmarker.dataModel.DataModel;
 	import com.fxmarker.writer.Writer;
+
 	/**
 	 * 
 	 */
 	public class Template
 	{
 		private var root : TemplateElement;
+		private var _configuration : Configuration;
 		
 		public function Template(){}
+		
+		/**
+		 * 
+		 * @return 
+		 * 
+		 */		
+		public function get configuration() : Configuration{
+			return _configuration;
+		}
+		/**
+		 * 
+		 * @param value
+		 * 
+		 */		
+		public function set configuration(value : Configuration) : void{
+			_configuration = value;
+		}
+
 		/**
 		 * 
 		 * @param	element

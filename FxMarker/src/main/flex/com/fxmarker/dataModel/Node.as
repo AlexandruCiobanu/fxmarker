@@ -18,6 +18,7 @@
  package com.fxmarker.dataModel
 {
 	import flash.utils.Dictionary;
+	import flash.utils.IDataInput;
 	
 	/**
 	 * 
@@ -29,7 +30,7 @@
 		/**
 		 * 
 		 */		
-		private var _data : Object;
+		private var _data : IDataItemModel;
 		/**
 		 * 
 		 */		
@@ -38,7 +39,7 @@
 		 * 
 		 * 
 		 */		
-		public function Node(data : Object = null){
+		public function Node(data : IDataItemModel = null){
 			this.data = data;
 		}
 		/**
@@ -46,7 +47,7 @@
 		 * @param value
 		 * 
 		 */		
-		public function set data(value : *) : void{
+		public function set data(value : IDataItemModel) : void{
 			_data = value;
 		}
 		/**
@@ -54,7 +55,7 @@
 		 * @return 
 		 * 
 		 */		
-		public function get data() : *{
+		public function get data() : IDataItemModel{
 			return _data;
 		}
 		/**
@@ -81,7 +82,7 @@
 		 * @return 
 		 * 
 		 */		
-		public function addChild(name : String, data : Object = null) : Node{
+		public function addChild(name : String, data : IDataItemModel = null) : Node{
 			if(!name){
 				throw new Error("Cannot create a node with an empty name");
 			}

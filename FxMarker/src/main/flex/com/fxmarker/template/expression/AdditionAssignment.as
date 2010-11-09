@@ -17,22 +17,25 @@
  */
 package com.fxmarker.template.expression
 {
-	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
-	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+	import com.fxmarker.dataModel.NumberItemModel;
+	import com.fxmarker.dataModel.StringItemModel;
+
+	public class AdditionAssignment extends AssignmentExpression
 	{
-		
-		public function BooleanExpression() {
-			super();
+		public function AdditionAssignment(key : String, right : Expression){
+			super(key, right);
 		}
 		
-		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+		protected override function compute(leftData : IDataItemModel, rightData : IDataItemModel) : IDataItemModel{
+			if(leftData is NumberItemModel && rightData is NumberItemModel){
+				return new NumberItemModel(NumberItemModel(leftData).data + NumberItemModel(rightData).data);
+			}
+			if(leftData is StringItemModel && rightData is StringItemModel){
+				return new StringItemModel(leftData.data + rightData.data);
+			}
+			//TODO Better error handling
+			throw new Error("Wrong data to be computed. Only numbers and Strings are allowed for addition");
+		}
 	}
 }

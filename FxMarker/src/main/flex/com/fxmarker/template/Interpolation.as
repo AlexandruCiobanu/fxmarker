@@ -17,6 +17,7 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
 	import com.fxmarker.template.expression.Expression;
 	import com.fxmarker.template.expression.ExpressionParser;
 	
@@ -35,6 +36,10 @@
 		
 		public override function setContent(content : String) : void{
 			expression = ExpressionParser.instance.parse(content);
-		}		
+		}
+		
+		public override function accept(env : Environment) : void{
+			env.output.write(expression.getStringValue(env));
+		}
 	}
 }

@@ -48,6 +48,10 @@
 			this.output = output;
 			this.template = template;
 		}
+		
+		public function get configuration() : Configuration{
+			return template.configuration;
+		} 
 		/**
 		 * 
 		 */
@@ -93,7 +97,7 @@
                     return tm;
                 }
             }
-			return null;
+			return rootDataModel.getValue(name) as IDataItemModel;
 		}
 		/**
 		 * Get the value based on variable name. It will search it through global aswell as local contexts
@@ -103,6 +107,10 @@
 		public function getVariable(name : String) : IDataItemModel {
 			var result : IDataItemModel = getLocalVariable(name);
 			return result;
+		}
+		
+		public function setVariable(name : String, value : IDataItemModel) : void{
+			//TODO set the variable
 		}
 		/**
 		 * Get the output writer used by this environment to render content
@@ -123,7 +131,7 @@
 		}
 		
 		private function pushLocalContext(context : ILocalContext) : void {
-			contextStack.push();
+			contextStack.push(context);
 		}
 		
 		private function popLocalContext() : void {

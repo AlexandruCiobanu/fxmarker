@@ -41,7 +41,7 @@
 		}
 		
 		public override function getCanonicalForm() : String{
-			return content;
+			return String(content);
 		}
 	}
 }

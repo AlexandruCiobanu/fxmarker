@@ -18,20 +18,22 @@
 package com.fxmarker.template
 {
 	import com.fxmarker.Environment;
+	import com.fxmarker.dataModel.IDataItemModel;
 
 	internal class CommaSeparatedList extends ForEach
 	{
-		public function CommaSeparatedList()
-		{
+		public function CommaSeparatedList(){
 			super();
 		}
 		
 		public override function accept(env:Environment):void{
-			
+			var list : IDataItemModel = listExpression.getAsDataItem(env);
+			var context : CsListContext = new CsListContext(list, iteratorName, _nestedBlock);
+			env.visitContext(context);
 		}
 		
 		public override function getCanonicalForm():String{
-			var string : String = "<#csList " + iteratorName + " in " + listName + ">";
+			var string : String = "<#csList " + iteratorName + " in " + listExpression.getCanonicalForm() + ">";
 			if(_nestedBlock){
 				string += _nestedBlock.getCanonicalForm();
 			}

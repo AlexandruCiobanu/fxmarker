@@ -45,7 +45,7 @@
 		public function getAsString(config:Configuration):String
 		{
 			if(number){
-				if(config.fxm_internal::numberFormatter){
+				if(config && config.fxm_internal::numberFormatter){
 					return config.fxm_internal::numberFormatter.format(number);
 				}
 				return number.toString();

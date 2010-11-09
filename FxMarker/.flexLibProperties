@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="false" version="1">
+<flexLibProperties includeAllClasses="true" version="1">
   <includeClasses>
     <classEntry path="com.fxmarker.Configuration"/>
     <classEntry path="com.fxmarker.Environment"/>
     <classEntry path="com.fxmarker.FxMarker"/>
     <classEntry path="com.fxmarker.FxParser"/>
     <classEntry path="com.fxmarker.VERSION"/>
+    <classEntry path="com.fxmarker.dataModel.BooleanItemModel"/>
     <classEntry path="com.fxmarker.dataModel.Content"/>
     <classEntry path="com.fxmarker.dataModel.DataItemModel"/>
     <classEntry path="com.fxmarker.dataModel.DataModel"/>
     <classEntry path="com.fxmarker.dataModel.DateItemModel"/>
+    <classEntry path="com.fxmarker.dataModel.HashItemModel"/>
     <classEntry path="com.fxmarker.dataModel.IDataItemModel"/>
     <classEntry path="com.fxmarker.dataModel.ListContent"/>
+    <classEntry path="com.fxmarker.dataModel.ListItemModel"/>
     <classEntry path="com.fxmarker.dataModel.Node"/>
+    <classEntry path="com.fxmarker.dataModel.NullItemModel"/>
     <classEntry path="com.fxmarker.dataModel.NumberItemModel"/>
+    <classEntry path="com.fxmarker.dataModel.ObjectItemModel"/>
+    <classEntry path="com.fxmarker.dataModel.StringItemModel"/>
+    <classEntry path="com.fxmarker.error.CompileError"/>
     <classEntry path="com.fxmarker.error.GrammarError"/>
     <classEntry path="com.fxmarker.error.ParseError"/>
     <classEntry path="com.fxmarker.error.TemplateElementConfigurationError"/>
@@ -29,34 +36,68 @@
     <classEntry path="com.fxmarker.grammar.StateTransitionEvent"/>
     <classEntry path="com.fxmarker.grammar.StateTransitionMap"/>
     <classEntry path="com.fxmarker.grammar.StateWalker"/>
+    <classEntry path="com.fxmarker.grammar.TemplateMetrics"/>
+    <classEntry path="com.fxmarker.template.Break"/>
+    <classEntry path="com.fxmarker.template.BreakError"/>
+    <classEntry path="com.fxmarker.template.CaseBlock"/>
     <classEntry path="com.fxmarker.template.CommaSeparatedList"/>
     <classEntry path="com.fxmarker.template.Comment"/>
+    <classEntry path="com.fxmarker.template.ConditionalBlock"/>
     <classEntry path="com.fxmarker.template.Directive"/>
-    <classEntry path="com.fxmarker.template.Expression"/>
+    <classEntry path="com.fxmarker.template.ForEach"/>
+    <classEntry path="com.fxmarker.template.Holder"/>
+    <classEntry path="com.fxmarker.template.ILocalContext"/>
     <classEntry path="com.fxmarker.template.If"/>
     <classEntry path="com.fxmarker.template.Interpolation"/>
     <classEntry path="com.fxmarker.template.List"/>
+    <classEntry path="com.fxmarker.template.ListContext"/>
+    <classEntry path="com.fxmarker.template.MethodCall"/>
+    <classEntry path="com.fxmarker.template.Metrics"/>
     <classEntry path="com.fxmarker.template.MixedContent"/>
+    <classEntry path="com.fxmarker.template.Switch"/>
     <classEntry path="com.fxmarker.template.Template"/>
     <classEntry path="com.fxmarker.template.TemplateElement"/>
     <classEntry path="com.fxmarker.template.TemplateFactory"/>
+    <classEntry path="com.fxmarker.template.TemplateInlineElement"/>
     <classEntry path="com.fxmarker.template.TemplateObject"/>
     <classEntry path="com.fxmarker.template.TemplateParser"/>
     <classEntry path="com.fxmarker.template.TextBlock"/>
+    <classEntry path="com.fxmarker.template.expression.AdditionAssignment"/>
+    <classEntry path="com.fxmarker.template.expression.AdditionExpression"/>
+    <classEntry path="com.fxmarker.template.expression.AndExpression"/>
+    <classEntry path="com.fxmarker.template.expression.ArithmeticExpression"/>
+    <classEntry path="com.fxmarker.template.expression.AssignmentExpression"/>
+    <classEntry path="com.fxmarker.template.expression.BooleanExpression"/>
+    <classEntry path="com.fxmarker.template.expression.ComparisonExpression"/>
+    <classEntry path="com.fxmarker.template.expression.DivisionExpression"/>
+    <classEntry path="com.fxmarker.template.expression.Dot"/>
+    <classEntry path="com.fxmarker.template.expression.EqualsExpression"/>
+    <classEntry path="com.fxmarker.template.expression.Expression"/>
+    <classEntry path="com.fxmarker.template.expression.ExpressionFactory"/>
+    <classEntry path="com.fxmarker.template.expression.ExpressionParser"/>
+    <classEntry path="com.fxmarker.template.expression.ExpressionSign"/>
+    <classEntry path="com.fxmarker.template.expression.GreaterThanEqualsExpression"/>
+    <classEntry path="com.fxmarker.template.expression.GreaterThanExpression"/>
+    <classEntry path="com.fxmarker.template.expression.Identifier"/>
+    <classEntry path="com.fxmarker.template.expression.LessThanEqualsExpression"/>
+    <classEntry path="com.fxmarker.template.expression.LessThanExpression"/>
+    <classEntry path="com.fxmarker.template.expression.ModulusExpression"/>
+    <classEntry path="com.fxmarker.template.expression.MultiplicationExpression"/>
+    <classEntry path="com.fxmarker.template.expression.NotEqualsExpression"/>
+    <classEntry path="com.fxmarker.template.expression.NotExpression"/>
+    <classEntry path="com.fxmarker.template.expression.NumberConstant"/>
+    <classEntry path="com.fxmarker.template.expression.OrExpression"/>
+    <classEntry path="com.fxmarker.template.expression.ParentheticalExpression"/>
+    <classEntry path="com.fxmarker.template.expression.PowerExpression"/>
+    <classEntry path="com.fxmarker.template.expression.StringConstant"/>
+    <classEntry path="com.fxmarker.template.expression.SubstractionAssignment"/>
+    <classEntry path="com.fxmarker.template.expression.SubstractionExpression"/>
+    <classEntry path="com.fxmarker.util.Iterator"/>
+    <classEntry path="com.fxmarker.util.ListIterator"/>
     <classEntry path="com.fxmarker.util.StringTokenizer"/>
     <classEntry path="com.fxmarker.util.Utils"/>
     <classEntry path="com.fxmarker.writer.Writer"/>
-    <classEntry path="com.fxmarker.template.ForEach"/>
-    <classEntry path="com.fxmarker.error.CompileError"/>
-    <classEntry path="com.fxmarker.template.MethodCall"/>
-    <classEntry path="com.fxmarker.template.Switch"/>
-    <classEntry path="com.fxmarker.template.CaseBlock"/>
-    <classEntry path="com.fxmarker.template.ConditionalBlock"/>
-    <classEntry path="com.fxmarker.template.Break"/>
-    <classEntry path="com.fxmarker.template.Holder"/>
   </includeClasses>
-  <includeResources>
-    <resourceEntry destPath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml" sourcePath="com/fxmarker/grammar/FreeMarkerTemplateTables.xml"/>
-  </includeResources>
+  <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>

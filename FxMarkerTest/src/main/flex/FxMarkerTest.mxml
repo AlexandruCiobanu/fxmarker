@@ -21,15 +21,13 @@
 	<mx:Script>
 		<![CDATA[
 			import com.fxmarker.AllTests;
-			import com.fxmarker.FullTest;
 			
 			import org.flexunit.listeners.UIListener;
 			import org.flexunit.runner.FlexUnitCore;
 		
 			private var core : FlexUnitCore;
 			
-			private function init() : void { 
-				new FullTest().testContextVariables();
+			private function init() : void {
 				core = new FlexUnitCore();
 				core.addListener(new UIListener(testRunner));
 				core.run(AllTests);

@@ -15,34 +15,28 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.fxmarker
+package com.fxmarker.template.expression
 {
-	import com.fxmarker.dataModel.DataModel;
-	import flexunit.framework.Assert;
+	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.NumberItemModel;
 
-	public class ContextTest
+	/**
+	 * 
+	 * @author User
+	 * 
+	 */	
+	public class SubstractionAssignment extends AssignmentExpression
 	{
-		private var context : DataModel;
-		
-		public function ContextTest(){
-			context = new DataModel();
+		public function SubstractionAssignment(key:String, right:Expression){
+			super(key, right);
 		}
-		
-		[Test]
-		public function testContextVariables() : void{
-			context.putValue("com.aciobanu.testNumber", 7);
-			var value : Object = context.getValue("com.aciobanu.testNumber");
-			Assert.assertEquals("Values don't match", 7, value);
-		}
-		
-		[Test]
-		public function testContextVarObjectPath() : void{
-			var data : Object = new Object();
-			data["test"] = new Object();
-			data["test"]["valoare"] = "Strike1";
-			context.putValue("me.test.try", data);
-			var value : Object = context.getValue("me.test.try.test.valoare");
-			Assert.assertEquals("Values do not match", "Strike1", value);
+	
+		protected override function compute(leftData : IDataItemModel, rightData : IDataItemModel) : IDataItemModel{
+			if(leftData is NumberItemModel && rightData is NumberItemModel){
+				return new NumberItemModel(NumberItemModel(leftData).data - NumberItemModel(rightData).data);
+			}
+			//TODO Better error handling
+			throw new Error("Wrong data to be computed. Only numbers can be used for substraction.");
 		}
 	}
 }

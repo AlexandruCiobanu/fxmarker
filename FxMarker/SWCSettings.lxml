@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SWCProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FlexBinPath>.\bin\FxMarker.swc</FlexBinPath>
+  <FlashBinPath>.\bin\FxMarker.flash.swc</FlashBinPath>
+  <FlexIncludeASI>false</FlexIncludeASI>
+  <MakeCS3>false</MakeCS3>
+  <MakeMXI>false</MakeMXI>
+  <LaunchAEM>false</LaunchAEM>
+  <MXIVersion />
+  <MXPIncludeASI>false</MXPIncludeASI>
+  <MXIAuthor />
+  <MXIDescription />
+  <MXIUIAccessText />
+  <Flex_IgnoreClasses>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\dfastate.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\grammar.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\lraction.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\lrstate.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\lrstateaction.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\objectmap.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\parsemessage.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\parser.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\rule.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\symbol.as</string>
+    <string>src\main\flex\com\sc8pe\parsers\gold\engine\symboltype.as</string>
+    <string>src\main\flex\com\fxmarker\grammar\fxmgrammar.as</string>
+  </Flex_IgnoreClasses>
+  <CS3_IgnoreClasses />
+  <CS3_ComponentClass />
+  <CS3_ComponentName />
+  <CS3_ComponentGroup />
+  <CS3_ComponentToolTip />
+  <CS3_ComponentIconFile />
+  <CS3_PreviewType>None</CS3_PreviewType>
+  <CS3_PreviewResource />
+</SWCProject>

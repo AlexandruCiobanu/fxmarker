@@ -54,18 +54,18 @@ package com.fxmarker.template
 		override public function getCanonicalForm() : String {
 			var buf : String = "";
 			if (expression == null) {
-				buf.concat("<#else");
+				buf = buf.concat("<#else");
 			}else if (isFirst) {
-				buf.concat("<#if ");
+				buf = buf.concat("<#if ");
 			}else {
-				buf.concat("<#elseif ");
+				buf = buf.concat("<#elseif ");
 			}
 			if (expression != null) {
-				buf.concat(expression.getCanonicalForm());
+				buf = buf.concat(expression.getCanonicalForm());
 			}
-			buf.concat(">");
+			buf = buf.concat(">");
 			if (_nestedBlock != null) {
-				buf.concat(_nestedBlock.getCanonicalForm());
+				buf = buf.concat(_nestedBlock.getCanonicalForm());
 			}
 			return buf.toString();
 		}

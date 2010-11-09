@@ -34,5 +34,9 @@ package com.fxmarker.template
 		{
 			throw BreakError.instance;		
 		}
+		
+		public override function getCanonicalForm():String{
+			return "<#break>"
+		}
 	}
 }

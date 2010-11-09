@@ -17,6 +17,7 @@
  */
 package com.fxmarker.template
 {
+	import com.fxmarker.template.expression.ExpressionParser;
 	import com.fxmarker.util.StringTokenizer;
 	
 	import mx.utils.StringUtil;
@@ -42,11 +43,11 @@ package com.fxmarker.template
 			if(tokenizer.next() != "in"){
 				throw new Error("Error parsing ForEach. Expected 'in' on second position");
 			}
-			listName = tokenizer.next();
+			listExpression = ExpressionParser.instance.parse(tokenizer.next());
 		}
 		
 		public override function getCanonicalForm():String{
-			var string : String = "<#foreach " + iteratorName + " in " + listName + ">";
+			var string : String = "<#foreach " + iteratorName + " in " + listExpression.getCanonicalForm() + ">";
 			if(_nestedBlock){
 				string += _nestedBlock.getCanonicalForm();
 			}

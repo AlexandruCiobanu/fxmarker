@@ -63,8 +63,9 @@
 					MixedContent(_nestedBlock).addElement(element);
 				}else{
 					var cnt : MixedContent = new MixedContent();
+					var tmp : TemplateElement = _nestedBlock;
 					setNestedBlock(cnt);
-					cnt.addElement(_nestedBlock);
+					cnt.addElement(tmp);
 					cnt.addElement(element);
 				}
 			}			

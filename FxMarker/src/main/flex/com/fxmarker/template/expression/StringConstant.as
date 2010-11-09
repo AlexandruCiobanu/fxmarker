@@ -15,26 +15,32 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package com.fxmarker
+package com.fxmarker.template.expression
 {
-	
-	import com.fxmarker.dataModel.DataModel;
-	import com.fxmarker.template.Template;
-	import com.fxmarker.writer.Writer;
+	import com.fxmarker.Environment;
+	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.NullItemModel;
+	import com.fxmarker.dataModel.StringItemModel;
 
-	public class FullTest
+	public class StringConstant extends Expression
 	{
+		private var value : IDataItemModel;
 		
-		[Embed(source="/assets/Interface.template", mimeType="application/octet-stream")]
-		private var xmlLocalizationSource : Class;
+		public function StringConstant(value : String){
+			super();
+			this.value = value ? new StringItemModel(value) : NullItemModel.INSTANCE;
+		}
 		
-		[Test]
-		public function testContextVariables() : void{
-			var testData : String = new String(new xmlLocalizationSource());
-			var tmpl : Template = FxMarker.instance.getTemplate(testData);
-			var dataModel : DataModel = new DataModel();
-			var writer : Writer = new Writer();
-			tmpl.process(dataModel, writer);
+		public override function getStringValue(env : Environment) : String{
+			return value.data;
+		}
+		
+		public override function getCanonicalForm() : String{
+			return "\"" + value.data + "\"";
+		}
+		
+		public override function getAsDataItem(env : Environment) : IDataItemModel{
+			return value;
 		}
 	}
 }

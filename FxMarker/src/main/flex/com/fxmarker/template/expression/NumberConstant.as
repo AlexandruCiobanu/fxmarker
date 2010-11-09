@@ -19,20 +19,27 @@ package com.fxmarker.template.expression
 {
 	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
-	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+	import com.fxmarker.dataModel.NumberItemModel;
+
+	public class NumberConstant extends Expression
 	{
+		private var value : NumberItemModel;
 		
-		public function BooleanExpression() {
+		public function NumberConstant(value : Number){
 			super();
+			this.value = new NumberItemModel(value);
 		}
 		
-		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+		public override function getStringValue(env : Environment) : String{
+			return value.data;
+		}
+		
+		public override function getCanonicalForm() : String{
+			return String(value.data);
+		}
+		
+		public override function getAsDataItem(env : Environment) : IDataItemModel{
+			return value;
+		}
 	}
 }

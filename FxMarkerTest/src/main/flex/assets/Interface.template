@@ -1,22 +1,19 @@
-package ${member.packageReference.name}
+package ${package}
 {
-<#foreach import in member.imports>
-	import ${import.name};		
-</#foreach>
+<#foreach import in imports>
+	import ${import};</#foreach>
 
 	/**
-	 * ${member.description}
+	 * ${description}
 	 * @author
 	 * 
 	 */	
-	public interface ${member.name}
+	public interface ${name}
 	{
-		<#foreach method in member.methods>
+		<#foreach method in methods>
 		/**
-		* ${method.description}
-<#foreach param in method.params>
-		* @param ${param.name} ${param.description}
-</#foreach>
+		* ${method.description}<#foreach param in method.params>
+		* @param ${param.name} ${param.description}</#foreach>
 		*
 		*/
 		function ${method.name}(<#csList param in method.params>${param.name} : ${param.type}</#csList>) : ${method.returnType};

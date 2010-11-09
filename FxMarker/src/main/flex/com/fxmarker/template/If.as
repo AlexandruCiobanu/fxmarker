@@ -21,6 +21,8 @@
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.template.TemplateObject;
 	
+	import mx.utils.StringUtil;
+	
 	internal class If extends TemplateElement
 	{
 		public function If()
@@ -32,7 +34,7 @@
 		{
 			var conditionalBlock : ConditionalBlock = new ConditionalBlock(true);
 			conditionalBlock.setLocation(beginMetrics, endMetrics);
-			conditionalBlock.setContent(content);
+			conditionalBlock.setContent(StringUtil.trim(content));
 			addElement(conditionalBlock);
 		}		
 		
@@ -56,13 +58,13 @@
 			}
 		}
 		
-		override public function getCanonicalForm():String 
+		override public function getCanonicalForm() : String 
 		{
 			var buf : String = "";
 			for each(var block : ConditionalBlock in _nestedElements) {
-				buf.concat(block.getCanonicalForm());
+				buf = buf.concat(block.getCanonicalForm());
 			}
-			buf.concat("</#if>");
+			buf = buf.concat("</#if>");
 			return buf;
 		}
 	}

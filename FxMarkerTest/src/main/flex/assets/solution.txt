@@ -1,0 +1,30 @@
+package com.axway.test
+{
+
+	import flash.utils.getQualifiedClassName;
+	import mx.core.UIComponent;
+	import flash.display.DisplayObject;
+
+	/**
+	 * This interface defines a lifeCycle object
+	 * @author
+	 * 
+	 */	
+	public interface ILifecycleObject
+	{
+		
+		/**
+		* Retrieves the state of the object
+		*
+		*/
+		function getState() : State;
+		
+		/**
+		* Sets the state of the object
+		* @param state The state instance to be set
+		*
+		*/
+		function setState(state : State) : void;
+				
+	}
+}

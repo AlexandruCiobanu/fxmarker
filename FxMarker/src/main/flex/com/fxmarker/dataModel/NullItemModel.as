@@ -15,24 +15,26 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.template.expression
+package com.fxmarker.dataModel
 {
-	import com.fxmarker.Environment;
-	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
-	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+	import com.fxmarker.Configuration;
+	
+	public final class NullItemModel implements IDataItemModel
 	{
+		public static const INSTANCE : NullItemModel = new NullItemModel();
 		
-		public function BooleanExpression() {
-			super();
+		public function NullItemModel(){}
+		
+		public function get data() : * {
+			return null;
 		}
 		
-		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+		public function set data(value : *): void {
+			//nothing
+		}
+		
+		public function getAsString(config : Configuration) : String{
+			return "";
+		}
 	}
 }

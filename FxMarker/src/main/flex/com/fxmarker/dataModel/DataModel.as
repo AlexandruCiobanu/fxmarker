@@ -20,6 +20,9 @@
 	import com.fxmarker.util.StringTokenizer;
 	
 	import flash.utils.Dictionary;
+	import flash.utils.getQualifiedClassName;
+	
+	import mx.collections.ListCollectionView;
 	
 	/**
 	 * 
@@ -59,7 +62,7 @@
 				}
 			}
 			if(node){
-				node.data = value;
+				node.data = getModel(value);
 			}else{
 				//shouldn't be here. Throw an error
 				throw new Error("Internal error for setting path <<" + path + ">>. Unable to determine target node.");
@@ -71,7 +74,7 @@
 		 * @return 
 		 * 
 		 */		
-		public function getValue(path : String) : Object{
+		public function getValue(path : String) : IDataItemModel{
 			var tokenizer : StringTokenizer = getTokens(path);
 			var result : Object = root;
 			while(tokenizer.hasNext() && result){
@@ -93,9 +96,34 @@
 				}
 			}
 			if(result is Node){
-				return Node(result).data;
+				result = Node(result).data;
 			}
-			return result;
+			return getModel(result);
+		}
+		
+		private function getModel(data : Object) : IDataItemModel{
+			if(data is IDataItemModel){
+				return data as IDataItemModel;
+			}
+			if(data == null){
+				return NullItemModel.INSTANCE;
+			} 
+			if (data is String ){
+				return new StringItemModel(data as String);
+			}
+			if(data is Number){
+				return new NumberItemModel(data as Number);
+			}
+			if(data is Date){
+				return new DateItemModel(data as Date);
+			}
+			if(data is Dictionary || getQualifiedClassName(data) == "Object"){
+				return new HashItemModel(data);
+			}			
+			if(data is Array || data is Vector || data is ListCollectionView){
+				return new ListItemModel(data);
+			}
+			return new ObjectItemModel(data);
 		}
 		
 		private function getTokens(path : String) : StringTokenizer{

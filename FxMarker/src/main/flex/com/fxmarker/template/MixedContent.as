@@ -45,7 +45,7 @@
 		}
 		
 		public override function getCanonicalForm():String{
-			var result : String;
+			var result : String = "";
 			for each(var element : TemplateElement in _nestedElements){
 				result += element.getCanonicalForm();
 			}

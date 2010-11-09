@@ -17,10 +17,12 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.dataModel.ListContent;
 	import com.fxmarker.dataModel.ListItemModel;
-	import com.fxmarker.Environment;
+	import com.fxmarker.template.expression.Expression;
+	import com.fxmarker.template.expression.ExpressionParser;
 	import com.fxmarker.util.StringTokenizer;
 	
 	import mx.utils.StringUtil;
@@ -34,7 +36,7 @@
 	{
 		protected var iteratorName : String;
 		
-		protected var listName : String;
+		protected var listExpression : Expression;
 		
 		public function List()
 		{
@@ -42,7 +44,7 @@
 		}
 		
 		public override function accept(env:Environment):void{
-			var list : IDataItemModel = env.getLocalVariable(listName);
+			var list : IDataItemModel = listExpression.getAsDataItem(env);
 			var context : ListContext = new ListContext(list, iteratorName, _nestedBlock);
 			env.visitContext(context);
 		}
@@ -52,7 +54,7 @@
 			if(tokenizer.count != 3){
 				throw new Error("Error parsing List. Expected 3 parameters but got " + tokenizer.count);
 			}
-			listName = tokenizer.next();
+			listExpression = ExpressionParser.instance.parse(tokenizer.next());
 			if(tokenizer.next() != "as"){
 				throw new Error("Error parsing List. Expected 'as' on second position");
 			}
@@ -60,7 +62,7 @@
 		}	
 		
 		public override function getCanonicalForm():String{
-			var string : String = "<#list " + listName + " as " + iteratorName + ">";
+			var string : String = "<#list " + listExpression.getCanonicalForm() + " as " + iteratorName + ">";
 			if(_nestedBlock){
 				string += _nestedBlock.getCanonicalForm();
 			}

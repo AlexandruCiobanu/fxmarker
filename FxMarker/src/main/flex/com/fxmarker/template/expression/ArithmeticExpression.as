@@ -24,7 +24,7 @@ package com.fxmarker.template.expression
 		}
 		
 		override public function getCanonicalForm() : String {
-			return left.getCanonicalForm() + operation + right.getCanonicalForm();;
+			return left.getCanonicalForm() + operation + right.getCanonicalForm();
 		}
 		
 		override public final function getAsDataItem(env : Environment) : IDataItemModel {

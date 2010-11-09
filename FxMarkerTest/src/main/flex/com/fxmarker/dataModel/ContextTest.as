@@ -15,24 +15,33 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.fxmarker.template.expression
+ package com.fxmarker.dataModel
 {
-	import com.fxmarker.Environment;
-	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
-	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+	import flexunit.framework.Assert;
+
+	public class ContextTest
 	{
+		private var context : DataModel;
 		
-		public function BooleanExpression() {
-			super();
+		public function ContextTest(){
+			context = new DataModel();
 		}
 		
-		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+		[Test]
+		public function testContextVariables() : void{
+			context.putValue("com.aciobanu.testNumber", 7);
+			var value : Object = context.getValue("com.aciobanu.testNumber");
+			Assert.assertEquals("Values don't match", 7, value.data);
+		}
+		
+		[Test]
+		public function testContextVarObjectPath() : void{
+			/*var data : Object = new Object();
+			data["test"] = new Object();
+			data["test"]["valoare"] = "Strike1";
+			context.putValue("me.test.try", data);
+			var value : Object = context.getValue("me.test.try.test.valoare");
+			Assert.assertEquals("Values do not match", "Strike1", value.data);
+		*/}
 	}
 }

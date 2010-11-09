@@ -10,6 +10,8 @@ package com.fxmarker.template
 	 */
 	public class TemplateTestSuite
 	{
+		public var fullTest : TemplateTest;
+		
 		public var expressionParserTest : ExpressionParserTest;
 	}
 }

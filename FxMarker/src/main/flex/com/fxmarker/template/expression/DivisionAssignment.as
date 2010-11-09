@@ -17,22 +17,26 @@
  */
 package com.fxmarker.template.expression
 {
-	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
+	import com.fxmarker.dataModel.NumberItemModel;
+
 	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+	 * 
+	 * @author User
+	 * 
+	 */	
+	public class DivisionAssignment extends AssignmentExpression
 	{
-		
-		public function BooleanExpression() {
-			super();
+		public function DivisionAssignment(key:String, right:Expression){
+			super(key, right);
 		}
-		
-		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+	
+		protected override function compute(leftData : IDataItemModel, rightData : IDataItemModel) : IDataItemModel{
+			if(leftData is NumberItemModel && rightData is NumberItemModel){
+				return new NumberItemModel(NumberItemModel(leftData).data / NumberItemModel(rightData).data);
+			}
+			//TODO Better error handling
+			throw new Error("Wrong data to be computed. Only numbers can be used for division");
+		}
 	}
 }

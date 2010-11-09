@@ -29,8 +29,8 @@ package com.fxmarker.dataModel
 	{
 		private var list : Object;
 		
-		public function ListItemModel() {
-			
+		public function ListItemModel(value : *) {
+			data = value;
 		}
 		
 		/* INTERFACE com.fxmarker.dataModel.IDataItemModel */

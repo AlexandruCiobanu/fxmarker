@@ -17,6 +17,7 @@
  */
  package com.fxmarker
 {	
+	import com.fxmarker.dataModel.ContextTest;
 	import com.fxmarker.grammar.StateWalkerTest;
 	import com.fxmarker.template.TemplateTestSuite;
 
@@ -32,8 +33,6 @@
 		public var contextTest : ContextTest;
 		
 		public var stateMachine : StateWalkerTest;
-		
-		public var fullTest : FullTest;
 		
 		public var templateSuite : TemplateTestSuite;
 	}

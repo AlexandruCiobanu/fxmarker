@@ -19,20 +19,37 @@ package com.fxmarker.template.expression
 {
 	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
-	import com.fxmarker.dataModel.BooleanItemModel;
-	/**
-	 * ...
-	 * @author Alexutz
-	 */
-	internal class BooleanExpression extends Expression
+
+	public class AssignmentExpression extends Expression
 	{
+		protected var key : String;		
+		protected var right : Expression;
+		protected var operation : String;
 		
-		public function BooleanExpression() {
+		public function AssignmentExpression(key : String, right : Expression) {
 			super();
+			this.key = key;
+			this.right = right;
+		}
+		
+		override public final function isTrue(env : Environment) : Boolean {
+			throw new Error("Not Applicable");
+		}
+		
+		override public function getCanonicalForm() : String {
+			return key + operation + right.getCanonicalForm();
 		}
 		
 		override public final function getAsDataItem(env : Environment) : IDataItemModel {
-			return isTrue(env) ? BooleanItemModel.TRUE : BooleanItemModel.FALSE;
-		}		
+			var leftData : IDataItemModel = env.getVariable(key);
+			var rightData : IDataItemModel = right.getAsDataItem(env);
+			leftData = compute(leftData, rightData);
+			env.setVariable(key, leftData);
+			return null;
+		}
+		
+		protected function compute(leftData : IDataItemModel, rightData : IDataItemModel) : IDataItemModel{
+			return rightData;
+		}
 	}
 }

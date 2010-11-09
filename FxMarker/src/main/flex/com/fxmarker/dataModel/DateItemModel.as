@@ -45,7 +45,7 @@
 		public function getAsString(config:Configuration):String
 		{
 			if(date){
-				if(config.fxm_internal::dateFormatter){
+				if(config && config.fxm_internal::dateFormatter){
 					return config.fxm_internal::dateFormatter.format(date);
 				}
 				return date.toString();

@@ -32,7 +32,7 @@
 		}
 		
 		public function getStringValue(env : Environment) : String{
-			return "";
+			return getAsDataItem(env).getAsString(env.configuration);
 		}		
 		
 		public function getAsDataItem(env : Environment) : IDataItemModel {
