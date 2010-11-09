@@ -13,10 +13,7 @@
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
-  <applications>
-    <application path="FxMarkerTest.mxml"/>
-    <application path="AntTestRunner.mxml"/>
-  </applications>
+  <applications/>
   <modules/>
   <buildCSSFiles/>
 </actionScriptProperties>
