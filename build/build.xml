@@ -60,6 +60,7 @@
     	 	<arg value="-actionscript-file-encoding=UTF-8"/>
     	 	<arg value="-debug=false"/>
     	 	<arg value="-incremental=false"/>
+		 	<arg value="-optimize=true"/>
     	 	<arg value="-keep-generated-actionscript=false"/>
     	 	    		
     	 	<arg line="${compile.metadata}"/>
@@ -77,6 +78,7 @@
     	 	<arg value="-actionscript-file-encoding=UTF-8"/>
     	 	<arg value="-debug=false"/>
     	 	<arg value="-incremental=false"/>
+			<arg value="-optimize=true"/>
     	 	<arg value="-keep-generated-actionscript=false"/>
     	 	    		
     	 	<arg line="${compile.metadata}"/>
@@ -128,40 +130,48 @@
 	
 	<!-- -->
 	<target name="documentation">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="${doc.dir}/asdoc">
+				<include name="**/**"/>
+			</fileset>
+		</delete>
 		<exec executable="${asdoc.exe}">
 			<arg line="-source-path ${project.src.dir}"/>
 			<arg line="-doc-sources ${project.src.dir}"/>
 			<arg line="-output ${doc.dir}/asdoc"/>
 			<arg line="-main-title ${doc.title}"/>
 			<arg line="-window-title ${doc.title}"/>
+			<arg line="-package-description-file ${doc.dir}/packageDescriptor.xml"/>
+			<arg line="-lenient"/>
 		</exec>
 	</target>
 	
 	<target name="junit.ui" depends="build.project.test">
-	        <flexunit
-					player="flash"
-	                swf="${project.test.ant.output}"
-	                toDir="${bin.dir}/flexunit/reports/${project.name}Test"
-	                haltonfailure="false"
-	                verbose="true"
-	                failureproperty="flexunit.failed"
-					localTrusted="false"
-					port="1024"
-					buffer="262144"
-					timeout="60000"
-					headless="false"/>
+		<mkdir dir="${bin.dir}/flexunit/reports/${project.name}Test"/>
+		<flexunit
+				player="flash"
+				swf="${project.test.ant.output}"
+				toDir="${bin.dir}/flexunit/reports/${project.name}Test"
+				haltonfailure="false"
+				verbose="true"
+				failureproperty="flexunit.failed"
+				localTrusted="true"
+				port="1024"
+				buffer="262144"
+				timeout="60000"
+				headless="false"/>
 
-	        <junitreport todir="${bin.dir}/flexunit/reports/${project.name}Test">
-	            <fileset dir="${bin.dir}/flexunit/reports/${project.name}Test">
-	                <include name="TEST-*.xml"/>
-	            </fileset>
-	            <report format="frames" todir="${bin.dir}/flexunit/reports/flex"/>
-	        </junitreport>
+		<junitreport todir="${bin.dir}/flexunit/reports/${project.name}Test">
+			<fileset dir="${bin.dir}/flexunit/reports/${project.name}Test">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${bin.dir}/flexunit/reports/flex"/>
+		</junitreport>
 
-	        <fail
-	                message="One or more flexunit tests failed. See test reports for details."
-	                if="flexunit.failed"/>
-	    </target>
+		<fail
+				message="One or more flexunit tests failed. See test reports for details."
+				if="flexunit.failed"/>
+	</target>
 	
 	<macrodef name="make.readme">
 		<sequential>
