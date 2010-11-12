@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" version="1">
+<flexLibProperties includeAllClasses="false" version="1">
   <includeClasses>
     <classEntry path="com.fxmarker.Configuration"/>
     <classEntry path="com.fxmarker.Environment"/>
@@ -7,13 +7,11 @@
     <classEntry path="com.fxmarker.FxParser"/>
     <classEntry path="com.fxmarker.VERSION"/>
     <classEntry path="com.fxmarker.dataModel.BooleanItemModel"/>
-    <classEntry path="com.fxmarker.dataModel.Content"/>
     <classEntry path="com.fxmarker.dataModel.DataItemModel"/>
     <classEntry path="com.fxmarker.dataModel.DataModel"/>
     <classEntry path="com.fxmarker.dataModel.DateItemModel"/>
     <classEntry path="com.fxmarker.dataModel.HashItemModel"/>
     <classEntry path="com.fxmarker.dataModel.IDataItemModel"/>
-    <classEntry path="com.fxmarker.dataModel.ListContent"/>
     <classEntry path="com.fxmarker.dataModel.ListItemModel"/>
     <classEntry path="com.fxmarker.dataModel.Node"/>
     <classEntry path="com.fxmarker.dataModel.NullItemModel"/>

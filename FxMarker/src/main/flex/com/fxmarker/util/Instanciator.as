@@ -1,6 +1,6 @@
 /**
  *   FxMarker - a template based content generator for Flex and Air applications 
- *   Copyright (C) 2008-2010 Alex Ciobanu
+ *   Copyright 2008-2010 Alex Ciobanu
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.

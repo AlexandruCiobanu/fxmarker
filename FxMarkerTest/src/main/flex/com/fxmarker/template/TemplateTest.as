@@ -1,19 +1,18 @@
 /**
  *   FxMarker - a template based content generator for Flex and Air applications 
- *   Copyright (C) 2008-2010 Alex Ciobanu
+ *   Copyright 2008-2010 Alex Ciobanu
  *
- *   This program is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- * 
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
  *
- *   You should have received a copy of the GNU General Public License
- *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
  */
  package com.fxmarker.template
 {
@@ -26,8 +25,6 @@
 	import com.fxmarker.dataModel.ObjectItemModel;
 	import com.fxmarker.dataModel.StringItemModel;
 	import com.fxmarker.writer.Writer;
-	
-	import flash.sampler.NewObjectSample;
 	
 	import org.flexunit.assertThat;
 	import org.hamcrest.object.equalTo;
@@ -140,7 +137,38 @@
 			var writer : Writer = new Writer();
 			template.process(model, writer);
 			assertThat(writer.writtenData, equalTo(expectedResult));
-		}		
+		}
+		
+		[Test]
+		public function assignmentTest() : void{
+			var source : String = "${test=4}";
+			var template : Template = FxMarker.instance.getTemplate(source);
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("test", 1);
+			var writer : Writer = new Writer();
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(4));
+			source = "${test+=4}";
+			template = FxMarker.instance.getTemplate(source);
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(8));
+			source = "${test-=2}";
+			template = FxMarker.instance.getTemplate(source);
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(6));
+			source = "${test*=2}";
+			template = FxMarker.instance.getTemplate(source);
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(12));
+			source = "${test/=3}";
+			template = FxMarker.instance.getTemplate(source);
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(4));
+			source = "${test%=3}";
+			template = FxMarker.instance.getTemplate(source);
+			template.process(dataModel, writer);
+			assertThat(dataModel.getValue("test").data, equalTo(1));
+		}
 		
 		[Test]
 		public function fullTest() : void{
