@@ -20,6 +20,8 @@
 
 	public class DataItemModel implements IDataItemModel
 	{
+		protected static const wrapper : ObjectWrapper = new ObjectWrapper();
+		
 		private var _data : Object;
 		/**
 		 * 

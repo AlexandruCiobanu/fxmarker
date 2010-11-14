@@ -16,9 +16,9 @@
  */
  package com.fxmarker
 {	
-	import com.fxmarker.dataModel.ContextTest;
 	import com.fxmarker.grammar.StateWalkerTest;
-	import com.fxmarker.template.TemplateTestSuite;
+	import com.fxmarker.template.ExpressionParserTest;
+	import com.fxmarker.template.TemplateTest;
 
 	[Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -28,11 +28,11 @@
 	 * 
 	 */	
 	public class AllTests
-	{
-		public var contextTest : ContextTest;
-		
+	{		
 		public var stateMachine : StateWalkerTest;
 		
-		public var templateSuite : TemplateTestSuite;
+		public var fullTest : TemplateTest;
+		
+		public var expressionParserTest : ExpressionParserTest;
 	}
 }

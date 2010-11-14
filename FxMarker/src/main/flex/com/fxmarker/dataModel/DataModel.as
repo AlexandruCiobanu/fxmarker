@@ -29,19 +29,14 @@
 	 * 
 	 */	
 	public class DataModel
-	{
-		/**
-		 * 
-		 */		
-		public static const PATH_DELIMITER : String = ".";
-		
-		private var root : Node;
+	{		
+		private var root : HashItemModel;
 		/**
 		 * 
 		 * 
 		 */		
 		public function DataModel(){
-			root = new Node();
+			root = new HashItemModel(new Object());
 		}
 		/**
 		 * 
@@ -49,23 +44,8 @@
 		 * @param value
 		 * 
 		 */		
-		public function putValue(path : String, value : Object) : void{
-			var tokenizer : StringTokenizer = getTokens(path);
-			var node : Node = root;
-			while(tokenizer.hasNext()){
-				var subPath : String = tokenizer.next();
-				if(node.hasChild(subPath)){
-					node = node.getChild(subPath);
-				}else{
-					node = node.addChild(subPath);
-				}
-			}
-			if(node){
-				node.data = getModel(value);
-			}else{
-				//shouldn't be here. Throw an error
-				throw new Error("Internal error for setting path <<" + path + ">>. Unable to determine target node.");
-			}
+		public function putValue(key : String, value : Object) : void{
+			root.putValue(key, getModel(value));
 		}
 		/**
 		 * 
@@ -73,30 +53,8 @@
 		 * @return 
 		 * 
 		 */		
-		public function getValue(path : String) : IDataItemModel{
-			var tokenizer : StringTokenizer = getTokens(path);
-			var result : Object = root;
-			while(tokenizer.hasNext() && result){
-				var subPath : String = tokenizer.next();
-				if(result is Node){
-					if((result as Node).hasChild(subPath)){
-						result = (result as Node).getChild(subPath);
-					}else{
-						result = (result as Node).data;
-					}
-				}
-				
-				if(result && !(result is Node)){
-					if(result.hasOwnProperty(subPath)){
-						result = result[subPath];
-					}else{
-						result = null;
-					}
-				}
-			}
-			if(result is Node){
-				result = Node(result).data;
-			}
+		public function getValue(key : String) : IDataItemModel{
+			var result : Object = root.getValue(key);
 			return getModel(result);
 		}
 		
@@ -123,10 +81,6 @@
 				return new ListItemModel(data);
 			}
 			return new ObjectItemModel(data);
-		}
-		
-		private function getTokens(path : String) : StringTokenizer{
-			return new StringTokenizer(PATH_DELIMITER, path);
 		}
 	}
 }

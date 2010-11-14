@@ -17,11 +17,14 @@
  package com.fxmarker
 {
 	import com.fxmarker.dataModel.DataModel;
+	import com.fxmarker.dataModel.HashItemModel;
 	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.ObjectWrapper;
 	import com.fxmarker.template.ILocalContext;
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.writer.Writer;
+
 	/**
 	 * 
 	 * @author Alexutz
@@ -36,6 +39,8 @@
 		private var rootDataModel : DataModel;
 		
 		private var template : Template;
+		
+		private var wrapper : ObjectWrapper;
 		/**
 		 * Constructor
 		 * @param	template reference to calling template
@@ -46,6 +51,7 @@
 			this.rootDataModel = rootModel;
 			this.output = output;
 			this.template = template;
+			this.wrapper = new ObjectWrapper();
 		}
 		
 		public function get configuration() : Configuration{
@@ -89,14 +95,18 @@
 		 * @return variable value
 		 */
 		public function getLocalVariable(name : String) : IDataItemModel {
+			var tm : Object;
 			for (var i : int = contextStack.length - 1; i > -1; i--) {
 				var lc : ILocalContext = ILocalContext(contextStack[i]);
-				var tm : IDataItemModel = lc.getLocalVariable(name);
+				tm = lc.getLocalVariable(name);
                 if (tm != null) {
-                    return tm;
+                    break;
                 }
             }
-			return rootDataModel.getValue(name) as IDataItemModel;
+			if(tm == null){
+				tm = rootDataModel.getValue(name);
+			}
+			return wrapper.wrap(tm);
 		}
 		/**
 		 * Get the value based on variable name. It will search it through global aswell as local contexts

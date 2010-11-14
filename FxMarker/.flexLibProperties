@@ -4,7 +4,6 @@
     <classEntry path="com.fxmarker.Configuration"/>
     <classEntry path="com.fxmarker.Environment"/>
     <classEntry path="com.fxmarker.FxMarker"/>
-    <classEntry path="com.fxmarker.FxParser"/>
     <classEntry path="com.fxmarker.VERSION"/>
     <classEntry path="com.fxmarker.dataModel.BooleanItemModel"/>
     <classEntry path="com.fxmarker.dataModel.DataItemModel"/>
@@ -13,7 +12,6 @@
     <classEntry path="com.fxmarker.dataModel.HashItemModel"/>
     <classEntry path="com.fxmarker.dataModel.IDataItemModel"/>
     <classEntry path="com.fxmarker.dataModel.ListItemModel"/>
-    <classEntry path="com.fxmarker.dataModel.Node"/>
     <classEntry path="com.fxmarker.dataModel.NullItemModel"/>
     <classEntry path="com.fxmarker.dataModel.NumberItemModel"/>
     <classEntry path="com.fxmarker.dataModel.ObjectItemModel"/>
@@ -95,6 +93,7 @@
     <classEntry path="com.fxmarker.util.StringTokenizer"/>
     <classEntry path="com.fxmarker.util.Utils"/>
     <classEntry path="com.fxmarker.writer.Writer"/>
+    <classEntry path="com.fxmarker.dataModel.ObjectWrapper"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

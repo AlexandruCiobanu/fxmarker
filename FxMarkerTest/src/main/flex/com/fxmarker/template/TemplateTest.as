@@ -181,7 +181,7 @@
 										new StringItemModel("mx.core.UIComponent"), 
 										new StringItemModel("flash.display.DisplayObject")]);
 			var methods : Array = [];
-			var method : HashItemModel = new HashItemModel({name: new StringItemModel("getState"), description: new StringItemModel("Retrieves the state of the object"), returnType: new StringItemModel("State")});
+			var method : Object = new HashItemModel({name: new StringItemModel("getState"), description: new StringItemModel("Retrieves the state of the object"), returnType: new StringItemModel("State")});
 			methods.push(method);
 			method = new HashItemModel({name: new StringItemModel("setState"), description: new StringItemModel("Sets the state of the object"), returnType: new StringItemModel("void"), 
 				params: new ListItemModel([new HashItemModel({name: new StringItemModel("state"), type: new StringItemModel("State"), description: new StringItemModel("The state instance to be set")})])});
@@ -189,6 +189,22 @@
 			dataModel.putValue("methods", methods);
 			
 			var result : String = new String(new solution());
+			testComponent(testData, dataModel, result);
+			
+			dataModel = new DataModel();
+			dataModel.putValue("package", "com.axway.test");
+			dataModel.putValue("name", "ILifecycleObject");
+			dataModel.putValue("description", "This interface defines a lifeCycle object");
+			dataModel.putValue("imports", ["flash.utils.getQualifiedClassName", 
+				"mx.core.UIComponent", 
+				"flash.display.DisplayObject"]);
+			methods = [];
+			method = {name: "getState", description: "Retrieves the state of the object", returnType: "State"};
+			methods.push(method);
+			method = {name: "setState", description: "Sets the state of the object", returnType: "void", 
+				params: [{name: "state", type: "State", description: "The state instance to be set"}]};
+			methods.push(method);
+			dataModel.putValue("methods", methods);
 			
 			testComponent(testData, dataModel, result);
 		}

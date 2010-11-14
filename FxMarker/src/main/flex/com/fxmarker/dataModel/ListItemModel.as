@@ -19,6 +19,7 @@ package com.fxmarker.dataModel
 	import com.fxmarker.Configuration;
 	import com.fxmarker.util.Iterator;
 	import com.fxmarker.util.ListIterator;
+	
 	import mx.collections.ListCollectionView;
 	/**
 	 * ...
@@ -26,6 +27,7 @@ package com.fxmarker.dataModel
 	 */
 	public class ListItemModel implements IDataItemModel
 	{
+		
 		private var list : Object;
 		
 		public function ListItemModel(value : *) {

@@ -16,12 +16,16 @@
  */
 package com.fxmarker.util 
 {
+	import com.fxmarker.dataModel.ObjectWrapper;
+	
 	import mx.collections.ListCollectionView;
+
 	/**
 	 * ...
 	 * @author Alexutz
 	 */
 	public class ListIterator implements Iterator{
+		private static var wrapper : ObjectWrapper = new ObjectWrapper();
 		
 		private var list : Object;
 		private var index : int = 0;
@@ -41,7 +45,7 @@ package com.fxmarker.util
 		}
 		
 		public function next() : * {
-			return list[index++];
+			return wrapper.wrap(list[index++]);
 		}
 		
 		public function get count() : int {

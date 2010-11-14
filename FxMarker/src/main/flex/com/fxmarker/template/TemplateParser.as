@@ -29,18 +29,12 @@
 	 * 
 	 */	
 	public class TemplateParser
-	{
-		private var useGrammarFile : Boolean;
-		
-		private var templateRepository : Dictionary;
-		
+	{		
 		/**
 		 * 
-		 * @param useGrammarFile
 		 * 
 		 */				
-		public function TemplateParser(useGrammarFile : Boolean = false){
-			this.useGrammarFile = useGrammarFile;
+		public function TemplateParser(){
 		}
 		
 		/**
@@ -50,32 +44,9 @@
 		 * 
 		 */				
 		public function parse(data : String) : Template{
-			var bytes : ByteArray = new ByteArray();
-			bytes.writeUTFBytes(data);
-			var hash : String = SHA256.computeDigest(bytes)
-			var template : Template = getTemplateFromCache(hash);
-			if(!template){
-				if(useGrammarFile){
-					template = parseFromGrammar(data);
-				}else{
-					template = parseFromStateMachine(data);
-				}
-			}
-			return template;
-		}
-		
-		private function getTemplateFromCache(hash : String) : Template{
-			return null;
-		}
-		
-		private function parseFromGrammar(data : String) : Template{
-			return null;
-		}
-		
-		private function parseFromStateMachine(data : String) : Template{
 			var walker : StateWalker = new StateWalker();
-			return walker.walk(data);
-		}
-		
+			var template : Template = walker.walk(data);
+			return template;
+		}		
 	}
 }
