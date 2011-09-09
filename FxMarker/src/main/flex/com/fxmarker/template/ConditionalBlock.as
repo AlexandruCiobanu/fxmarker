@@ -42,6 +42,9 @@ package com.fxmarker.template
 		override public function setContent(content : String) : void {
 			expressionBody = content;
 			expression = ExpressionParser.instance.parse(content);
+			if(expression){
+				expression.setTemplate(template);
+			}
 		}
 		
 		override public function accept(env : Environment) : void {

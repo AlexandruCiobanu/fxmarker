@@ -23,7 +23,7 @@ package com.fxmarker.grammar
 	[ExcludeClass]
 	/**
 	 * State transition map used by the StateWalker state machine
-	 * @author User
+	 * @author Alexutz
 	 * 
 	 */	
 	internal final class StateTransitionMap extends EventDispatcher

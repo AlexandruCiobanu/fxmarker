@@ -16,7 +16,7 @@
  */
 package com.fxmarker.template.expression
 {	
-	import com.fxmarker.dataModel.NullItemModel;
+	
 
 	/**
 	 * ...
@@ -53,9 +53,10 @@ package com.fxmarker.template.expression
 		/**
 		 * 
 		 * @param content
+		 * @param configuration
 		 * @return 
 		 * 
-		 */		
+		 */			
 		public function parse(content : String) : Expression{
 			if(!content){
 				return null;
@@ -208,6 +209,7 @@ package com.fxmarker.template.expression
 			if(operand == null){
 				return new StringConstant(null);
 			}
+			//operand = StringUtil.trim(operand);
 			//check for string constants
 			if(operand.indexOf(ExpressionSign.STRING_DELIMITER) == 0){
 				return new StringConstant(operand.substring(1, operand.length - 1));			

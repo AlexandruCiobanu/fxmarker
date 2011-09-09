@@ -34,6 +34,7 @@
 			if(element){
 				_nestedElements.push(element);
 				element.parent = this.parent;
+				element.setTemplate(template);
 			}
 		}
 		

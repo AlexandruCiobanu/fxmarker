@@ -16,9 +16,12 @@
  */
 package com.fxmarker.grammar
 {
+	import com.fxmarker.Configuration;
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.template.TemplateInlineElement;
+	import com.fxmarker.template.expression.ExpressionParser;
+
 	/**
 	 * This class represents the state machine used to parse and compile the template file.
 	 * The result of the state machine execution is a Template object configured with respect 
@@ -48,8 +51,12 @@ package com.fxmarker.grammar
 		 * @param source input text
 		 * @return Template instance representing the compiled input
 		 */
-		public function walk(source : String) : Template{
+		public function walk(source : String, config : Configuration) : Template{
 			var template : Template = new Template();
+			template.configuration = config;
+			if(config){
+				ExpressionParser.instance.whitespaceAsSeparator = config.whiteSpaceAsSeparator;
+			}
 			var buffer : String = "";
 			itemsStack.push(template);
 			if (source && source.length > 0) {

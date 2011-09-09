@@ -27,19 +27,34 @@
 		
 		private var _end : Metrics;
 		
-		public function TemplateObject() { 
-		}
+		private var _template : Template;
 		
-		internal function setLocation(_begin : Metrics, _end : Metrics) : void {
+		public function TemplateObject() { }
+		
+		protected final function get template() : Template{
+			return _template;
+		}
+		/**
+		 * @private
+		 * 
+		 */		
+		internal final function setTemplate(value : Template) : void{
+			_template = value;
+		}
+		/**
+		 * @private
+		 * 
+		 */	
+		internal final function setLocation(_begin : Metrics, _end : Metrics) : void {
 			this._begin = _begin;
 			this._end = _end;
 		}
 		
-		public function get beginMetrics() : Metrics {
+		public final function get beginMetrics() : Metrics {
 			return _begin;
 		}
 		
-		public function get endMetrics() : Metrics {
+		public final function get endMetrics() : Metrics {
 			return _end;
 		}
 		

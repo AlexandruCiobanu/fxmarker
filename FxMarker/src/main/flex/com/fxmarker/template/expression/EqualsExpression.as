@@ -18,6 +18,7 @@ package com.fxmarker.template.expression
 {
 	import com.fxmarker.dataModel.DateItemModel;
 	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.NullItemModel;
 	import com.fxmarker.dataModel.NumberItemModel;
 	import com.fxmarker.dataModel.StringItemModel;
 
@@ -32,10 +33,10 @@ package com.fxmarker.template.expression
 		}
 		
 		protected override function innerValidate(leftItem:IDataItemModel, rightItem:IDataItemModel):void{
-			if (leftItem is DateItemModel || leftItem is NumberItemModel || leftItem is StringItemModel) {
-				return;
-			}
-			throw new Error("Model type not allowed in a comparison. Only dates, numbers and strings are allowed.");
+			//if (leftItem is DateItemModel || leftItem is NumberItemModel || leftItem is StringItemModel || leftItem is NullItemModel) {
+			//	return;
+			//}
+			//throw new Error("Model type not allowed in a comparison. Only dates, numbers and strings are allowed.");
 		} 
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {

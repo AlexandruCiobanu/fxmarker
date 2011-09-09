@@ -36,7 +36,7 @@
 		 * @return 
 		 * 
 		 */		
-		public function get configuration() : Configuration{
+		public final function get configuration() : Configuration{
 			return _configuration;
 		}
 		/**
@@ -54,6 +54,7 @@
 		 */
 		public function addElement(element : TemplateElement) : void{
 			if(element){
+				element.setTemplate(this);
 				if(!root){
 					root = element;
 				}else if(root is MixedContent){
@@ -61,6 +62,7 @@
 				}else{
 					var cnt : MixedContent = new MixedContent();
 					cnt.addElement(root);
+					cnt.setTemplate(this);
 					cnt.addElement(element);
 					root = cnt;
 				}

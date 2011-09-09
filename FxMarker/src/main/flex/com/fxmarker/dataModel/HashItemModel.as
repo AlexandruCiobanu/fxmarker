@@ -28,11 +28,11 @@ package com.fxmarker.dataModel
 		}
 		
 		public function getValue(key : String) : IDataItemModel{
-			return data && Object(data).hasOwnProperty(key) ? wrapper.wrap(data[key]) : NullItemModel.INSTANCE;
+			return data != null && Object(data).hasOwnProperty(key) ? wrapper.wrap(data[key]) : NullItemModel.INSTANCE;
 		}	
 		
 		public function putValue(key : String, value : Object) : void{
-			if(data){
+			if(data != null){
 				data[key] = value;
 			}
 		}

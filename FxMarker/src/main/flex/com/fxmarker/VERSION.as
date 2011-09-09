@@ -29,7 +29,7 @@
 		 * 
 		 */		
 		public static function get Version() : String{
-			return "1.0 alpha";
+			return "1.0 beta";
 		}
 		/**
 		 * 

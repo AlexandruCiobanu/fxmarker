@@ -22,7 +22,7 @@ package com.fxmarker.template.expression
 
 	/**
 	 * 
-	 * @author User
+	 * @author Alexutz
 	 * 
 	 */	
 	public final class ExpressionFactory
@@ -57,6 +57,9 @@ package com.fxmarker.template.expression
 			register(ExpressionSign.MULTIPLICATION_ASSIGNMENT, MultiplicationAssignment,	 2,    	1,		true);
 			register(ExpressionSign.DIVISION_ASSIGNMENT, 	   DivisionAssignment, 		  	 2,    	1,		true);
 			register(ExpressionSign.MODULUS_ASSIGNMENT,  	   ModulusAssignment,			 2,		1,		true);
+			
+			register(ExpressionSign.BIT_AND,  	   			   null,						 2,		13,		true);
+			register(ExpressionSign.BIT_OR,  	  			   null,						 2,		13,		true);
 		}
 		/**
 		 * 
@@ -146,7 +149,7 @@ package com.fxmarker.template.expression
 }
 /**
  * @private 
- * @author User
+ * @author Alexutz
  * 
  */
 class MapItem{

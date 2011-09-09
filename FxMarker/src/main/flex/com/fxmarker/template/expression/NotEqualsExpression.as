@@ -28,7 +28,7 @@ package com.fxmarker.template.expression
 		}
 		
 		override protected function compute(leftItem : IDataItemModel, rightItem : IDataItemModel) : Boolean {
-			return leftItem.data != leftItem.data;
+			return leftItem.data != rightItem.data;
 		}
 		
 		override public function getCanonicalForm() : String {

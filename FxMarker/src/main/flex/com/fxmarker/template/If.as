@@ -30,6 +30,7 @@
 		override public function setContent(content:String):void 
 		{
 			var conditionalBlock : ConditionalBlock = new ConditionalBlock(true);
+			conditionalBlock.setTemplate(template);
 			conditionalBlock.setLocation(beginMetrics, endMetrics);
 			conditionalBlock.setContent(StringUtil.trim(content));
 			addElement(conditionalBlock);
@@ -39,6 +40,7 @@
 			if (!_nestedElements) {
 				_nestedElements = [];
 			}
+			element.setTemplate(template);
 			if (element is ConditionalBlock) {
 				_nestedElements.push(element);
 			}else{

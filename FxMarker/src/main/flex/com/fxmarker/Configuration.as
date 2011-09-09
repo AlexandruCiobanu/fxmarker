@@ -28,6 +28,10 @@
 		/**
 		 * 
 		 */		
+		public var whiteSpaceAsSeparator : Boolean = false;
+		/**
+		 * 
+		 */		
 		fxm_internal var dateFormatter : DateFormatter;
 		/**
 		 * 

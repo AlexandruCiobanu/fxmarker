@@ -18,8 +18,10 @@ package com.fxmarker.template.expression
 {
 	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
+	import com.fxmarker.dataModel.NullItemModel;
 	
 	import flash.utils.getQualifiedClassName;
+
 	/**
 	 * ...
 	 * @author Alexutz
@@ -45,11 +47,11 @@ package com.fxmarker.template.expression
 		 */
 		protected final function validate(leftItem : IDataItemModel, rightItem : IDataItemModel) : void {
 			if (leftItem != null && rightItem != null) {
-				if (getQualifiedClassName(leftItem) != getQualifiedClassName(rightItem)) {
+				if (!(leftItem is NullItemModel) && !(rightItem is NullItemModel) && getQualifiedClassName(leftItem) != getQualifiedClassName(rightItem)) {
 					throw new Error("Cannot perform comparison because operands have different types.");
-				}
-				innerValidate(leftItem, rightItem);
+				}	
 			}
+			innerValidate(leftItem, rightItem);
 		}
 		/**
 		 * Inner validation. In this step the items are guaranteed to be non null and have the same type.

@@ -50,10 +50,12 @@
 		/**
 		 * 
 		 * @param source
+		 * @param config
+		 * @return 
 		 * 
-		 */		
-		public function getTemplate(source : String) : Template{
-			var template : Template = parser.parse(source);
+		 */					
+		public function getTemplate(source : String, config : Configuration = null) : Template{
+			var template : Template = parser.parse(source, config);
 			return template;
 		}
 	}

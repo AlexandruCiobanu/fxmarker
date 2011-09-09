@@ -24,6 +24,8 @@
 	import com.fxmarker.template.Template;
 	import com.fxmarker.template.TemplateElement;
 	import com.fxmarker.writer.Writer;
+	
+	import mx.utils.StringUtil;
 
 	/**
 	 * 
@@ -114,7 +116,7 @@
 		 * @return variable value
 		 */
 		public function getVariable(name : String) : IDataItemModel {
-			var result : IDataItemModel = getLocalVariable(name);
+			var result : IDataItemModel = getLocalVariable(StringUtil.trim(name));
 			return result;
 		}
 		

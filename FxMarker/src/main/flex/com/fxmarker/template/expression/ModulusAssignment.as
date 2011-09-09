@@ -21,7 +21,7 @@ package com.fxmarker.template.expression
 
 	/**
 	 * 
-	 * @author User
+	 * @author Alexutz
 	 * 
 	 */	
 	public class ModulusAssignment extends AssignmentExpression

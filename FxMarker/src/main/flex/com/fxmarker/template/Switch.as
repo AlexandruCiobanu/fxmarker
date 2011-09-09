@@ -32,7 +32,7 @@ package com.fxmarker.template
 	 *  <#default><br/>
 	 * 			...content<br/>
 	 * </#switch> <br/>
-	 * @author User
+	 * @author Alexutz
 	 * 
 	 */	
 	internal final class Switch extends TemplateElement

@@ -56,12 +56,14 @@
 		
 		public function addElement(element : TemplateElement) : void{
 			if(element){
+				element.setTemplate(template);
 				if(!_nestedBlock){
 					setNestedBlock(element);
 				}else if(_nestedBlock is MixedContent){
 					MixedContent(_nestedBlock).addElement(element);
 				}else{
 					var cnt : MixedContent = new MixedContent();
+					cnt.setTemplate(template);
 					var tmp : TemplateElement = _nestedBlock;
 					setNestedBlock(cnt);
 					cnt.addElement(tmp);

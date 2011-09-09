@@ -51,6 +51,9 @@ package com.fxmarker.template.expression
 		public static const DOT : String = ".";
 		public static const PARENTHESIS_OPEN : String = "(";
 		public static const PARENTHESIS_CLOSE : String = ")";
+		//Bitwise
+		public static const BIT_AND : String = "&";
+		public static const BIT_OR : String = "|";
 		
 		public static const FUNCTION_ARG_SEPARATOR : String = ",";
 		

@@ -16,6 +16,7 @@
  */
  package com.fxmarker.template
 {
+	import com.fxmarker.Configuration;
 	import com.fxmarker.grammar.StateWalker;
 	
 	import flash.utils.ByteArray;
@@ -43,9 +44,12 @@
 		 * @return 
 		 * 
 		 */				
-		public function parse(data : String) : Template{
+		public function parse(data : String, configuration : Configuration) : Template{
 			var walker : StateWalker = new StateWalker();
-			var template : Template = walker.walk(data);
+			if(configuration == null){
+				configuration = new Configuration();
+			}
+			var template : Template = walker.walk(data, configuration);
 			return template;
 		}		
 	}

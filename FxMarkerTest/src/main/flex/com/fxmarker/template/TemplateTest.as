@@ -17,6 +17,7 @@
  package com.fxmarker.template
 {
 	
+	import com.fxmarker.Configuration;
 	import com.fxmarker.FxMarker;
 	import com.fxmarker.dataModel.DataModel;
 	import com.fxmarker.dataModel.HashItemModel;
@@ -25,6 +26,8 @@
 	import com.fxmarker.dataModel.ObjectItemModel;
 	import com.fxmarker.dataModel.StringItemModel;
 	import com.fxmarker.writer.Writer;
+	
+	import mx.messaging.config.ConfigMap;
 	
 	import org.flexunit.assertThat;
 	import org.hamcrest.object.equalTo;
@@ -130,10 +133,10 @@
 			testComponent(data, dataModel, result);
 		}
 		
-		private function testComponent(source : String, model : DataModel, expectedResult : String) : void{
-			var template : Template = FxMarker.instance.getTemplate(source);
+		private function testComponent(source : String, model : DataModel, expectedResult : String, config : Configuration = null ) : void{
+			var template : Template = FxMarker.instance.getTemplate(source, config);
 			var canonical : String = template.getRootElement().getCanonicalForm();
-			assertThat(canonical, equalTo(source));
+			//assertThat(canonical, equalTo(source));
 			var writer : Writer = new Writer();
 			template.process(model, writer);
 			assertThat(writer.writtenData, equalTo(expectedResult));
@@ -207,6 +210,107 @@
 			dataModel.putValue("methods", methods);
 			
 			testComponent(testData, dataModel, result);
+		}
+		
+		[Test]
+		public function ifelseTestStringLength() : void{			
+			var data : String = "<#if text.length==4>Length is 4<#else>The length is not 4</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("text", new HashItemModel("abcd"));
+			var result : String = "Length is 4";
+			testComponent(data, dataModel, result);
+			// test empty string
+			dataModel.putValue("text", new HashItemModel(""));
+			result = "The length is not 4";
+			testComponent(data, dataModel, result);
+			
+			// test null==4 => false
+			dataModel.putValue("text", new HashItemModel(null));
+			result = "The length is not 4";
+			testComponent(data, dataModel, result);
+		}
+		
+		[Test]
+		public function testComplexExpressions() : void{
+			var data : String = "<#if value!=null && value==\"4\">good<#else>bad</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("value", new StringItemModel("4"));
+			var result : String = "good";
+			testComponent(data, dataModel, result);
+		}
+		
+		[Test]
+		public function ifelseTestWithSpaces() : void{
+			var data : String = "<#if value == 4>Value is 4<#else>The value is not 4</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("value", new NumberItemModel(4));
+			var result : String = "Value is 4";
+			
+			var configuration : Configuration = new Configuration();
+			configuration.whiteSpaceAsSeparator = true;
+			
+			testComponent(data, dataModel, result, configuration);
+			dataModel.putValue("value", new NumberItemModel(5));
+			result = "The value is not 4";
+			testComponent(data, dataModel, result, configuration);
+		}
+		
+		[Test]
+		public function ifelseTestStringEmptyOrNull() : void{
+			var data : String = "<#if text>String has content<#else>String empty or null</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("text", new HashItemModel("abcd"));
+			var result : String = "String has content";
+			testComponent(data, dataModel, result);
+			// test empty string
+			dataModel.putValue("text", new HashItemModel(""));
+			result = "String empty or null";
+			testComponent(data, dataModel, result);
+			// test null==4 => false
+			dataModel.putValue("text", new HashItemModel(null));
+			result = "String empty or null";
+			testComponent(data, dataModel, result); 
+		}
+		
+		[Test]
+		public function ifelseTestLessThan() : void{
+			var data : String = "<#if value<4>Value is less<#else>The value is not less</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("value", new NumberItemModel(3));
+			var result : String = "Value is less";
+			testComponent(data, dataModel, result);
+			dataModel.putValue("value", new NumberItemModel(5));
+			result = "The value is not less";
+			testComponent(data, dataModel, result);
+		}
+		
+		[Test]
+		[Ignore("This is not yet properly supported")]
+		public function ifelseTestGreaterThan() : void{
+			var data : String = "<#if value>4>Value is greater<#else>The value is not greater</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("value", new NumberItemModel(8));
+			var result : String = "Value is greater";
+			testComponent(data, dataModel, result);
+			dataModel.putValue("value", new NumberItemModel(0));
+			result = "The value is not greater";
+			testComponent(data, dataModel, result);
+		}
+		
+		[Test]
+		public function ifelseTestStringLengthNotEqual() : void{
+			var data : String = 
+				"<#if text.length!=4>The length is not 4<#else>Length is 4</#if>";
+			var dataModel : DataModel = new DataModel();
+			dataModel.putValue("text", new HashItemModel("abcd"));
+			var result : String = "Length is 4";
+			testComponent(data, dataModel, result);
+			dataModel.putValue("text", new HashItemModel(""));
+			result = "The length is not 4";
+			testComponent(data, dataModel, result);
+			dataModel.putValue("text", new HashItemModel(null));
+			result = "The length is not 4";
+			testComponent(data, dataModel, result);
 		}
 	}
 }

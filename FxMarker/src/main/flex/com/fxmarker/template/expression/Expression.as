@@ -16,9 +16,11 @@
  */
  package com.fxmarker.template.expression
 {
+	import com.fxmarker.Configuration;
 	import com.fxmarker.Environment;
 	import com.fxmarker.dataModel.IDataItemModel;
 	import com.fxmarker.template.TemplateObject;
+
 	/**
 	 * 
 	 * @author Alexutz
@@ -39,7 +41,12 @@
 		}
 		
 		public function isTrue(env : Environment) : Boolean {
-			return false;
+			var item:* = getAsDataItem(env);
+			return item && item.data; 
+		}
+		
+		protected final function get configuration() : Configuration{
+			return template.configuration;
 		}
 	}
 }
